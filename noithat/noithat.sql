@@ -1,33 +1,33 @@
 -- phpMyAdmin SQL Dump
--- version 3.5.2.2
+-- version 4.5.1
 -- http://www.phpmyadmin.net
 --
--- Host: 127.0.0.1
--- Generation Time: Oct 29, 2016 at 08:04 AM
--- Server version: 5.5.27
--- PHP Version: 5.4.7
+-- Client :  127.0.0.1
+-- Généré le :  Sam 29 Octobre 2016 à 10:02
+-- Version du serveur :  10.1.16-MariaDB
+-- Version de PHP :  5.5.38
 
-SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+/*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `noithat`
+-- Base de données :  `noithat`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `noithat_address`
+-- Structure de la table `noithat_address`
 --
 
-CREATE TABLE IF NOT EXISTS `noithat_address` (
-  `address_id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `noithat_address` (
+  `address_id` int(11) NOT NULL,
   `customer_id` int(11) NOT NULL,
   `firstname` varchar(32) NOT NULL,
   `lastname` varchar(32) NOT NULL,
@@ -38,19 +38,17 @@ CREATE TABLE IF NOT EXISTS `noithat_address` (
   `postcode` varchar(10) NOT NULL,
   `country_id` int(11) NOT NULL DEFAULT '0',
   `zone_id` int(11) NOT NULL DEFAULT '0',
-  `custom_field` text NOT NULL,
-  PRIMARY KEY (`address_id`),
-  KEY `customer_id` (`customer_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+  `custom_field` text NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `noithat_affiliate`
+-- Structure de la table `noithat_affiliate`
 --
 
-CREATE TABLE IF NOT EXISTS `noithat_affiliate` (
-  `affiliate_id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `noithat_affiliate` (
+  `affiliate_id` int(11) NOT NULL,
   `firstname` varchar(32) NOT NULL,
   `lastname` varchar(32) NOT NULL,
   `email` varchar(96) NOT NULL,
@@ -80,78 +78,71 @@ CREATE TABLE IF NOT EXISTS `noithat_affiliate` (
   `ip` varchar(40) NOT NULL,
   `status` tinyint(1) NOT NULL,
   `approved` tinyint(1) NOT NULL,
-  `date_added` datetime NOT NULL,
-  PRIMARY KEY (`affiliate_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+  `date_added` datetime NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `noithat_affiliate_activity`
+-- Structure de la table `noithat_affiliate_activity`
 --
 
-CREATE TABLE IF NOT EXISTS `noithat_affiliate_activity` (
-  `affiliate_activity_id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `noithat_affiliate_activity` (
+  `affiliate_activity_id` int(11) NOT NULL,
   `affiliate_id` int(11) NOT NULL,
   `key` varchar(64) NOT NULL,
   `data` text NOT NULL,
   `ip` varchar(40) NOT NULL,
-  `date_added` datetime NOT NULL,
-  PRIMARY KEY (`affiliate_activity_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+  `date_added` datetime NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `noithat_affiliate_login`
+-- Structure de la table `noithat_affiliate_login`
 --
 
-CREATE TABLE IF NOT EXISTS `noithat_affiliate_login` (
-  `affiliate_login_id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `noithat_affiliate_login` (
+  `affiliate_login_id` int(11) NOT NULL,
   `email` varchar(96) NOT NULL,
   `ip` varchar(40) NOT NULL,
   `total` int(4) NOT NULL,
   `date_added` datetime NOT NULL,
-  `date_modified` datetime NOT NULL,
-  PRIMARY KEY (`affiliate_login_id`),
-  KEY `email` (`email`),
-  KEY `ip` (`ip`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+  `date_modified` datetime NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `noithat_affiliate_transaction`
+-- Structure de la table `noithat_affiliate_transaction`
 --
 
-CREATE TABLE IF NOT EXISTS `noithat_affiliate_transaction` (
-  `affiliate_transaction_id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `noithat_affiliate_transaction` (
+  `affiliate_transaction_id` int(11) NOT NULL,
   `affiliate_id` int(11) NOT NULL,
   `order_id` int(11) NOT NULL,
   `description` text NOT NULL,
   `amount` decimal(15,4) NOT NULL,
-  `date_added` datetime NOT NULL,
-  PRIMARY KEY (`affiliate_transaction_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+  `date_added` datetime NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `noithat_api`
+-- Structure de la table `noithat_api`
 --
 
-CREATE TABLE IF NOT EXISTS `noithat_api` (
-  `api_id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `noithat_api` (
+  `api_id` int(11) NOT NULL,
   `name` varchar(64) NOT NULL,
   `key` text NOT NULL,
   `status` tinyint(1) NOT NULL,
   `date_added` datetime NOT NULL,
-  `date_modified` datetime NOT NULL,
-  PRIMARY KEY (`api_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+  `date_modified` datetime NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `noithat_api`
+-- Contenu de la table `noithat_api`
 --
 
 INSERT INTO `noithat_api` (`api_id`, `name`, `key`, `status`, `date_added`, `date_modified`) VALUES
@@ -160,49 +151,46 @@ INSERT INTO `noithat_api` (`api_id`, `name`, `key`, `status`, `date_added`, `dat
 -- --------------------------------------------------------
 
 --
--- Table structure for table `noithat_api_ip`
+-- Structure de la table `noithat_api_ip`
 --
 
-CREATE TABLE IF NOT EXISTS `noithat_api_ip` (
-  `api_ip_id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `noithat_api_ip` (
+  `api_ip_id` int(11) NOT NULL,
   `api_id` int(11) NOT NULL,
-  `ip` varchar(40) NOT NULL,
-  PRIMARY KEY (`api_ip_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+  `ip` varchar(40) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `noithat_api_session`
+-- Structure de la table `noithat_api_session`
 --
 
-CREATE TABLE IF NOT EXISTS `noithat_api_session` (
-  `api_session_id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `noithat_api_session` (
+  `api_session_id` int(11) NOT NULL,
   `api_id` int(11) NOT NULL,
   `token` varchar(32) NOT NULL,
   `session_id` varchar(32) NOT NULL,
   `session_name` varchar(32) NOT NULL,
   `ip` varchar(40) NOT NULL,
   `date_added` datetime NOT NULL,
-  `date_modified` datetime NOT NULL,
-  PRIMARY KEY (`api_session_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+  `date_modified` datetime NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `noithat_attribute`
+-- Structure de la table `noithat_attribute`
 --
 
-CREATE TABLE IF NOT EXISTS `noithat_attribute` (
-  `attribute_id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `noithat_attribute` (
+  `attribute_id` int(11) NOT NULL,
   `attribute_group_id` int(11) NOT NULL,
-  `sort_order` int(3) NOT NULL,
-  PRIMARY KEY (`attribute_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=12 ;
+  `sort_order` int(3) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `noithat_attribute`
+-- Contenu de la table `noithat_attribute`
 --
 
 INSERT INTO `noithat_attribute` (`attribute_id`, `attribute_group_id`, `sort_order`) VALUES
@@ -221,18 +209,17 @@ INSERT INTO `noithat_attribute` (`attribute_id`, `attribute_group_id`, `sort_ord
 -- --------------------------------------------------------
 
 --
--- Table structure for table `noithat_attribute_description`
+-- Structure de la table `noithat_attribute_description`
 --
 
-CREATE TABLE IF NOT EXISTS `noithat_attribute_description` (
+CREATE TABLE `noithat_attribute_description` (
   `attribute_id` int(11) NOT NULL,
   `language_id` int(11) NOT NULL,
-  `name` varchar(64) NOT NULL,
-  PRIMARY KEY (`attribute_id`,`language_id`)
+  `name` varchar(64) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `noithat_attribute_description`
+-- Contenu de la table `noithat_attribute_description`
 --
 
 INSERT INTO `noithat_attribute_description` (`attribute_id`, `language_id`, `name`) VALUES
@@ -262,17 +249,16 @@ INSERT INTO `noithat_attribute_description` (`attribute_id`, `language_id`, `nam
 -- --------------------------------------------------------
 
 --
--- Table structure for table `noithat_attribute_group`
+-- Structure de la table `noithat_attribute_group`
 --
 
-CREATE TABLE IF NOT EXISTS `noithat_attribute_group` (
-  `attribute_group_id` int(11) NOT NULL AUTO_INCREMENT,
-  `sort_order` int(3) NOT NULL,
-  PRIMARY KEY (`attribute_group_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
+CREATE TABLE `noithat_attribute_group` (
+  `attribute_group_id` int(11) NOT NULL,
+  `sort_order` int(3) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `noithat_attribute_group`
+-- Contenu de la table `noithat_attribute_group`
 --
 
 INSERT INTO `noithat_attribute_group` (`attribute_group_id`, `sort_order`) VALUES
@@ -284,18 +270,17 @@ INSERT INTO `noithat_attribute_group` (`attribute_group_id`, `sort_order`) VALUE
 -- --------------------------------------------------------
 
 --
--- Table structure for table `noithat_attribute_group_description`
+-- Structure de la table `noithat_attribute_group_description`
 --
 
-CREATE TABLE IF NOT EXISTS `noithat_attribute_group_description` (
+CREATE TABLE `noithat_attribute_group_description` (
   `attribute_group_id` int(11) NOT NULL,
   `language_id` int(11) NOT NULL,
-  `name` varchar(64) NOT NULL,
-  PRIMARY KEY (`attribute_group_id`,`language_id`)
+  `name` varchar(64) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `noithat_attribute_group_description`
+-- Contenu de la table `noithat_attribute_group_description`
 --
 
 INSERT INTO `noithat_attribute_group_description` (`attribute_group_id`, `language_id`, `name`) VALUES
@@ -311,18 +296,17 @@ INSERT INTO `noithat_attribute_group_description` (`attribute_group_id`, `langua
 -- --------------------------------------------------------
 
 --
--- Table structure for table `noithat_banner`
+-- Structure de la table `noithat_banner`
 --
 
-CREATE TABLE IF NOT EXISTS `noithat_banner` (
-  `banner_id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `noithat_banner` (
+  `banner_id` int(11) NOT NULL,
   `name` varchar(64) NOT NULL,
-  `status` tinyint(1) NOT NULL,
-  PRIMARY KEY (`banner_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=9 ;
+  `status` tinyint(1) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `noithat_banner`
+-- Contenu de la table `noithat_banner`
 --
 
 INSERT INTO `noithat_banner` (`banner_id`, `name`, `status`) VALUES
@@ -333,22 +317,21 @@ INSERT INTO `noithat_banner` (`banner_id`, `name`, `status`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `noithat_banner_image`
+-- Structure de la table `noithat_banner_image`
 --
 
-CREATE TABLE IF NOT EXISTS `noithat_banner_image` (
-  `banner_image_id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `noithat_banner_image` (
+  `banner_image_id` int(11) NOT NULL,
   `banner_id` int(11) NOT NULL,
   `language_id` int(11) NOT NULL,
   `title` varchar(64) NOT NULL,
   `link` varchar(255) NOT NULL,
   `image` varchar(255) NOT NULL,
-  `sort_order` int(3) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`banner_image_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=113 ;
+  `sort_order` int(3) NOT NULL DEFAULT '0'
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `noithat_banner_image`
+-- Contenu de la table `noithat_banner_image`
 --
 
 INSERT INTO `noithat_banner_image` (`banner_image_id`, `banner_id`, `language_id`, `title`, `link`, `image`, `sort_order`) VALUES
@@ -384,11 +367,11 @@ INSERT INTO `noithat_banner_image` (`banner_image_id`, `banner_id`, `language_id
 -- --------------------------------------------------------
 
 --
--- Table structure for table `noithat_cart`
+-- Structure de la table `noithat_cart`
 --
 
-CREATE TABLE IF NOT EXISTS `noithat_cart` (
-  `cart_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+CREATE TABLE `noithat_cart` (
+  `cart_id` int(11) UNSIGNED NOT NULL,
   `api_id` int(11) NOT NULL,
   `customer_id` int(11) NOT NULL,
   `session_id` varchar(32) NOT NULL,
@@ -396,19 +379,17 @@ CREATE TABLE IF NOT EXISTS `noithat_cart` (
   `recurring_id` int(11) NOT NULL,
   `option` text NOT NULL,
   `quantity` int(5) NOT NULL,
-  `date_added` datetime NOT NULL,
-  PRIMARY KEY (`cart_id`),
-  KEY `cart_id` (`api_id`,`customer_id`,`session_id`,`product_id`,`recurring_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+  `date_added` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `noithat_category`
+-- Structure de la table `noithat_category`
 --
 
-CREATE TABLE IF NOT EXISTS `noithat_category` (
-  `category_id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `noithat_category` (
+  `category_id` int(11) NOT NULL,
   `image` varchar(255) DEFAULT NULL,
   `parent_id` int(11) NOT NULL DEFAULT '0',
   `top` tinyint(1) NOT NULL,
@@ -416,30 +397,28 @@ CREATE TABLE IF NOT EXISTS `noithat_category` (
   `sort_order` int(3) NOT NULL DEFAULT '0',
   `status` tinyint(1) NOT NULL,
   `date_added` datetime NOT NULL,
-  `date_modified` datetime NOT NULL,
-  PRIMARY KEY (`category_id`),
-  KEY `parent_id` (`parent_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=59 ;
+  `date_modified` datetime NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `noithat_category`
+-- Contenu de la table `noithat_category`
 --
 
 INSERT INTO `noithat_category` (`category_id`, `image`, `parent_id`, `top`, `column`, `sort_order`, `status`, `date_added`, `date_modified`) VALUES
-(25, '', 0, 1, 1, 3, 1, '2009-01-31 01:04:25', '2011-05-30 12:14:55'),
+(25, '', 0, 1, 1, 3, 0, '2009-01-31 01:04:25', '2016-10-29 13:32:21'),
 (27, '', 20, 0, 0, 2, 1, '2009-01-31 01:55:34', '2010-08-22 06:32:15'),
-(20, 'catalog/demo/compaq_presario.jpg', 0, 1, 1, 1, 1, '2009-01-05 21:49:43', '2011-07-16 02:14:42'),
-(24, '', 0, 1, 1, 5, 1, '2009-01-20 02:36:26', '2011-05-30 12:15:18'),
-(18, 'catalog/demo/hp_2.jpg', 0, 1, 0, 2, 1, '2009-01-05 21:49:15', '2011-05-30 12:13:55'),
-(17, '', 0, 1, 1, 4, 1, '2009-01-03 21:08:57', '2011-05-30 12:15:11'),
+(20, 'catalog/demo/compaq_presario.jpg', 0, 1, 1, 1, 0, '2009-01-05 21:49:43', '2016-10-29 13:34:06'),
+(24, '', 0, 1, 1, 5, 0, '2009-01-20 02:36:26', '2016-10-29 13:32:58'),
+(18, 'catalog/demo/hp_2.jpg', 0, 1, 0, 2, 0, '2009-01-05 21:49:15', '2016-10-29 13:34:28'),
+(17, '', 0, 1, 1, 4, 0, '2009-01-03 21:08:57', '2016-10-29 13:33:14'),
 (28, '', 25, 0, 0, 1, 1, '2009-02-02 13:11:12', '2010-08-22 06:32:46'),
 (26, '', 20, 0, 0, 1, 1, '2009-01-31 01:55:14', '2010-08-22 06:31:45'),
 (29, '', 25, 0, 0, 1, 1, '2009-02-02 13:11:37', '2010-08-22 06:32:39'),
 (30, '', 25, 0, 0, 1, 1, '2009-02-02 13:11:59', '2010-08-22 06:33:00'),
 (31, '', 25, 0, 0, 1, 1, '2009-02-03 14:17:24', '2010-08-22 06:33:06'),
 (32, '', 25, 0, 0, 1, 1, '2009-02-03 14:17:34', '2010-08-22 06:33:12'),
-(33, '', 0, 1, 1, 6, 1, '2009-02-03 14:17:55', '2011-05-30 12:15:25'),
-(34, 'catalog/demo/ipod_touch_4.jpg', 0, 1, 4, 7, 1, '2009-02-03 14:18:11', '2011-05-30 12:15:31'),
+(33, '', 0, 1, 1, 6, 0, '2009-02-03 14:17:55', '2016-10-29 13:31:55'),
+(34, 'catalog/demo/ipod_touch_4.jpg', 0, 1, 4, 7, 0, '2009-02-03 14:18:11', '2016-10-29 13:32:39'),
 (35, '', 28, 0, 0, 0, 1, '2010-09-17 10:06:48', '2010-09-18 14:02:42'),
 (36, '', 28, 0, 0, 0, 1, '2010-09-17 10:07:13', '2010-09-18 14:02:55'),
 (37, '', 34, 0, 0, 0, 1, '2010-09-18 14:03:39', '2011-04-22 01:55:08'),
@@ -462,44 +441,65 @@ INSERT INTO `noithat_category` (`category_id`, `image`, `parent_id`, `top`, `col
 (54, '', 34, 0, 0, 0, 1, '2010-11-07 11:29:16', '2011-04-22 01:16:50'),
 (55, '', 34, 0, 0, 0, 1, '2010-11-08 10:31:32', '2010-11-08 10:31:32'),
 (56, '', 34, 0, 0, 0, 1, '2010-11-08 10:31:50', '2011-04-22 01:16:37'),
-(57, '', 0, 1, 1, 3, 1, '2011-04-26 08:53:16', '2011-05-30 12:15:05'),
-(58, '', 52, 0, 0, 0, 1, '2011-05-08 13:44:16', '2011-05-08 13:44:16');
+(57, '', 0, 1, 1, 3, 0, '2011-04-26 08:53:16', '2016-10-29 13:33:43'),
+(58, '', 52, 0, 0, 0, 1, '2011-05-08 13:44:16', '2011-05-08 13:44:16'),
+(59, '', 0, 1, 1, 1, 1, '2016-10-29 13:39:17', '2016-10-29 15:00:32'),
+(60, '', 0, 1, 1, 2, 1, '2016-10-29 13:41:54', '2016-10-29 13:48:57'),
+(61, '', 0, 1, 1, 3, 1, '2016-10-29 13:47:17', '2016-10-29 13:49:22'),
+(62, '', 0, 1, 1, 4, 1, '2016-10-29 13:50:17', '2016-10-29 14:58:01'),
+(63, '', 0, 1, 1, 5, 1, '2016-10-29 13:50:56', '2016-10-29 14:59:27'),
+(64, '', 0, 1, 1, 6, 1, '2016-10-29 13:51:38', '2016-10-29 14:59:07'),
+(65, '', 0, 1, 1, 8, 1, '2016-10-29 13:52:17', '2016-10-29 14:57:48'),
+(66, '', 60, 0, 0, 1, 1, '2016-10-29 14:09:53', '2016-10-29 14:09:53'),
+(67, '', 60, 0, 1, 2, 1, '2016-10-29 14:11:25', '2016-10-29 14:13:05'),
+(68, '', 60, 0, 1, 3, 1, '2016-10-29 14:12:21', '2016-10-29 14:12:54'),
+(69, '', 60, 0, 1, 4, 1, '2016-10-29 14:13:40', '2016-10-29 14:13:40'),
+(70, '', 60, 0, 1, 5, 1, '2016-10-29 14:14:18', '2016-10-29 14:14:18'),
+(71, '', 60, 0, 1, 6, 1, '2016-10-29 14:14:49', '2016-10-29 14:14:49'),
+(76, '', 61, 0, 1, 1, 1, '2016-10-29 14:40:19', '2016-10-29 14:40:19'),
+(74, '', 60, 0, 1, 7, 1, '2016-10-29 14:16:55', '2016-10-29 14:16:55'),
+(75, '', 60, 0, 1, 8, 1, '2016-10-29 14:17:29', '2016-10-29 14:17:29'),
+(77, '', 61, 0, 1, 2, 1, '2016-10-29 14:41:07', '2016-10-29 14:41:07'),
+(78, '', 61, 0, 1, 3, 1, '2016-10-29 14:41:33', '2016-10-29 14:41:33'),
+(79, '', 61, 0, 1, 4, 1, '2016-10-29 14:42:02', '2016-10-29 14:42:02'),
+(80, '', 61, 0, 1, 5, 1, '2016-10-29 14:42:27', '2016-10-29 14:42:27'),
+(81, '', 61, 0, 1, 6, 1, '2016-10-29 14:42:53', '2016-10-29 14:42:53'),
+(82, '', 61, 0, 1, 7, 1, '2016-10-29 14:43:38', '2016-10-29 14:43:38'),
+(83, '', 61, 0, 1, 8, 1, '2016-10-29 14:44:09', '2016-10-29 14:44:09');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `noithat_category_description`
+-- Structure de la table `noithat_category_description`
 --
 
-CREATE TABLE IF NOT EXISTS `noithat_category_description` (
+CREATE TABLE `noithat_category_description` (
   `category_id` int(11) NOT NULL,
   `language_id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
   `description` text NOT NULL,
   `meta_title` varchar(255) NOT NULL,
   `meta_description` varchar(255) NOT NULL,
-  `meta_keyword` varchar(255) NOT NULL,
-  PRIMARY KEY (`category_id`,`language_id`),
-  KEY `name` (`name`)
+  `meta_keyword` varchar(255) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `noithat_category_description`
+-- Contenu de la table `noithat_category_description`
 --
 
 INSERT INTO `noithat_category_description` (`category_id`, `language_id`, `name`, `description`, `meta_title`, `meta_description`, `meta_keyword`) VALUES
 (28, 1, 'Monitors', '', 'Monitors', '', ''),
-(33, 1, 'Cameras', '', 'Cameras', '', ''),
+(33, 2, 'Cameras', '', 'Cameras', '', ''),
 (32, 1, 'Web Cameras', '', 'Web Cameras', '', ''),
 (31, 1, 'Scanners', '', 'Scanners', '', ''),
 (30, 1, 'Printers', '', 'Printers', '', ''),
 (29, 1, 'Mice and Trackballs', '', 'Mice and Trackballs', '', ''),
 (27, 1, 'Mac', '', 'Mac', '', ''),
 (26, 1, 'PC', '', 'PC', '', ''),
-(17, 1, 'Software', '', 'Software', '', ''),
-(25, 1, 'Components', '', 'Components', '', ''),
-(24, 1, 'Phones &amp; PDAs', '', 'Phones &amp; PDAs', '', ''),
-(20, 1, 'Desktops', '&lt;p&gt;\r\n	Example of category description text&lt;/p&gt;\r\n', 'Desktops', 'Example of category description', ''),
+(17, 2, 'Software', '', 'Software', '', ''),
+(25, 2, 'Components', '', 'Components', '', ''),
+(24, 2, 'Phones &amp; PDAs', '', 'Phones &amp; PDAs', '', ''),
+(20, 2, 'Desktops', '&lt;p&gt;\r\n	Example of category description text&lt;/p&gt;\r\n', 'Desktops', 'Example of category description', ''),
 (35, 1, 'test 1', '', 'test 1', '', ''),
 (36, 1, 'test 2', '', 'test 2', '', ''),
 (37, 1, 'test 5', '', 'test 5', '', ''),
@@ -509,8 +509,8 @@ INSERT INTO `noithat_category_description` (`category_id`, `language_id`, `name`
 (41, 1, 'test 8', '', 'test 8', '', ''),
 (42, 1, 'test 9', '', 'test 9', '', ''),
 (43, 1, 'test 11', '', 'test 11', '', ''),
-(34, 1, 'MP3 Players', '&lt;p&gt;\r\n	Shop Laptop feature only the best laptop deals on the market. By comparing laptop deals from the likes of PC World, Comet, Dixons, The Link and Carphone Warehouse, Shop Laptop has the most comprehensive selection of laptops on the internet. At Shop Laptop, we pride ourselves on offering customers the very best laptop deals. From refurbished laptops to netbooks, Shop Laptop ensures that every laptop - in every colour, style, size and technical spec - is featured on the site at the lowest possible price.&lt;/p&gt;\r\n', 'MP3 Players', '', ''),
-(18, 1, 'Laptops &amp; Notebooks', '&lt;p&gt;\r\n	Shop Laptop feature only the best laptop deals on the market. By comparing laptop deals from the likes of PC World, Comet, Dixons, The Link and Carphone Warehouse, Shop Laptop has the most comprehensive selection of laptops on the internet. At Shop Laptop, we pride ourselves on offering customers the very best laptop deals. From refurbished laptops to netbooks, Shop Laptop ensures that every laptop - in every colour, style, size and technical spec - is featured on the site at the lowest possible price.&lt;/p&gt;\r\n', 'Laptops &amp; Notebooks', '', ''),
+(34, 2, 'MP3 Players', '&lt;p&gt;\r\n	Shop Laptop feature only the best laptop deals on the market. By comparing laptop deals from the likes of PC World, Comet, Dixons, The Link and Carphone Warehouse, Shop Laptop has the most comprehensive selection of laptops on the internet. At Shop Laptop, we pride ourselves on offering customers the very best laptop deals. From refurbished laptops to netbooks, Shop Laptop ensures that every laptop - in every colour, style, size and technical spec - is featured on the site at the lowest possible price.&lt;/p&gt;\r\n', 'MP3 Players', '', ''),
+(18, 2, 'Laptops &amp; Notebooks', '&lt;p&gt;\r\n	Shop Laptop feature only the best laptop deals on the market. By comparing laptop deals from the likes of PC World, Comet, Dixons, The Link and Carphone Warehouse, Shop Laptop has the most comprehensive selection of laptops on the internet. At Shop Laptop, we pride ourselves on offering customers the very best laptop deals. From refurbished laptops to netbooks, Shop Laptop ensures that every laptop - in every colour, style, size and technical spec - is featured on the site at the lowest possible price.&lt;/p&gt;\r\n', 'Laptops &amp; Notebooks', '', ''),
 (44, 1, 'test 12', '', 'test 12', '', ''),
 (45, 1, 'Windows', '', 'Windows', '', ''),
 (46, 1, 'Macs', '', 'Macs', '', ''),
@@ -524,20 +524,20 @@ INSERT INTO `noithat_category_description` (`category_id`, `language_id`, `name`
 (54, 1, 'test 22', '', 'test 22', '', ''),
 (55, 1, 'test 23', '', 'test 23', '', ''),
 (56, 1, 'test 24', '', 'test 24', '', ''),
-(57, 1, 'Tablets', '', 'Tablets', '', ''),
+(57, 2, 'Tablets', '', 'Tablets', '', ''),
 (58, 1, 'test 25', '', 'test 25', '', ''),
 (28, 2, 'Monitors', '', 'Monitors', '', ''),
-(33, 2, 'Cameras', '', 'Cameras', '', ''),
+(33, 1, 'Cameras', '', 'Cameras', '', ''),
 (32, 2, 'Web Cameras', '', 'Web Cameras', '', ''),
 (31, 2, 'Scanners', '', 'Scanners', '', ''),
 (30, 2, 'Printers', '', 'Printers', '', ''),
 (29, 2, 'Mice and Trackballs', '', 'Mice and Trackballs', '', ''),
 (27, 2, 'Mac', '', 'Mac', '', ''),
 (26, 2, 'PC', '', 'PC', '', ''),
-(17, 2, 'Software', '', 'Software', '', ''),
-(25, 2, 'Components', '', 'Components', '', ''),
-(24, 2, 'Phones &amp; PDAs', '', 'Phones &amp; PDAs', '', ''),
-(20, 2, 'Desktops', '&lt;p&gt;\r\n	Example of category description text&lt;/p&gt;\r\n', 'Desktops', 'Example of category description', ''),
+(17, 1, 'Software', '', 'Software', '', ''),
+(25, 1, 'Components', '', 'Components', '', ''),
+(24, 1, 'Phones &amp; PDAs', '', 'Phones &amp; PDAs', '', ''),
+(20, 1, 'Desktops', '&lt;p&gt;\r\n	Example of category description text&lt;/p&gt;\r\n', 'Desktops', 'Example of category description', ''),
 (35, 2, 'test 1', '', 'test 1', '', ''),
 (36, 2, 'test 2', '', 'test 2', '', ''),
 (37, 2, 'test 5', '', 'test 5', '', ''),
@@ -547,8 +547,8 @@ INSERT INTO `noithat_category_description` (`category_id`, `language_id`, `name`
 (41, 2, 'test 8', '', 'test 8', '', ''),
 (42, 2, 'test 9', '', 'test 9', '', ''),
 (43, 2, 'test 11', '', 'test 11', '', ''),
-(34, 2, 'MP3 Players', '&lt;p&gt;\r\n	Shop Laptop feature only the best laptop deals on the market. By comparing laptop deals from the likes of PC World, Comet, Dixons, The Link and Carphone Warehouse, Shop Laptop has the most comprehensive selection of laptops on the internet. At Shop Laptop, we pride ourselves on offering customers the very best laptop deals. From refurbished laptops to netbooks, Shop Laptop ensures that every laptop - in every colour, style, size and technical spec - is featured on the site at the lowest possible price.&lt;/p&gt;\r\n', 'MP3 Players', '', ''),
-(18, 2, 'Laptops &amp; Notebooks', '&lt;p&gt;\r\n	Shop Laptop feature only the best laptop deals on the market. By comparing laptop deals from the likes of PC World, Comet, Dixons, The Link and Carphone Warehouse, Shop Laptop has the most comprehensive selection of laptops on the internet. At Shop Laptop, we pride ourselves on offering customers the very best laptop deals. From refurbished laptops to netbooks, Shop Laptop ensures that every laptop - in every colour, style, size and technical spec - is featured on the site at the lowest possible price.&lt;/p&gt;\r\n', 'Laptops &amp; Notebooks', '', ''),
+(34, 1, 'MP3 Players', '&lt;p&gt;\r\n	Shop Laptop feature only the best laptop deals on the market. By comparing laptop deals from the likes of PC World, Comet, Dixons, The Link and Carphone Warehouse, Shop Laptop has the most comprehensive selection of laptops on the internet. At Shop Laptop, we pride ourselves on offering customers the very best laptop deals. From refurbished laptops to netbooks, Shop Laptop ensures that every laptop - in every colour, style, size and technical spec - is featured on the site at the lowest possible price.&lt;/p&gt;\r\n', 'MP3 Players', '', ''),
+(18, 1, 'Laptops &amp; Notebooks', '&lt;p&gt;\r\n	Shop Laptop feature only the best laptop deals on the market. By comparing laptop deals from the likes of PC World, Comet, Dixons, The Link and Carphone Warehouse, Shop Laptop has the most comprehensive selection of laptops on the internet. At Shop Laptop, we pride ourselves on offering customers the very best laptop deals. From refurbished laptops to netbooks, Shop Laptop ensures that every laptop - in every colour, style, size and technical spec - is featured on the site at the lowest possible price.&lt;/p&gt;\r\n', 'Laptops &amp; Notebooks', '', ''),
 (44, 2, 'test 12', '', 'test 12', '', ''),
 (45, 2, 'Windows', '', 'Windows', '', ''),
 (46, 2, 'Macs', '', 'Macs', '', ''),
@@ -562,36 +562,80 @@ INSERT INTO `noithat_category_description` (`category_id`, `language_id`, `name`
 (54, 2, 'test 22', '', 'test 22', '', ''),
 (55, 2, 'test 23', '', 'test 23', '', ''),
 (56, 2, 'test 24', '', 'test 24', '', ''),
-(57, 2, 'Tablets', '', 'Tablets', '', ''),
-(58, 2, 'test 25', '', 'test 25', '', '');
+(57, 1, 'Tablets', '', 'Tablets', '', ''),
+(58, 2, 'test 25', '', 'test 25', '', ''),
+(59, 2, 'CÔNG TY', '', 'Công ty', '', ''),
+(60, 2, 'SẢN PHẨM TRANG TRÍ', '', 'SẢN PHẨM TRANG TRÍ', 'SẢN PHẨM TRANG TRÍ', ''),
+(59, 1, 'COMPANY', '', 'Company', 'Company', ''),
+(60, 1, 'DECORATIVE PRODUCTS', '', 'DECORATIVE PRODUCTS', '', ''),
+(61, 1, 'FURNITURE', '', 'FURNITURE', 'FURNITURE', ''),
+(61, 2, 'NỘI THẤT', '', 'NỘI THẤT', '', ''),
+(62, 2, 'DỊCH VỤ', '', 'DỊCH VỤ', '', ''),
+(63, 2, 'TUYỂN DỤNG', '', 'TUYỂN DỤNG', '', ''),
+(63, 1, 'RECRUITMENT', '', 'RECRUITMENT', '', ''),
+(64, 2, 'TIN TỨC', '', 'TIN TỨC', '', ''),
+(65, 1, ' CONTACT', '', ' CONTACT', '', ''),
+(66, 1, 'DECORATIVE ITEMS', '', 'DECORATIVE ITEMS', '', ''),
+(66, 2, 'ĐỒ TRANG TRÍ', '', 'ĐỒ TRANG TRÍ', '', ''),
+(67, 1, 'ARTIFICIAL FLOWERS', '', 'ARTIFICIAL FLOWERS', '', ''),
+(68, 1, 'BEAUTIFUL PICTURE', '', 'BEAUTIFUL PICTURE', '', ''),
+(68, 2, 'TRANH ĐẸP', '', 'TRANH ĐẸP', '', ''),
+(67, 2, 'HOA GIẢ', '', 'HOA GIẢ', '', ''),
+(69, 1, 'DRIED FLOWER', '', 'DRIED FLOWER', '', ''),
+(69, 2, 'HOA KHÔ', '', 'HOA KHÔ', '', ''),
+(70, 1, 'VASE OF FLOWERS', '', 'VASE OF FLOWERS', '', ''),
+(70, 2, 'BÌNH HOA', '', 'BÌNH HOA', '', ''),
+(71, 1, 'GỐM SỨ', '', 'GỐM SỨ', '', ''),
+(71, 2, 'CERAMICS', '', 'CERAMICS', '', ''),
+(76, 1, 'CONSTRUCTION INTERIOR', '&lt;p&gt;CONSTRUCTION INTERIOR&lt;br&gt;&lt;/p&gt;', 'CONSTRUCTION INTERIOR', '', ''),
+(76, 2, 'THI CÔNG NỘI THẤT', '&lt;p&gt;THI CÔNG NỘI THẤT&lt;br&gt;&lt;/p&gt;', 'THI CÔNG NỘI THẤT', '', ''),
+(74, 1, 'WALL SHELVES', '', 'WALL SHELVES', '', ''),
+(74, 2, 'KỆ TREO TƯỜNG', '', 'KỆ TREO TƯỜNG', '', ''),
+(75, 1, 'TV SHELF', '', 'TV SHELF', '', ''),
+(75, 2, 'KỆ TIVI', '', 'KỆ TIVI', '', ''),
+(77, 1, 'DESIGN APARTMENT', '&lt;p&gt;DESIGN APARTMENT&lt;br&gt;&lt;/p&gt;', 'DESIGN APARTMENT', '', ''),
+(77, 2, 'THIẾT KẾ CĂN HỘ', '&lt;p&gt;THIẾT KẾ CĂN HỘ&lt;br&gt;&lt;/p&gt;', 'THIẾT KẾ CĂN HỘ', '', ''),
+(78, 1, 'TOWNHOUSE', '&lt;p&gt;TOWNHOUSE&lt;br&gt;&lt;/p&gt;', 'TOWNHOUSE', '', ''),
+(78, 2, 'NHÀ PHỐ', '&lt;p&gt;NHÀ PHỐ&lt;br&gt;&lt;/p&gt;', 'NHÀ PHỐ', '', ''),
+(79, 1, 'APARTMENT', '&lt;p&gt;APARTMENT&lt;br&gt;&lt;/p&gt;', 'APARTMENT', '', ''),
+(79, 2, 'CHUNG CƯ', '&lt;p&gt;CHUNG CƯ&lt;br&gt;&lt;/p&gt;', 'CHUNG CƯ', '', ''),
+(80, 1, 'VILLA', '&lt;p&gt;VILLA&lt;br&gt;&lt;/p&gt;', 'VILLA', '', ''),
+(80, 2, 'BIỆT THỰ', '&lt;p&gt;BIỆT THỰ&lt;br&gt;&lt;/p&gt;', 'BIỆT THỰ', '', ''),
+(81, 1, 'OFFICE', '&lt;p&gt;OFFICE&lt;br&gt;&lt;/p&gt;', 'OFFICE', '', ''),
+(81, 2, 'VĂN PHÒNG', '&lt;p&gt;VĂN PHÒNG&lt;br&gt;&lt;/p&gt;', 'VĂN PHÒNG', '', ''),
+(82, 1, 'CAFE - RESTAURANT SPA', '&lt;p&gt;CAFE - RESTAURANT SPA&lt;br&gt;&lt;/p&gt;', 'CAFE - RESTAURANT SPA', '', ''),
+(82, 2, 'CAFE - NHÀ HÀNG SPA', '&lt;p&gt;CAFE - NHÀ HÀNG SPA&lt;br&gt;&lt;/p&gt;', 'CAFE - NHÀ HÀNG SPA', '', ''),
+(83, 1, 'INTERIOR SPACE', '&lt;p&gt;INTERIOR SPACE&lt;br&gt;&lt;/p&gt;', 'INTERIOR SPACE', '', ''),
+(83, 2, 'KHÔNG GIAN NỘI THẤT', '&lt;p&gt;KHÔNG GIAN NỘI THẤT&lt;br&gt;&lt;/p&gt;', 'KHÔNG GIAN NỘI THẤT', '', ''),
+(62, 1, 'SERVICE', '', 'SERVICE', '', ''),
+(65, 2, 'LIÊN HỆ', '', 'LIÊN HỆ', '', ''),
+(64, 1, 'NEWS', '', 'NEWS', '', '');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `noithat_category_filter`
+-- Structure de la table `noithat_category_filter`
 --
 
-CREATE TABLE IF NOT EXISTS `noithat_category_filter` (
+CREATE TABLE `noithat_category_filter` (
   `category_id` int(11) NOT NULL,
-  `filter_id` int(11) NOT NULL,
-  PRIMARY KEY (`category_id`,`filter_id`)
+  `filter_id` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `noithat_category_path`
+-- Structure de la table `noithat_category_path`
 --
 
-CREATE TABLE IF NOT EXISTS `noithat_category_path` (
+CREATE TABLE `noithat_category_path` (
   `category_id` int(11) NOT NULL,
   `path_id` int(11) NOT NULL,
-  `level` int(11) NOT NULL,
-  PRIMARY KEY (`category_id`,`path_id`)
+  `level` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `noithat_category_path`
+-- Contenu de la table `noithat_category_path`
 --
 
 INSERT INTO `noithat_category_path` (`category_id`, `path_id`, `level`) VALUES
@@ -665,35 +709,109 @@ INSERT INTO `noithat_category_path` (`category_id`, `path_id`, `level`) VALUES
 (55, 55, 1),
 (56, 34, 0),
 (56, 56, 1),
-(57, 57, 0);
+(57, 57, 0),
+(59, 59, 0),
+(60, 60, 0),
+(61, 61, 0),
+(62, 62, 0),
+(63, 63, 0),
+(64, 64, 0),
+(65, 65, 0),
+(66, 60, 0),
+(66, 66, 1),
+(67, 60, 0),
+(67, 67, 1),
+(68, 60, 0),
+(68, 68, 1),
+(69, 60, 0),
+(69, 69, 1),
+(70, 60, 0),
+(70, 70, 1),
+(71, 60, 0),
+(71, 71, 1),
+(76, 61, 0),
+(76, 76, 1),
+(74, 60, 0),
+(74, 74, 1),
+(75, 60, 0),
+(75, 75, 1),
+(77, 61, 0),
+(77, 77, 1),
+(78, 61, 0),
+(78, 78, 1),
+(79, 61, 0),
+(79, 79, 1),
+(80, 61, 0),
+(80, 80, 1),
+(81, 61, 0),
+(81, 81, 1),
+(82, 61, 0),
+(82, 82, 1),
+(83, 61, 0),
+(83, 83, 1);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `noithat_category_to_layout`
+-- Structure de la table `noithat_category_to_layout`
 --
 
-CREATE TABLE IF NOT EXISTS `noithat_category_to_layout` (
+CREATE TABLE `noithat_category_to_layout` (
   `category_id` int(11) NOT NULL,
   `store_id` int(11) NOT NULL,
-  `layout_id` int(11) NOT NULL,
-  PRIMARY KEY (`category_id`,`store_id`)
+  `layout_id` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Contenu de la table `noithat_category_to_layout`
+--
+
+INSERT INTO `noithat_category_to_layout` (`category_id`, `store_id`, `layout_id`) VALUES
+(33, 0, 0),
+(25, 0, 0),
+(34, 0, 0),
+(24, 0, 0),
+(17, 0, 0),
+(57, 0, 0),
+(20, 0, 0),
+(18, 0, 0),
+(59, 0, 1),
+(60, 0, 0),
+(61, 0, 0),
+(62, 0, 11),
+(63, 0, 11),
+(64, 0, 11),
+(65, 0, 8),
+(66, 0, 0),
+(67, 0, 0),
+(68, 0, 0),
+(69, 0, 0),
+(70, 0, 0),
+(71, 0, 0),
+(76, 0, 0),
+(77, 0, 0),
+(74, 0, 0),
+(75, 0, 0),
+(78, 0, 0),
+(79, 0, 0),
+(80, 0, 0),
+(81, 0, 0),
+(82, 0, 0),
+(83, 0, 0);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `noithat_category_to_store`
+-- Structure de la table `noithat_category_to_store`
 --
 
-CREATE TABLE IF NOT EXISTS `noithat_category_to_store` (
+CREATE TABLE `noithat_category_to_store` (
   `category_id` int(11) NOT NULL,
-  `store_id` int(11) NOT NULL,
-  PRIMARY KEY (`category_id`,`store_id`)
+  `store_id` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `noithat_category_to_store`
+-- Contenu de la table `noithat_category_to_store`
 --
 
 INSERT INTO `noithat_category_to_store` (`category_id`, `store_id`) VALUES
@@ -734,27 +852,49 @@ INSERT INTO `noithat_category_to_store` (`category_id`, `store_id`) VALUES
 (55, 0),
 (56, 0),
 (57, 0),
-(58, 0);
+(58, 0),
+(59, 0),
+(60, 0),
+(61, 0),
+(62, 0),
+(63, 0),
+(64, 0),
+(65, 0),
+(66, 0),
+(67, 0),
+(68, 0),
+(69, 0),
+(70, 0),
+(71, 0),
+(74, 0),
+(75, 0),
+(76, 0),
+(77, 0),
+(78, 0),
+(79, 0),
+(80, 0),
+(81, 0),
+(82, 0),
+(83, 0);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `noithat_country`
+-- Structure de la table `noithat_country`
 --
 
-CREATE TABLE IF NOT EXISTS `noithat_country` (
-  `country_id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `noithat_country` (
+  `country_id` int(11) NOT NULL,
   `name` varchar(128) NOT NULL,
   `iso_code_2` varchar(2) NOT NULL,
   `iso_code_3` varchar(3) NOT NULL,
   `address_format` text NOT NULL,
   `postcode_required` tinyint(1) NOT NULL,
-  `status` tinyint(1) NOT NULL DEFAULT '1',
-  PRIMARY KEY (`country_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=258 ;
+  `status` tinyint(1) NOT NULL DEFAULT '1'
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `noithat_country`
+-- Contenu de la table `noithat_country`
 --
 
 INSERT INTO `noithat_country` (`country_id`, `name`, `iso_code_2`, `iso_code_3`, `address_format`, `postcode_required`, `status`) VALUES
@@ -1015,11 +1155,11 @@ INSERT INTO `noithat_country` (`country_id`, `name`, `iso_code_2`, `iso_code_3`,
 -- --------------------------------------------------------
 
 --
--- Table structure for table `noithat_coupon`
+-- Structure de la table `noithat_coupon`
 --
 
-CREATE TABLE IF NOT EXISTS `noithat_coupon` (
-  `coupon_id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `noithat_coupon` (
+  `coupon_id` int(11) NOT NULL,
   `name` varchar(128) NOT NULL,
   `code` varchar(20) NOT NULL,
   `type` char(1) NOT NULL,
@@ -1032,68 +1172,64 @@ CREATE TABLE IF NOT EXISTS `noithat_coupon` (
   `uses_total` int(11) NOT NULL,
   `uses_customer` varchar(11) NOT NULL,
   `status` tinyint(1) NOT NULL,
-  `date_added` datetime NOT NULL,
-  PRIMARY KEY (`coupon_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
+  `date_added` datetime NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `noithat_coupon`
+-- Contenu de la table `noithat_coupon`
 --
 
 INSERT INTO `noithat_coupon` (`coupon_id`, `name`, `code`, `type`, `discount`, `logged`, `shipping`, `total`, `date_start`, `date_end`, `uses_total`, `uses_customer`, `status`, `date_added`) VALUES
-(4, '-10% Discount', '2222', 'P', 10.0000, 0, 0, 0.0000, '2014-01-01', '2020-01-01', 10, '10', 0, '2009-01-27 13:55:03'),
-(5, 'Free Shipping', '3333', 'P', 0.0000, 0, 1, 100.0000, '2014-01-01', '2014-02-01', 10, '10', 0, '2009-03-14 21:13:53'),
-(6, '-10.00 Discount', '1111', 'F', 10.0000, 0, 0, 10.0000, '2014-01-01', '2020-01-01', 100000, '10000', 0, '2009-03-14 21:15:18');
+(4, '-10% Discount', '2222', 'P', '10.0000', 0, 0, '0.0000', '2014-01-01', '2020-01-01', 10, '10', 0, '2009-01-27 13:55:03'),
+(5, 'Free Shipping', '3333', 'P', '0.0000', 0, 1, '100.0000', '2014-01-01', '2014-02-01', 10, '10', 0, '2009-03-14 21:13:53'),
+(6, '-10.00 Discount', '1111', 'F', '10.0000', 0, 0, '10.0000', '2014-01-01', '2020-01-01', 100000, '10000', 0, '2009-03-14 21:15:18');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `noithat_coupon_category`
+-- Structure de la table `noithat_coupon_category`
 --
 
-CREATE TABLE IF NOT EXISTS `noithat_coupon_category` (
+CREATE TABLE `noithat_coupon_category` (
   `coupon_id` int(11) NOT NULL,
-  `category_id` int(11) NOT NULL,
-  PRIMARY KEY (`coupon_id`,`category_id`)
+  `category_id` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `noithat_coupon_history`
+-- Structure de la table `noithat_coupon_history`
 --
 
-CREATE TABLE IF NOT EXISTS `noithat_coupon_history` (
-  `coupon_history_id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `noithat_coupon_history` (
+  `coupon_history_id` int(11) NOT NULL,
   `coupon_id` int(11) NOT NULL,
   `order_id` int(11) NOT NULL,
   `customer_id` int(11) NOT NULL,
   `amount` decimal(15,4) NOT NULL,
-  `date_added` datetime NOT NULL,
-  PRIMARY KEY (`coupon_history_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+  `date_added` datetime NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `noithat_coupon_product`
+-- Structure de la table `noithat_coupon_product`
 --
 
-CREATE TABLE IF NOT EXISTS `noithat_coupon_product` (
-  `coupon_product_id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `noithat_coupon_product` (
+  `coupon_product_id` int(11) NOT NULL,
   `coupon_id` int(11) NOT NULL,
-  `product_id` int(11) NOT NULL,
-  PRIMARY KEY (`coupon_product_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+  `product_id` int(11) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `noithat_currency`
+-- Structure de la table `noithat_currency`
 --
 
-CREATE TABLE IF NOT EXISTS `noithat_currency` (
-  `currency_id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `noithat_currency` (
+  `currency_id` int(11) NOT NULL,
   `title` varchar(32) NOT NULL,
   `code` varchar(3) NOT NULL,
   `symbol_left` varchar(12) NOT NULL,
@@ -1101,28 +1237,27 @@ CREATE TABLE IF NOT EXISTS `noithat_currency` (
   `decimal_place` char(1) NOT NULL,
   `value` float(15,8) NOT NULL,
   `status` tinyint(1) NOT NULL,
-  `date_modified` datetime NOT NULL,
-  PRIMARY KEY (`currency_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
+  `date_modified` datetime NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `noithat_currency`
+-- Contenu de la table `noithat_currency`
 --
 
 INSERT INTO `noithat_currency` (`currency_id`, `title`, `code`, `symbol_left`, `symbol_right`, `decimal_place`, `value`, `status`, `date_modified`) VALUES
 (1, 'Pound Sterling', 'GBP', '£', '', '2', 0.82040000, 1, '2016-10-29 07:37:30'),
-(2, 'US Dollar', 'USD', '$', '', '2', 1.00000000, 1, '2016-10-29 07:37:30'),
+(2, 'US Dollar', 'USD', '$', '', '2', 1.00000000, 1, '2016-10-29 08:48:35'),
 (3, 'Euro', 'EUR', '', '€', '2', 0.90990001, 1, '2016-10-29 07:37:30'),
 (4, 'Đồng', 'VND', '', 'đ', '.', 22320.00000000, 1, '2016-10-29 07:37:30');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `noithat_customer`
+-- Structure de la table `noithat_customer`
 --
 
-CREATE TABLE IF NOT EXISTS `noithat_customer` (
-  `customer_id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `noithat_customer` (
+  `customer_id` int(11) NOT NULL,
   `customer_group_id` int(11) NOT NULL,
   `store_id` int(11) NOT NULL DEFAULT '0',
   `language_id` int(11) NOT NULL,
@@ -1144,41 +1279,38 @@ CREATE TABLE IF NOT EXISTS `noithat_customer` (
   `safe` tinyint(1) NOT NULL,
   `token` text NOT NULL,
   `code` varchar(40) NOT NULL,
-  `date_added` datetime NOT NULL,
-  PRIMARY KEY (`customer_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+  `date_added` datetime NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `noithat_customer_activity`
+-- Structure de la table `noithat_customer_activity`
 --
 
-CREATE TABLE IF NOT EXISTS `noithat_customer_activity` (
-  `customer_activity_id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `noithat_customer_activity` (
+  `customer_activity_id` int(11) NOT NULL,
   `customer_id` int(11) NOT NULL,
   `key` varchar(64) NOT NULL,
   `data` text NOT NULL,
   `ip` varchar(40) NOT NULL,
-  `date_added` datetime NOT NULL,
-  PRIMARY KEY (`customer_activity_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+  `date_added` datetime NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `noithat_customer_group`
+-- Structure de la table `noithat_customer_group`
 --
 
-CREATE TABLE IF NOT EXISTS `noithat_customer_group` (
-  `customer_group_id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `noithat_customer_group` (
+  `customer_group_id` int(11) NOT NULL,
   `approval` int(1) NOT NULL,
-  `sort_order` int(3) NOT NULL,
-  PRIMARY KEY (`customer_group_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+  `sort_order` int(3) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `noithat_customer_group`
+-- Contenu de la table `noithat_customer_group`
 --
 
 INSERT INTO `noithat_customer_group` (`customer_group_id`, `approval`, `sort_order`) VALUES
@@ -1187,19 +1319,18 @@ INSERT INTO `noithat_customer_group` (`customer_group_id`, `approval`, `sort_ord
 -- --------------------------------------------------------
 
 --
--- Table structure for table `noithat_customer_group_description`
+-- Structure de la table `noithat_customer_group_description`
 --
 
-CREATE TABLE IF NOT EXISTS `noithat_customer_group_description` (
+CREATE TABLE `noithat_customer_group_description` (
   `customer_group_id` int(11) NOT NULL,
   `language_id` int(11) NOT NULL,
   `name` varchar(32) NOT NULL,
-  `description` text NOT NULL,
-  PRIMARY KEY (`customer_group_id`,`language_id`)
+  `description` text NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `noithat_customer_group_description`
+-- Contenu de la table `noithat_customer_group_description`
 --
 
 INSERT INTO `noithat_customer_group_description` (`customer_group_id`, `language_id`, `name`, `description`) VALUES
@@ -1209,89 +1340,81 @@ INSERT INTO `noithat_customer_group_description` (`customer_group_id`, `language
 -- --------------------------------------------------------
 
 --
--- Table structure for table `noithat_customer_history`
+-- Structure de la table `noithat_customer_history`
 --
 
-CREATE TABLE IF NOT EXISTS `noithat_customer_history` (
-  `customer_history_id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `noithat_customer_history` (
+  `customer_history_id` int(11) NOT NULL,
   `customer_id` int(11) NOT NULL,
   `comment` text NOT NULL,
-  `date_added` datetime NOT NULL,
-  PRIMARY KEY (`customer_history_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `noithat_customer_ip`
---
-
-CREATE TABLE IF NOT EXISTS `noithat_customer_ip` (
-  `customer_ip_id` int(11) NOT NULL AUTO_INCREMENT,
-  `customer_id` int(11) NOT NULL,
-  `ip` varchar(40) NOT NULL,
-  `date_added` datetime NOT NULL,
-  PRIMARY KEY (`customer_ip_id`),
-  KEY `ip` (`ip`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `noithat_customer_login`
---
-
-CREATE TABLE IF NOT EXISTS `noithat_customer_login` (
-  `customer_login_id` int(11) NOT NULL AUTO_INCREMENT,
-  `email` varchar(96) NOT NULL,
-  `ip` varchar(40) NOT NULL,
-  `total` int(4) NOT NULL,
-  `date_added` datetime NOT NULL,
-  `date_modified` datetime NOT NULL,
-  PRIMARY KEY (`customer_login_id`),
-  KEY `email` (`email`),
-  KEY `ip` (`ip`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `noithat_customer_online`
---
-
-CREATE TABLE IF NOT EXISTS `noithat_customer_online` (
-  `ip` varchar(40) NOT NULL,
-  `customer_id` int(11) NOT NULL,
-  `url` text NOT NULL,
-  `referer` text NOT NULL,
-  `date_added` datetime NOT NULL,
-  PRIMARY KEY (`ip`)
+  `date_added` datetime NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `noithat_customer_reward`
+-- Structure de la table `noithat_customer_ip`
 --
 
-CREATE TABLE IF NOT EXISTS `noithat_customer_reward` (
-  `customer_reward_id` int(11) NOT NULL AUTO_INCREMENT,
-  `customer_id` int(11) NOT NULL DEFAULT '0',
-  `order_id` int(11) NOT NULL DEFAULT '0',
-  `description` text NOT NULL,
-  `points` int(8) NOT NULL DEFAULT '0',
-  `date_added` datetime NOT NULL,
-  PRIMARY KEY (`customer_reward_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+CREATE TABLE `noithat_customer_ip` (
+  `customer_ip_id` int(11) NOT NULL,
+  `customer_id` int(11) NOT NULL,
+  `ip` varchar(40) NOT NULL,
+  `date_added` datetime NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `noithat_customer_search`
+-- Structure de la table `noithat_customer_login`
 --
 
-CREATE TABLE IF NOT EXISTS `noithat_customer_search` (
-  `customer_search_id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `noithat_customer_login` (
+  `customer_login_id` int(11) NOT NULL,
+  `email` varchar(96) NOT NULL,
+  `ip` varchar(40) NOT NULL,
+  `total` int(4) NOT NULL,
+  `date_added` datetime NOT NULL,
+  `date_modified` datetime NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `noithat_customer_online`
+--
+
+CREATE TABLE `noithat_customer_online` (
+  `ip` varchar(40) NOT NULL,
+  `customer_id` int(11) NOT NULL,
+  `url` text NOT NULL,
+  `referer` text NOT NULL,
+  `date_added` datetime NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `noithat_customer_reward`
+--
+
+CREATE TABLE `noithat_customer_reward` (
+  `customer_reward_id` int(11) NOT NULL,
+  `customer_id` int(11) NOT NULL DEFAULT '0',
+  `order_id` int(11) NOT NULL DEFAULT '0',
+  `description` text NOT NULL,
+  `points` int(8) NOT NULL DEFAULT '0',
+  `date_added` datetime NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `noithat_customer_search`
+--
+
+CREATE TABLE `noithat_customer_search` (
+  `customer_search_id` int(11) NOT NULL,
   `store_id` int(11) NOT NULL,
   `language_id` int(11) NOT NULL,
   `customer_id` int(11) NOT NULL,
@@ -1301,154 +1424,143 @@ CREATE TABLE IF NOT EXISTS `noithat_customer_search` (
   `description` tinyint(1) NOT NULL,
   `products` int(11) NOT NULL,
   `ip` varchar(40) NOT NULL,
-  `date_added` datetime NOT NULL,
-  PRIMARY KEY (`customer_search_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `noithat_customer_transaction`
---
-
-CREATE TABLE IF NOT EXISTS `noithat_customer_transaction` (
-  `customer_transaction_id` int(11) NOT NULL AUTO_INCREMENT,
-  `customer_id` int(11) NOT NULL,
-  `order_id` int(11) NOT NULL,
-  `description` text NOT NULL,
-  `amount` decimal(15,4) NOT NULL,
-  `date_added` datetime NOT NULL,
-  PRIMARY KEY (`customer_transaction_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `noithat_customer_wishlist`
---
-
-CREATE TABLE IF NOT EXISTS `noithat_customer_wishlist` (
-  `customer_id` int(11) NOT NULL,
-  `product_id` int(11) NOT NULL,
-  `date_added` datetime NOT NULL,
-  PRIMARY KEY (`customer_id`,`product_id`)
+  `date_added` datetime NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `noithat_custom_field`
+-- Structure de la table `noithat_customer_transaction`
 --
 
-CREATE TABLE IF NOT EXISTS `noithat_custom_field` (
-  `custom_field_id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `noithat_customer_transaction` (
+  `customer_transaction_id` int(11) NOT NULL,
+  `customer_id` int(11) NOT NULL,
+  `order_id` int(11) NOT NULL,
+  `description` text NOT NULL,
+  `amount` decimal(15,4) NOT NULL,
+  `date_added` datetime NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `noithat_customer_wishlist`
+--
+
+CREATE TABLE `noithat_customer_wishlist` (
+  `customer_id` int(11) NOT NULL,
+  `product_id` int(11) NOT NULL,
+  `date_added` datetime NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `noithat_custom_field`
+--
+
+CREATE TABLE `noithat_custom_field` (
+  `custom_field_id` int(11) NOT NULL,
   `type` varchar(32) NOT NULL,
   `value` text NOT NULL,
   `validation` varchar(255) NOT NULL,
   `location` varchar(7) NOT NULL,
   `status` tinyint(1) NOT NULL,
-  `sort_order` int(3) NOT NULL,
-  PRIMARY KEY (`custom_field_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+  `sort_order` int(3) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `noithat_custom_field_customer_group`
+-- Structure de la table `noithat_custom_field_customer_group`
 --
 
-CREATE TABLE IF NOT EXISTS `noithat_custom_field_customer_group` (
+CREATE TABLE `noithat_custom_field_customer_group` (
   `custom_field_id` int(11) NOT NULL,
   `customer_group_id` int(11) NOT NULL,
-  `required` tinyint(1) NOT NULL,
-  PRIMARY KEY (`custom_field_id`,`customer_group_id`)
+  `required` tinyint(1) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `noithat_custom_field_description`
+-- Structure de la table `noithat_custom_field_description`
 --
 
-CREATE TABLE IF NOT EXISTS `noithat_custom_field_description` (
+CREATE TABLE `noithat_custom_field_description` (
   `custom_field_id` int(11) NOT NULL,
   `language_id` int(11) NOT NULL,
-  `name` varchar(128) NOT NULL,
-  PRIMARY KEY (`custom_field_id`,`language_id`)
+  `name` varchar(128) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `noithat_custom_field_value`
+-- Structure de la table `noithat_custom_field_value`
 --
 
-CREATE TABLE IF NOT EXISTS `noithat_custom_field_value` (
-  `custom_field_value_id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `noithat_custom_field_value` (
+  `custom_field_value_id` int(11) NOT NULL,
   `custom_field_id` int(11) NOT NULL,
-  `sort_order` int(3) NOT NULL,
-  PRIMARY KEY (`custom_field_value_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+  `sort_order` int(3) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `noithat_custom_field_value_description`
+-- Structure de la table `noithat_custom_field_value_description`
 --
 
-CREATE TABLE IF NOT EXISTS `noithat_custom_field_value_description` (
+CREATE TABLE `noithat_custom_field_value_description` (
   `custom_field_value_id` int(11) NOT NULL,
   `language_id` int(11) NOT NULL,
   `custom_field_id` int(11) NOT NULL,
-  `name` varchar(128) NOT NULL,
-  PRIMARY KEY (`custom_field_value_id`,`language_id`)
+  `name` varchar(128) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `noithat_download`
+-- Structure de la table `noithat_download`
 --
 
-CREATE TABLE IF NOT EXISTS `noithat_download` (
-  `download_id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `noithat_download` (
+  `download_id` int(11) NOT NULL,
   `filename` varchar(160) NOT NULL,
   `mask` varchar(128) NOT NULL,
-  `date_added` datetime NOT NULL,
-  PRIMARY KEY (`download_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `noithat_download_description`
---
-
-CREATE TABLE IF NOT EXISTS `noithat_download_description` (
-  `download_id` int(11) NOT NULL,
-  `language_id` int(11) NOT NULL,
-  `name` varchar(64) NOT NULL,
-  PRIMARY KEY (`download_id`,`language_id`)
+  `date_added` datetime NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `noithat_event`
+-- Structure de la table `noithat_download_description`
 --
 
-CREATE TABLE IF NOT EXISTS `noithat_event` (
-  `event_id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `noithat_download_description` (
+  `download_id` int(11) NOT NULL,
+  `language_id` int(11) NOT NULL,
+  `name` varchar(64) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `noithat_event`
+--
+
+CREATE TABLE `noithat_event` (
+  `event_id` int(11) NOT NULL,
   `code` varchar(32) NOT NULL,
   `trigger` text NOT NULL,
   `action` text NOT NULL,
   `status` tinyint(1) NOT NULL,
-  `date_added` datetime NOT NULL,
-  PRIMARY KEY (`event_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+  `date_added` datetime NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `noithat_event`
+-- Contenu de la table `noithat_event`
 --
 
 INSERT INTO `noithat_event` (`event_id`, `code`, `trigger`, `action`, `status`, `date_added`) VALUES
@@ -1457,18 +1569,17 @@ INSERT INTO `noithat_event` (`event_id`, `code`, `trigger`, `action`, `status`, 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `noithat_extension`
+-- Structure de la table `noithat_extension`
 --
 
-CREATE TABLE IF NOT EXISTS `noithat_extension` (
-  `extension_id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `noithat_extension` (
+  `extension_id` int(11) NOT NULL,
   `type` varchar(32) NOT NULL,
-  `code` varchar(32) NOT NULL,
-  PRIMARY KEY (`extension_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=29 ;
+  `code` varchar(32) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `noithat_extension`
+-- Contenu de la table `noithat_extension`
 --
 
 INSERT INTO `noithat_extension` (`extension_id`, `type`, `code`) VALUES
@@ -1504,72 +1615,67 @@ INSERT INTO `noithat_extension` (`extension_id`, `type`, `code`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `noithat_filter`
+-- Structure de la table `noithat_filter`
 --
 
-CREATE TABLE IF NOT EXISTS `noithat_filter` (
-  `filter_id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `noithat_filter` (
+  `filter_id` int(11) NOT NULL,
   `filter_group_id` int(11) NOT NULL,
-  `sort_order` int(3) NOT NULL,
-  PRIMARY KEY (`filter_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+  `sort_order` int(3) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `noithat_filter_description`
+-- Structure de la table `noithat_filter_description`
 --
 
-CREATE TABLE IF NOT EXISTS `noithat_filter_description` (
+CREATE TABLE `noithat_filter_description` (
   `filter_id` int(11) NOT NULL,
   `language_id` int(11) NOT NULL,
   `filter_group_id` int(11) NOT NULL,
-  `name` varchar(64) NOT NULL,
-  PRIMARY KEY (`filter_id`,`language_id`)
+  `name` varchar(64) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `noithat_filter_group`
+-- Structure de la table `noithat_filter_group`
 --
 
-CREATE TABLE IF NOT EXISTS `noithat_filter_group` (
-  `filter_group_id` int(11) NOT NULL AUTO_INCREMENT,
-  `sort_order` int(3) NOT NULL,
-  PRIMARY KEY (`filter_group_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+CREATE TABLE `noithat_filter_group` (
+  `filter_group_id` int(11) NOT NULL,
+  `sort_order` int(3) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `noithat_filter_group_description`
+-- Structure de la table `noithat_filter_group_description`
 --
 
-CREATE TABLE IF NOT EXISTS `noithat_filter_group_description` (
+CREATE TABLE `noithat_filter_group_description` (
   `filter_group_id` int(11) NOT NULL,
   `language_id` int(11) NOT NULL,
-  `name` varchar(64) NOT NULL,
-  PRIMARY KEY (`filter_group_id`,`language_id`)
+  `name` varchar(64) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `noithat_geo_zone`
+-- Structure de la table `noithat_geo_zone`
 --
 
-CREATE TABLE IF NOT EXISTS `noithat_geo_zone` (
-  `geo_zone_id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `noithat_geo_zone` (
+  `geo_zone_id` int(11) NOT NULL,
   `name` varchar(32) NOT NULL,
   `description` varchar(255) NOT NULL,
   `date_modified` datetime NOT NULL,
-  `date_added` datetime NOT NULL,
-  PRIMARY KEY (`geo_zone_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
+  `date_added` datetime NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `noithat_geo_zone`
+-- Contenu de la table `noithat_geo_zone`
 --
 
 INSERT INTO `noithat_geo_zone` (`geo_zone_id`, `name`, `description`, `date_modified`, `date_added`) VALUES
@@ -1579,19 +1685,18 @@ INSERT INTO `noithat_geo_zone` (`geo_zone_id`, `name`, `description`, `date_modi
 -- --------------------------------------------------------
 
 --
--- Table structure for table `noithat_information`
+-- Structure de la table `noithat_information`
 --
 
-CREATE TABLE IF NOT EXISTS `noithat_information` (
-  `information_id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `noithat_information` (
+  `information_id` int(11) NOT NULL,
   `bottom` int(1) NOT NULL DEFAULT '0',
   `sort_order` int(3) NOT NULL DEFAULT '0',
-  `status` tinyint(1) NOT NULL DEFAULT '1',
-  PRIMARY KEY (`information_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
+  `status` tinyint(1) NOT NULL DEFAULT '1'
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `noithat_information`
+-- Contenu de la table `noithat_information`
 --
 
 INSERT INTO `noithat_information` (`information_id`, `bottom`, `sort_order`, `status`) VALUES
@@ -1603,22 +1708,21 @@ INSERT INTO `noithat_information` (`information_id`, `bottom`, `sort_order`, `st
 -- --------------------------------------------------------
 
 --
--- Table structure for table `noithat_information_description`
+-- Structure de la table `noithat_information_description`
 --
 
-CREATE TABLE IF NOT EXISTS `noithat_information_description` (
+CREATE TABLE `noithat_information_description` (
   `information_id` int(11) NOT NULL,
   `language_id` int(11) NOT NULL,
   `title` varchar(64) NOT NULL,
   `description` text NOT NULL,
   `meta_title` varchar(255) NOT NULL,
   `meta_description` varchar(255) NOT NULL,
-  `meta_keyword` varchar(255) NOT NULL,
-  PRIMARY KEY (`information_id`,`language_id`)
+  `meta_keyword` varchar(255) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `noithat_information_description`
+-- Contenu de la table `noithat_information_description`
 --
 
 INSERT INTO `noithat_information_description` (`information_id`, `language_id`, `title`, `description`, `meta_title`, `meta_description`, `meta_keyword`) VALUES
@@ -1634,30 +1738,28 @@ INSERT INTO `noithat_information_description` (`information_id`, `language_id`, 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `noithat_information_to_layout`
+-- Structure de la table `noithat_information_to_layout`
 --
 
-CREATE TABLE IF NOT EXISTS `noithat_information_to_layout` (
+CREATE TABLE `noithat_information_to_layout` (
   `information_id` int(11) NOT NULL,
   `store_id` int(11) NOT NULL,
-  `layout_id` int(11) NOT NULL,
-  PRIMARY KEY (`information_id`,`store_id`)
+  `layout_id` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `noithat_information_to_store`
+-- Structure de la table `noithat_information_to_store`
 --
 
-CREATE TABLE IF NOT EXISTS `noithat_information_to_store` (
+CREATE TABLE `noithat_information_to_store` (
   `information_id` int(11) NOT NULL,
-  `store_id` int(11) NOT NULL,
-  PRIMARY KEY (`information_id`,`store_id`)
+  `store_id` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `noithat_information_to_store`
+-- Contenu de la table `noithat_information_to_store`
 --
 
 INSERT INTO `noithat_information_to_store` (`information_id`, `store_id`) VALUES
@@ -1669,24 +1771,22 @@ INSERT INTO `noithat_information_to_store` (`information_id`, `store_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `noithat_language`
+-- Structure de la table `noithat_language`
 --
 
-CREATE TABLE IF NOT EXISTS `noithat_language` (
-  `language_id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `noithat_language` (
+  `language_id` int(11) NOT NULL,
   `name` varchar(32) NOT NULL,
   `code` varchar(5) NOT NULL,
   `locale` varchar(255) NOT NULL,
   `image` varchar(64) NOT NULL,
   `directory` varchar(32) NOT NULL,
   `sort_order` int(3) NOT NULL DEFAULT '0',
-  `status` tinyint(1) NOT NULL,
-  PRIMARY KEY (`language_id`),
-  KEY `name` (`name`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+  `status` tinyint(1) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `noithat_language`
+-- Contenu de la table `noithat_language`
 --
 
 INSERT INTO `noithat_language` (`language_id`, `name`, `code`, `locale`, `image`, `directory`, `sort_order`, `status`) VALUES
@@ -1696,17 +1796,16 @@ INSERT INTO `noithat_language` (`language_id`, `name`, `code`, `locale`, `image`
 -- --------------------------------------------------------
 
 --
--- Table structure for table `noithat_layout`
+-- Structure de la table `noithat_layout`
 --
 
-CREATE TABLE IF NOT EXISTS `noithat_layout` (
-  `layout_id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(64) NOT NULL,
-  PRIMARY KEY (`layout_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=14 ;
+CREATE TABLE `noithat_layout` (
+  `layout_id` int(11) NOT NULL,
+  `name` varchar(64) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `noithat_layout`
+-- Contenu de la table `noithat_layout`
 --
 
 INSERT INTO `noithat_layout` (`layout_id`, `name`) VALUES
@@ -1727,20 +1826,19 @@ INSERT INTO `noithat_layout` (`layout_id`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `noithat_layout_module`
+-- Structure de la table `noithat_layout_module`
 --
 
-CREATE TABLE IF NOT EXISTS `noithat_layout_module` (
-  `layout_module_id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `noithat_layout_module` (
+  `layout_module_id` int(11) NOT NULL,
   `layout_id` int(11) NOT NULL,
   `code` varchar(64) NOT NULL,
   `position` varchar(14) NOT NULL,
-  `sort_order` int(3) NOT NULL,
-  PRIMARY KEY (`layout_module_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=74 ;
+  `sort_order` int(3) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `noithat_layout_module`
+-- Contenu de la table `noithat_layout_module`
 --
 
 INSERT INTO `noithat_layout_module` (`layout_module_id`, `layout_id`, `code`, `position`, `sort_order`) VALUES
@@ -1758,19 +1856,18 @@ INSERT INTO `noithat_layout_module` (`layout_module_id`, `layout_id`, `code`, `p
 -- --------------------------------------------------------
 
 --
--- Table structure for table `noithat_layout_route`
+-- Structure de la table `noithat_layout_route`
 --
 
-CREATE TABLE IF NOT EXISTS `noithat_layout_route` (
-  `layout_route_id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `noithat_layout_route` (
+  `layout_route_id` int(11) NOT NULL,
   `layout_id` int(11) NOT NULL,
   `store_id` int(11) NOT NULL,
-  `route` varchar(64) NOT NULL,
-  PRIMARY KEY (`layout_route_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=54 ;
+  `route` varchar(64) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `noithat_layout_route`
+-- Contenu de la table `noithat_layout_route`
 --
 
 INSERT INTO `noithat_layout_route` (`layout_route_id`, `layout_id`, `store_id`, `route`) VALUES
@@ -1791,40 +1888,38 @@ INSERT INTO `noithat_layout_route` (`layout_route_id`, `layout_id`, `store_id`, 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `noithat_length_class`
+-- Structure de la table `noithat_length_class`
 --
 
-CREATE TABLE IF NOT EXISTS `noithat_length_class` (
-  `length_class_id` int(11) NOT NULL AUTO_INCREMENT,
-  `value` decimal(15,8) NOT NULL,
-  PRIMARY KEY (`length_class_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+CREATE TABLE `noithat_length_class` (
+  `length_class_id` int(11) NOT NULL,
+  `value` decimal(15,8) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `noithat_length_class`
+-- Contenu de la table `noithat_length_class`
 --
 
 INSERT INTO `noithat_length_class` (`length_class_id`, `value`) VALUES
-(1, 1.00000000),
-(2, 10.00000000),
-(3, 0.39370000);
+(1, '1.00000000'),
+(2, '10.00000000'),
+(3, '0.39370000');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `noithat_length_class_description`
+-- Structure de la table `noithat_length_class_description`
 --
 
-CREATE TABLE IF NOT EXISTS `noithat_length_class_description` (
+CREATE TABLE `noithat_length_class_description` (
   `length_class_id` int(11) NOT NULL,
   `language_id` int(11) NOT NULL,
   `title` varchar(32) NOT NULL,
-  `unit` varchar(4) NOT NULL,
-  PRIMARY KEY (`length_class_id`,`language_id`)
+  `unit` varchar(4) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `noithat_length_class_description`
+-- Contenu de la table `noithat_length_class_description`
 --
 
 INSERT INTO `noithat_length_class_description` (`length_class_id`, `language_id`, `title`, `unit`) VALUES
@@ -1838,11 +1933,11 @@ INSERT INTO `noithat_length_class_description` (`length_class_id`, `language_id`
 -- --------------------------------------------------------
 
 --
--- Table structure for table `noithat_location`
+-- Structure de la table `noithat_location`
 --
 
-CREATE TABLE IF NOT EXISTS `noithat_location` (
-  `location_id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `noithat_location` (
+  `location_id` int(11) NOT NULL,
   `name` varchar(32) NOT NULL,
   `address` text NOT NULL,
   `telephone` varchar(32) NOT NULL,
@@ -1850,27 +1945,24 @@ CREATE TABLE IF NOT EXISTS `noithat_location` (
   `geocode` varchar(32) NOT NULL,
   `image` varchar(255) DEFAULT NULL,
   `open` text NOT NULL,
-  `comment` text NOT NULL,
-  PRIMARY KEY (`location_id`),
-  KEY `name` (`name`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+  `comment` text NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `noithat_manufacturer`
+-- Structure de la table `noithat_manufacturer`
 --
 
-CREATE TABLE IF NOT EXISTS `noithat_manufacturer` (
-  `manufacturer_id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `noithat_manufacturer` (
+  `manufacturer_id` int(11) NOT NULL,
   `name` varchar(64) NOT NULL,
   `image` varchar(255) DEFAULT NULL,
-  `sort_order` int(3) NOT NULL,
-  PRIMARY KEY (`manufacturer_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=11 ;
+  `sort_order` int(3) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `noithat_manufacturer`
+-- Contenu de la table `noithat_manufacturer`
 --
 
 INSERT INTO `noithat_manufacturer` (`manufacturer_id`, `name`, `image`, `sort_order`) VALUES
@@ -1884,17 +1976,16 @@ INSERT INTO `noithat_manufacturer` (`manufacturer_id`, `name`, `image`, `sort_or
 -- --------------------------------------------------------
 
 --
--- Table structure for table `noithat_manufacturer_to_store`
+-- Structure de la table `noithat_manufacturer_to_store`
 --
 
-CREATE TABLE IF NOT EXISTS `noithat_manufacturer_to_store` (
+CREATE TABLE `noithat_manufacturer_to_store` (
   `manufacturer_id` int(11) NOT NULL,
-  `store_id` int(11) NOT NULL,
-  PRIMARY KEY (`manufacturer_id`,`store_id`)
+  `store_id` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `noithat_manufacturer_to_store`
+-- Contenu de la table `noithat_manufacturer_to_store`
 --
 
 INSERT INTO `noithat_manufacturer_to_store` (`manufacturer_id`, `store_id`) VALUES
@@ -1908,71 +1999,66 @@ INSERT INTO `noithat_manufacturer_to_store` (`manufacturer_id`, `store_id`) VALU
 -- --------------------------------------------------------
 
 --
--- Table structure for table `noithat_marketing`
+-- Structure de la table `noithat_marketing`
 --
 
-CREATE TABLE IF NOT EXISTS `noithat_marketing` (
-  `marketing_id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `noithat_marketing` (
+  `marketing_id` int(11) NOT NULL,
   `name` varchar(32) NOT NULL,
   `description` text NOT NULL,
   `code` varchar(64) NOT NULL,
   `clicks` int(5) NOT NULL DEFAULT '0',
-  `date_added` datetime NOT NULL,
-  PRIMARY KEY (`marketing_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+  `date_added` datetime NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `noithat_menu`
+-- Structure de la table `noithat_menu`
 --
 
-CREATE TABLE IF NOT EXISTS `noithat_menu` (
-  `menu_id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `noithat_menu` (
+  `menu_id` int(11) NOT NULL,
   `store_id` int(11) NOT NULL,
   `type` varchar(6) NOT NULL,
   `link` varchar(255) NOT NULL,
   `sort_order` int(3) NOT NULL,
-  `status` tinyint(1) NOT NULL,
-  PRIMARY KEY (`menu_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `noithat_menu_description`
---
-
-CREATE TABLE IF NOT EXISTS `noithat_menu_description` (
-  `menu_id` int(11) NOT NULL,
-  `language_id` int(11) NOT NULL,
-  `name` varchar(64) NOT NULL,
-  PRIMARY KEY (`menu_id`,`language_id`)
+  `status` tinyint(1) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `noithat_menu_module`
+-- Structure de la table `noithat_menu_description`
 --
 
-CREATE TABLE IF NOT EXISTS `noithat_menu_module` (
+CREATE TABLE `noithat_menu_description` (
+  `menu_id` int(11) NOT NULL,
+  `language_id` int(11) NOT NULL,
+  `name` varchar(64) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `noithat_menu_module`
+--
+
+CREATE TABLE `noithat_menu_module` (
   `menu_module_id` int(11) NOT NULL,
   `menu_id` int(11) NOT NULL,
   `code` varchar(64) NOT NULL,
-  `sort_order` int(3) NOT NULL,
-  PRIMARY KEY (`menu_module_id`),
-  KEY `menu_id` (`menu_id`)
+  `sort_order` int(3) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `noithat_modification`
+-- Structure de la table `noithat_modification`
 --
 
-CREATE TABLE IF NOT EXISTS `noithat_modification` (
-  `modification_id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `noithat_modification` (
+  `modification_id` int(11) NOT NULL,
   `name` varchar(64) NOT NULL,
   `code` varchar(64) NOT NULL,
   `author` varchar(64) NOT NULL,
@@ -1980,26 +2066,24 @@ CREATE TABLE IF NOT EXISTS `noithat_modification` (
   `link` varchar(255) NOT NULL,
   `xml` mediumtext NOT NULL,
   `status` tinyint(1) NOT NULL,
-  `date_added` datetime NOT NULL,
-  PRIMARY KEY (`modification_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+  `date_added` datetime NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `noithat_module`
+-- Structure de la table `noithat_module`
 --
 
-CREATE TABLE IF NOT EXISTS `noithat_module` (
-  `module_id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `noithat_module` (
+  `module_id` int(11) NOT NULL,
   `name` varchar(64) NOT NULL,
   `code` varchar(32) NOT NULL,
-  `setting` text NOT NULL,
-  PRIMARY KEY (`module_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=32 ;
+  `setting` text NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `noithat_module`
+-- Contenu de la table `noithat_module`
 --
 
 INSERT INTO `noithat_module` (`module_id`, `name`, `code`, `setting`) VALUES
@@ -2012,18 +2096,17 @@ INSERT INTO `noithat_module` (`module_id`, `name`, `code`, `setting`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `noithat_option`
+-- Structure de la table `noithat_option`
 --
 
-CREATE TABLE IF NOT EXISTS `noithat_option` (
-  `option_id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `noithat_option` (
+  `option_id` int(11) NOT NULL,
   `type` varchar(32) NOT NULL,
-  `sort_order` int(3) NOT NULL,
-  PRIMARY KEY (`option_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=13 ;
+  `sort_order` int(3) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `noithat_option`
+-- Contenu de la table `noithat_option`
 --
 
 INSERT INTO `noithat_option` (`option_id`, `type`, `sort_order`) VALUES
@@ -2042,18 +2125,17 @@ INSERT INTO `noithat_option` (`option_id`, `type`, `sort_order`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `noithat_option_description`
+-- Structure de la table `noithat_option_description`
 --
 
-CREATE TABLE IF NOT EXISTS `noithat_option_description` (
+CREATE TABLE `noithat_option_description` (
   `option_id` int(11) NOT NULL,
   `language_id` int(11) NOT NULL,
-  `name` varchar(128) NOT NULL,
-  PRIMARY KEY (`option_id`,`language_id`)
+  `name` varchar(128) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `noithat_option_description`
+-- Contenu de la table `noithat_option_description`
 --
 
 INSERT INTO `noithat_option_description` (`option_id`, `language_id`, `name`) VALUES
@@ -2083,19 +2165,18 @@ INSERT INTO `noithat_option_description` (`option_id`, `language_id`, `name`) VA
 -- --------------------------------------------------------
 
 --
--- Table structure for table `noithat_option_value`
+-- Structure de la table `noithat_option_value`
 --
 
-CREATE TABLE IF NOT EXISTS `noithat_option_value` (
-  `option_value_id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `noithat_option_value` (
+  `option_value_id` int(11) NOT NULL,
   `option_id` int(11) NOT NULL,
   `image` varchar(255) NOT NULL,
-  `sort_order` int(3) NOT NULL,
-  PRIMARY KEY (`option_value_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=49 ;
+  `sort_order` int(3) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `noithat_option_value`
+-- Contenu de la table `noithat_option_value`
 --
 
 INSERT INTO `noithat_option_value` (`option_value_id`, `option_id`, `image`, `sort_order`) VALUES
@@ -2117,19 +2198,18 @@ INSERT INTO `noithat_option_value` (`option_value_id`, `option_id`, `image`, `so
 -- --------------------------------------------------------
 
 --
--- Table structure for table `noithat_option_value_description`
+-- Structure de la table `noithat_option_value_description`
 --
 
-CREATE TABLE IF NOT EXISTS `noithat_option_value_description` (
+CREATE TABLE `noithat_option_value_description` (
   `option_value_id` int(11) NOT NULL,
   `language_id` int(11) NOT NULL,
   `option_id` int(11) NOT NULL,
-  `name` varchar(128) NOT NULL,
-  PRIMARY KEY (`option_value_id`,`language_id`)
+  `name` varchar(128) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `noithat_option_value_description`
+-- Contenu de la table `noithat_option_value_description`
 --
 
 INSERT INTO `noithat_option_value_description` (`option_value_id`, `language_id`, `option_id`, `name`) VALUES
@@ -2165,11 +2245,11 @@ INSERT INTO `noithat_option_value_description` (`option_value_id`, `language_id`
 -- --------------------------------------------------------
 
 --
--- Table structure for table `noithat_order`
+-- Structure de la table `noithat_order`
 --
 
-CREATE TABLE IF NOT EXISTS `noithat_order` (
-  `order_id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `noithat_order` (
+  `order_id` int(11) NOT NULL,
   `invoice_no` int(11) NOT NULL DEFAULT '0',
   `invoice_prefix` varchar(26) NOT NULL,
   `store_id` int(11) NOT NULL DEFAULT '0',
@@ -2229,70 +2309,66 @@ CREATE TABLE IF NOT EXISTS `noithat_order` (
   `user_agent` varchar(255) NOT NULL,
   `accept_language` varchar(255) NOT NULL,
   `date_added` datetime NOT NULL,
-  `date_modified` datetime NOT NULL,
-  PRIMARY KEY (`order_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+  `date_modified` datetime NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `noithat_order_custom_field`
+-- Structure de la table `noithat_order_custom_field`
 --
 
-CREATE TABLE IF NOT EXISTS `noithat_order_custom_field` (
-  `order_custom_field_id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `noithat_order_custom_field` (
+  `order_custom_field_id` int(11) NOT NULL,
   `order_id` int(11) NOT NULL,
   `custom_field_id` int(11) NOT NULL,
   `custom_field_value_id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
   `value` text NOT NULL,
   `type` varchar(32) NOT NULL,
-  `location` varchar(16) NOT NULL,
-  PRIMARY KEY (`order_custom_field_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+  `location` varchar(16) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `noithat_order_history`
+-- Structure de la table `noithat_order_history`
 --
 
-CREATE TABLE IF NOT EXISTS `noithat_order_history` (
-  `order_history_id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `noithat_order_history` (
+  `order_history_id` int(11) NOT NULL,
   `order_id` int(11) NOT NULL,
   `order_status_id` int(11) NOT NULL,
   `notify` tinyint(1) NOT NULL DEFAULT '0',
   `comment` text NOT NULL,
-  `date_added` datetime NOT NULL,
-  PRIMARY KEY (`order_history_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+  `date_added` datetime NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `noithat_order_option`
+-- Structure de la table `noithat_order_option`
 --
 
-CREATE TABLE IF NOT EXISTS `noithat_order_option` (
-  `order_option_id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `noithat_order_option` (
+  `order_option_id` int(11) NOT NULL,
   `order_id` int(11) NOT NULL,
   `order_product_id` int(11) NOT NULL,
   `product_option_id` int(11) NOT NULL,
   `product_option_value_id` int(11) NOT NULL DEFAULT '0',
   `name` varchar(255) NOT NULL,
   `value` text NOT NULL,
-  `type` varchar(32) NOT NULL,
-  PRIMARY KEY (`order_option_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+  `type` varchar(32) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `noithat_order_product`
+-- Structure de la table `noithat_order_product`
 --
 
-CREATE TABLE IF NOT EXISTS `noithat_order_product` (
-  `order_product_id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `noithat_order_product` (
+  `order_product_id` int(11) NOT NULL,
   `order_id` int(11) NOT NULL,
   `product_id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
@@ -2301,18 +2377,17 @@ CREATE TABLE IF NOT EXISTS `noithat_order_product` (
   `price` decimal(15,4) NOT NULL DEFAULT '0.0000',
   `total` decimal(15,4) NOT NULL DEFAULT '0.0000',
   `tax` decimal(15,4) NOT NULL DEFAULT '0.0000',
-  `reward` int(8) NOT NULL,
-  PRIMARY KEY (`order_product_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+  `reward` int(8) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `noithat_order_recurring`
+-- Structure de la table `noithat_order_recurring`
 --
 
-CREATE TABLE IF NOT EXISTS `noithat_order_recurring` (
-  `order_recurring_id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `noithat_order_recurring` (
+  `order_recurring_id` int(11) NOT NULL,
   `order_id` int(11) NOT NULL,
   `reference` varchar(255) NOT NULL,
   `product_id` int(11) NOT NULL,
@@ -2331,41 +2406,38 @@ CREATE TABLE IF NOT EXISTS `noithat_order_recurring` (
   `trial_duration` smallint(6) NOT NULL,
   `trial_price` decimal(10,4) NOT NULL,
   `status` tinyint(4) NOT NULL,
-  `date_added` datetime NOT NULL,
-  PRIMARY KEY (`order_recurring_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+  `date_added` datetime NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `noithat_order_recurring_transaction`
+-- Structure de la table `noithat_order_recurring_transaction`
 --
 
-CREATE TABLE IF NOT EXISTS `noithat_order_recurring_transaction` (
-  `order_recurring_transaction_id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `noithat_order_recurring_transaction` (
+  `order_recurring_transaction_id` int(11) NOT NULL,
   `order_recurring_id` int(11) NOT NULL,
   `reference` varchar(255) NOT NULL,
   `type` varchar(255) NOT NULL,
   `amount` decimal(10,4) NOT NULL,
-  `date_added` datetime NOT NULL,
-  PRIMARY KEY (`order_recurring_transaction_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+  `date_added` datetime NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `noithat_order_status`
+-- Structure de la table `noithat_order_status`
 --
 
-CREATE TABLE IF NOT EXISTS `noithat_order_status` (
-  `order_status_id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `noithat_order_status` (
+  `order_status_id` int(11) NOT NULL,
   `language_id` int(11) NOT NULL,
-  `name` varchar(32) NOT NULL,
-  PRIMARY KEY (`order_status_id`,`language_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=17 ;
+  `name` varchar(32) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `noithat_order_status`
+-- Contenu de la table `noithat_order_status`
 --
 
 INSERT INTO `noithat_order_status` (`order_status_id`, `language_id`, `name`) VALUES
@@ -2401,28 +2473,26 @@ INSERT INTO `noithat_order_status` (`order_status_id`, `language_id`, `name`) VA
 -- --------------------------------------------------------
 
 --
--- Table structure for table `noithat_order_total`
+-- Structure de la table `noithat_order_total`
 --
 
-CREATE TABLE IF NOT EXISTS `noithat_order_total` (
-  `order_total_id` int(10) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `noithat_order_total` (
+  `order_total_id` int(10) NOT NULL,
   `order_id` int(11) NOT NULL,
   `code` varchar(32) NOT NULL,
   `title` varchar(255) NOT NULL,
   `value` decimal(15,4) NOT NULL DEFAULT '0.0000',
-  `sort_order` int(3) NOT NULL,
-  PRIMARY KEY (`order_total_id`),
-  KEY `order_id` (`order_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+  `sort_order` int(3) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `noithat_order_voucher`
+-- Structure de la table `noithat_order_voucher`
 --
 
-CREATE TABLE IF NOT EXISTS `noithat_order_voucher` (
-  `order_voucher_id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `noithat_order_voucher` (
+  `order_voucher_id` int(11) NOT NULL,
   `order_id` int(11) NOT NULL,
   `voucher_id` int(11) NOT NULL,
   `description` varchar(255) NOT NULL,
@@ -2433,18 +2503,17 @@ CREATE TABLE IF NOT EXISTS `noithat_order_voucher` (
   `to_email` varchar(96) NOT NULL,
   `voucher_theme_id` int(11) NOT NULL,
   `message` text NOT NULL,
-  `amount` decimal(15,4) NOT NULL,
-  PRIMARY KEY (`order_voucher_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+  `amount` decimal(15,4) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `noithat_product`
+-- Structure de la table `noithat_product`
 --
 
-CREATE TABLE IF NOT EXISTS `noithat_product` (
-  `product_id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `noithat_product` (
+  `product_id` int(11) NOT NULL,
   `model` varchar(64) NOT NULL,
   `sku` varchar(64) NOT NULL,
   `upc` varchar(12) NOT NULL,
@@ -2474,51 +2543,53 @@ CREATE TABLE IF NOT EXISTS `noithat_product` (
   `status` tinyint(1) NOT NULL DEFAULT '0',
   `viewed` int(5) NOT NULL DEFAULT '0',
   `date_added` datetime NOT NULL,
-  `date_modified` datetime NOT NULL,
-  PRIMARY KEY (`product_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=50 ;
+  `date_modified` datetime NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `noithat_product`
+-- Contenu de la table `noithat_product`
 --
 
 INSERT INTO `noithat_product` (`product_id`, `model`, `sku`, `upc`, `ean`, `jan`, `isbn`, `mpn`, `location`, `quantity`, `stock_status_id`, `image`, `manufacturer_id`, `shipping`, `price`, `points`, `tax_class_id`, `date_available`, `weight`, `weight_class_id`, `length`, `width`, `height`, `length_class_id`, `subtract`, `minimum`, `sort_order`, `status`, `viewed`, `date_added`, `date_modified`) VALUES
-(28, 'Product 1', '', '', '', '', '', '', '', 939, 7, 'catalog/demo/htc_touch_hd_1.jpg', 5, 1, 100.0000, 200, 9, '2009-02-03', 146.40000000, 2, 0.00000000, 0.00000000, 0.00000000, 1, 1, 1, 0, 1, 0, '2009-02-03 16:06:50', '2011-09-30 01:05:39'),
-(29, 'Product 2', '', '', '', '', '', '', '', 999, 6, 'catalog/demo/palm_treo_pro_1.jpg', 6, 1, 279.9900, 0, 9, '2009-02-03', 133.00000000, 2, 0.00000000, 0.00000000, 0.00000000, 3, 1, 1, 0, 1, 0, '2009-02-03 16:42:17', '2011-09-30 01:06:08'),
-(30, 'Product 3', '', '', '', '', '', '', '', 7, 6, 'catalog/demo/canon_eos_5d_1.jpg', 9, 1, 100.0000, 0, 9, '2009-02-03', 0.00000000, 1, 0.00000000, 0.00000000, 0.00000000, 1, 1, 1, 0, 1, 0, '2009-02-03 16:59:00', '2011-09-30 01:05:23'),
-(31, 'Product 4', '', '', '', '', '', '', '', 1000, 6, 'catalog/demo/nikon_d300_1.jpg', 0, 1, 80.0000, 0, 9, '2009-02-03', 0.00000000, 1, 0.00000000, 0.00000000, 0.00000000, 3, 1, 1, 0, 1, 0, '2009-02-03 17:00:10', '2011-09-30 01:06:00'),
-(32, 'Product 5', '', '', '', '', '', '', '', 999, 6, 'catalog/demo/ipod_touch_1.jpg', 8, 1, 100.0000, 0, 9, '2009-02-03', 5.00000000, 1, 0.00000000, 0.00000000, 0.00000000, 1, 1, 1, 0, 1, 0, '2009-02-03 17:07:26', '2011-09-30 01:07:22'),
-(33, 'Product 6', '', '', '', '', '', '', '', 1000, 6, 'catalog/demo/samsung_syncmaster_941bw.jpg', 0, 1, 200.0000, 0, 9, '2009-02-03', 5.00000000, 1, 0.00000000, 0.00000000, 0.00000000, 2, 1, 1, 0, 1, 0, '2009-02-03 17:08:31', '2011-09-30 01:06:29'),
-(34, 'Product 7', '', '', '', '', '', '', '', 1000, 6, 'catalog/demo/ipod_shuffle_1.jpg', 8, 1, 100.0000, 0, 9, '2009-02-03', 5.00000000, 1, 0.00000000, 0.00000000, 0.00000000, 2, 1, 1, 0, 1, 0, '2009-02-03 18:07:54', '2011-09-30 01:07:17'),
-(35, 'Product 8', '', '', '', '', '', '', '', 1000, 5, '', 0, 0, 100.0000, 0, 9, '2009-02-03', 5.00000000, 1, 0.00000000, 0.00000000, 0.00000000, 1, 1, 1, 0, 1, 0, '2009-02-03 18:08:31', '2011-09-30 01:06:17'),
-(36, 'Product 9', '', '', '', '', '', '', '', 994, 6, 'catalog/demo/ipod_nano_1.jpg', 8, 0, 100.0000, 100, 9, '2009-02-03', 5.00000000, 1, 0.00000000, 0.00000000, 0.00000000, 2, 1, 1, 0, 1, 0, '2009-02-03 18:09:19', '2011-09-30 01:07:12'),
-(40, 'product 11', '', '', '', '', '', '', '', 970, 5, 'catalog/demo/iphone_1.jpg', 8, 1, 101.0000, 0, 9, '2009-02-03', 10.00000000, 1, 0.00000000, 0.00000000, 0.00000000, 1, 1, 1, 0, 1, 0, '2009-02-03 21:07:12', '2011-09-30 01:06:53'),
-(41, 'Product 14', '', '', '', '', '', '', '', 977, 5, 'catalog/demo/imac_1.jpg', 8, 1, 100.0000, 0, 9, '2009-02-03', 5.00000000, 1, 0.00000000, 0.00000000, 0.00000000, 1, 1, 1, 0, 1, 0, '2009-02-03 21:07:26', '2011-09-30 01:06:44'),
-(42, 'Product 15', '', '', '', '', '', '', '', 990, 5, 'catalog/demo/apple_cinema_30.jpg', 8, 1, 100.0000, 400, 9, '2009-02-04', 12.50000000, 1, 1.00000000, 2.00000000, 3.00000000, 1, 1, 2, 0, 1, 0, '2009-02-03 21:07:37', '2011-09-30 00:46:19'),
-(43, 'Product 16', '', '', '', '', '', '', '', 929, 5, 'catalog/demo/macbook_1.jpg', 8, 0, 500.0000, 0, 9, '2009-02-03', 0.00000000, 1, 0.00000000, 0.00000000, 0.00000000, 2, 1, 1, 0, 1, 0, '2009-02-03 21:07:49', '2011-09-30 01:05:46'),
-(44, 'Product 17', '', '', '', '', '', '', '', 1000, 5, 'catalog/demo/macbook_air_1.jpg', 8, 1, 1000.0000, 0, 9, '2009-02-03', 0.00000000, 1, 0.00000000, 0.00000000, 0.00000000, 2, 1, 1, 0, 1, 0, '2009-02-03 21:08:00', '2011-09-30 01:05:53'),
-(45, 'Product 18', '', '', '', '', '', '', '', 998, 5, 'catalog/demo/macbook_pro_1.jpg', 8, 1, 2000.0000, 0, 100, '2009-02-03', 0.00000000, 1, 0.00000000, 0.00000000, 0.00000000, 2, 1, 1, 0, 1, 0, '2009-02-03 21:08:17', '2011-09-15 22:22:01'),
-(46, 'Product 19', '', '', '', '', '', '', '', 1000, 5, 'catalog/demo/sony_vaio_1.jpg', 10, 1, 1000.0000, 0, 9, '2009-02-03', 0.00000000, 1, 0.00000000, 0.00000000, 0.00000000, 2, 1, 1, 0, 1, 0, '2009-02-03 21:08:29', '2011-09-30 01:06:39'),
-(47, 'Product 21', '', '', '', '', '', '', '', 1000, 5, 'catalog/demo/hp_1.jpg', 7, 1, 100.0000, 400, 9, '2009-02-03', 1.00000000, 1, 0.00000000, 0.00000000, 0.00000000, 1, 0, 1, 0, 1, 0, '2009-02-03 21:08:40', '2011-09-30 01:05:28'),
-(48, 'product 20', 'test 1', '', '', '', '', '', 'test 2', 995, 5, 'catalog/demo/ipod_classic_1.jpg', 8, 1, 100.0000, 0, 9, '2009-02-08', 1.00000000, 1, 0.00000000, 0.00000000, 0.00000000, 2, 1, 1, 0, 1, 0, '2009-02-08 17:21:51', '2011-09-30 01:07:06'),
-(49, 'SAM1', '', '', '', '', '', '', '', 0, 8, 'catalog/demo/samsung_tab_1.jpg', 0, 1, 199.9900, 0, 9, '2011-04-25', 0.00000000, 1, 0.00000000, 0.00000000, 0.00000000, 1, 1, 1, 1, 1, 0, '2011-04-26 08:57:34', '2011-09-30 01:06:23');
+(28, 'Product 1', '', '', '', '', '', '', '', 939, 7, 'catalog/demo/htc_touch_hd_1.jpg', 5, 1, '100.0000', 200, 9, '2009-02-03', '146.40000000', 2, '0.00000000', '0.00000000', '0.00000000', 1, 1, 1, 0, 1, 0, '2009-02-03 16:06:50', '2011-09-30 01:05:39'),
+(29, 'Product 2', '', '', '', '', '', '', '', 999, 6, 'catalog/demo/palm_treo_pro_1.jpg', 6, 1, '279.9900', 0, 9, '2009-02-03', '133.00000000', 2, '0.00000000', '0.00000000', '0.00000000', 3, 1, 1, 0, 1, 0, '2009-02-03 16:42:17', '2011-09-30 01:06:08'),
+(30, 'Product 3', '', '', '', '', '', '', '', 7, 6, 'catalog/demo/canon_eos_5d_1.jpg', 9, 1, '100.0000', 0, 9, '2009-02-03', '0.00000000', 1, '0.00000000', '0.00000000', '0.00000000', 1, 1, 1, 0, 1, 0, '2009-02-03 16:59:00', '2011-09-30 01:05:23'),
+(31, 'Product 4', '', '', '', '', '', '', '', 1000, 6, 'catalog/demo/nikon_d300_1.jpg', 0, 1, '80.0000', 0, 9, '2009-02-03', '0.00000000', 1, '0.00000000', '0.00000000', '0.00000000', 3, 1, 1, 0, 1, 0, '2009-02-03 17:00:10', '2011-09-30 01:06:00'),
+(32, 'Product 5', '', '', '', '', '', '', '', 999, 6, 'catalog/demo/ipod_touch_1.jpg', 8, 1, '100.0000', 0, 9, '2009-02-03', '5.00000000', 1, '0.00000000', '0.00000000', '0.00000000', 1, 1, 1, 0, 1, 0, '2009-02-03 17:07:26', '2011-09-30 01:07:22'),
+(33, 'Product 6', '', '', '', '', '', '', '', 1000, 6, 'catalog/demo/samsung_syncmaster_941bw.jpg', 0, 1, '200.0000', 0, 9, '2009-02-03', '5.00000000', 1, '0.00000000', '0.00000000', '0.00000000', 2, 1, 1, 0, 1, 0, '2009-02-03 17:08:31', '2011-09-30 01:06:29'),
+(34, 'Product 7', '', '', '', '', '', '', '', 1000, 6, 'catalog/demo/ipod_shuffle_1.jpg', 8, 1, '100.0000', 0, 9, '2009-02-03', '5.00000000', 1, '0.00000000', '0.00000000', '0.00000000', 2, 1, 1, 0, 1, 0, '2009-02-03 18:07:54', '2011-09-30 01:07:17'),
+(35, 'Product 8', '', '', '', '', '', '', '', 1000, 5, '', 0, 0, '100.0000', 0, 9, '2009-02-03', '5.00000000', 1, '0.00000000', '0.00000000', '0.00000000', 1, 1, 1, 0, 1, 0, '2009-02-03 18:08:31', '2011-09-30 01:06:17'),
+(36, 'Product 9', '', '', '', '', '', '', '', 994, 6, 'catalog/demo/ipod_nano_1.jpg', 8, 0, '100.0000', 100, 9, '2009-02-03', '5.00000000', 1, '0.00000000', '0.00000000', '0.00000000', 2, 1, 1, 0, 1, 0, '2009-02-03 18:09:19', '2011-09-30 01:07:12'),
+(40, 'product 11', '', '', '', '', '', '', '', 970, 5, 'catalog/demo/iphone_1.jpg', 8, 1, '101.0000', 0, 9, '2009-02-03', '10.00000000', 1, '0.00000000', '0.00000000', '0.00000000', 1, 1, 1, 0, 1, 0, '2009-02-03 21:07:12', '2011-09-30 01:06:53'),
+(41, 'Product 14', '', '', '', '', '', '', '', 977, 5, 'catalog/demo/imac_1.jpg', 8, 1, '100.0000', 0, 9, '2009-02-03', '5.00000000', 1, '0.00000000', '0.00000000', '0.00000000', 1, 1, 1, 0, 1, 0, '2009-02-03 21:07:26', '2011-09-30 01:06:44'),
+(42, 'Product 15', '', '', '', '', '', '', '', 990, 5, 'catalog/demo/apple_cinema_30.jpg', 8, 1, '100.0000', 400, 9, '2009-02-04', '12.50000000', 1, '1.00000000', '2.00000000', '3.00000000', 1, 1, 2, 0, 1, 0, '2009-02-03 21:07:37', '2011-09-30 00:46:19'),
+(43, 'Product 16', '', '', '', '', '', '', '', 929, 5, 'catalog/demo/macbook_1.jpg', 8, 0, '500.0000', 0, 9, '2009-02-03', '0.00000000', 1, '0.00000000', '0.00000000', '0.00000000', 2, 1, 1, 0, 1, 0, '2009-02-03 21:07:49', '2011-09-30 01:05:46'),
+(44, 'Product 17', '', '', '', '', '', '', '', 1000, 5, 'catalog/demo/macbook_air_1.jpg', 8, 1, '1000.0000', 0, 9, '2009-02-03', '0.00000000', 1, '0.00000000', '0.00000000', '0.00000000', 2, 1, 1, 0, 1, 0, '2009-02-03 21:08:00', '2011-09-30 01:05:53'),
+(45, 'Product 18', '', '', '', '', '', '', '', 998, 5, 'catalog/demo/macbook_pro_1.jpg', 8, 1, '2000.0000', 0, 100, '2009-02-03', '0.00000000', 1, '0.00000000', '0.00000000', '0.00000000', 2, 1, 1, 0, 1, 0, '2009-02-03 21:08:17', '2011-09-15 22:22:01'),
+(46, 'Product 19', '', '', '', '', '', '', '', 1000, 5, 'catalog/demo/sony_vaio_1.jpg', 10, 1, '1000.0000', 0, 9, '2009-02-03', '0.00000000', 1, '0.00000000', '0.00000000', '0.00000000', 2, 1, 1, 0, 1, 0, '2009-02-03 21:08:29', '2011-09-30 01:06:39'),
+(47, 'Product 21', '', '', '', '', '', '', '', 1000, 5, 'catalog/demo/hp_1.jpg', 7, 1, '100.0000', 400, 9, '2009-02-03', '1.00000000', 1, '0.00000000', '0.00000000', '0.00000000', 1, 0, 1, 0, 1, 0, '2009-02-03 21:08:40', '2011-09-30 01:05:28'),
+(48, 'product 20', 'test 1', '', '', '', '', '', 'test 2', 995, 5, 'catalog/demo/ipod_classic_1.jpg', 8, 1, '100.0000', 0, 9, '2009-02-08', '1.00000000', 1, '0.00000000', '0.00000000', '0.00000000', 2, 1, 1, 0, 1, 0, '2009-02-08 17:21:51', '2011-09-30 01:07:06'),
+(49, 'SAM1', '', '', '', '', '', '', '', 0, 8, 'catalog/demo/samsung_tab_1.jpg', 0, 1, '199.9900', 0, 9, '2011-04-25', '0.00000000', 1, '0.00000000', '0.00000000', '0.00000000', 1, 1, 1, 1, 1, 0, '2011-04-26 08:57:34', '2011-09-30 01:06:23'),
+(50, 'Chair', '', '', '', '', '', '', '', 100, 6, 'catalog/demo/product/GHE.jpg', 0, 1, '0.0000', 0, 0, '2016-10-29', '0.00000000', 1, '0.00000000', '0.00000000', '0.00000000', 1, 1, 1, 1, 1, 4, '2016-10-29 14:05:19', '2016-10-29 14:25:38'),
+(51, 'Chair', '', '', '', '', '', '', '', 1, 6, 'catalog/demo/product/ghe_ms06.jpg', 0, 1, '0.0000', 0, 0, '2016-10-29', '0.00000000', 1, '0.00000000', '0.00000000', '0.00000000', 1, 1, 1, 1, 1, 0, '2016-10-29 14:20:44', '2016-10-29 14:35:07'),
+(52, 'BInhHoa', '', '', '', '', '', '', '', 1, 6, 'catalog/demo/product/binhhoa_ms012.jpg', 0, 1, '0.0000', 0, 0, '2016-10-29', '0.00000000', 1, '0.00000000', '0.00000000', '0.00000000', 1, 1, 1, 1, 1, 0, '2016-10-29 14:34:53', '0000-00-00 00:00:00'),
+(53, 'CANHO', '', '', '', '', '', '', '', 1, 6, 'catalog/demo/product/THIETKECANHO/6.jpg', 0, 1, '0.0000', 0, 0, '2016-10-29', '0.00000000', 1, '0.00000000', '0.00000000', '0.00000000', 1, 1, 1, 1, 1, 2, '2016-10-29 14:53:44', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `noithat_product_attribute`
+-- Structure de la table `noithat_product_attribute`
 --
 
-CREATE TABLE IF NOT EXISTS `noithat_product_attribute` (
+CREATE TABLE `noithat_product_attribute` (
   `product_id` int(11) NOT NULL,
   `attribute_id` int(11) NOT NULL,
   `language_id` int(11) NOT NULL,
-  `text` text NOT NULL,
-  PRIMARY KEY (`product_id`,`attribute_id`,`language_id`)
+  `text` text NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `noithat_product_attribute`
+-- Contenu de la table `noithat_product_attribute`
 --
 
 INSERT INTO `noithat_product_attribute` (`product_id`, `attribute_id`, `language_id`, `text`) VALUES
@@ -2536,10 +2607,10 @@ INSERT INTO `noithat_product_attribute` (`product_id`, `attribute_id`, `language
 -- --------------------------------------------------------
 
 --
--- Table structure for table `noithat_product_description`
+-- Structure de la table `noithat_product_description`
 --
 
-CREATE TABLE IF NOT EXISTS `noithat_product_description` (
+CREATE TABLE `noithat_product_description` (
   `product_id` int(11) NOT NULL,
   `language_id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
@@ -2547,13 +2618,11 @@ CREATE TABLE IF NOT EXISTS `noithat_product_description` (
   `tag` text NOT NULL,
   `meta_title` varchar(255) NOT NULL,
   `meta_description` varchar(255) NOT NULL,
-  `meta_keyword` varchar(255) NOT NULL,
-  PRIMARY KEY (`product_id`,`language_id`),
-  KEY `name` (`name`)
+  `meta_keyword` varchar(255) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `noithat_product_description`
+-- Contenu de la table `noithat_product_description`
 --
 
 INSERT INTO `noithat_product_description` (`product_id`, `language_id`, `name`, `description`, `tag`, `meta_title`, `meta_description`, `meta_keyword`) VALUES
@@ -2595,65 +2664,68 @@ INSERT INTO `noithat_product_description` (`product_id`, `language_id`, `name`, 
 (49, 2, 'Samsung Galaxy Tab 10.1', '&lt;p&gt;\r\n	Samsung Galaxy Tab 10.1, is the world&amp;rsquo;s thinnest tablet, measuring 8.6 mm thickness, running with Android 3.0 Honeycomb OS on a 1GHz dual-core Tegra 2 processor, similar to its younger brother Samsung Galaxy Tab 8.9.&lt;/p&gt;\r\n&lt;p&gt;\r\n	Samsung Galaxy Tab 10.1 gives pure Android 3.0 experience, adding its new TouchWiz UX or TouchWiz 4.0 &amp;ndash; includes a live panel, which lets you to customize with different content, such as your pictures, bookmarks, and social feeds, sporting a 10.1 inches WXGA capacitive touch screen with 1280 x 800 pixels of resolution, equipped with 3 megapixel rear camera with LED flash and a 2 megapixel front camera, HSPA+ connectivity up to 21Mbps, 720p HD video recording capability, 1080p HD playback, DLNA support, Bluetooth 2.1, USB 2.0, gyroscope, Wi-Fi 802.11 a/b/g/n, micro-SD slot, 3.5mm headphone jack, and SIM slot, including the Samsung Stick &amp;ndash; a Bluetooth microphone that can be carried in a pocket like a pen and sound dock with powered subwoofer.&lt;/p&gt;\r\n&lt;p&gt;\r\n	Samsung Galaxy Tab 10.1 will come in 16GB / 32GB / 64GB verities and pre-loaded with Social Hub, Reader&amp;rsquo;s Hub, Music Hub and Samsung Mini Apps Tray &amp;ndash; which gives you access to more commonly used apps to help ease multitasking and it is capable of Adobe Flash Player 10.2, powered by 6860mAh battery that gives you 10hours of video-playback time.&amp;nbsp;&amp;auml;&amp;ouml;&lt;/p&gt;\r\n', '', 'Samsung Galaxy Tab 10.1', '', '');
 INSERT INTO `noithat_product_description` (`product_id`, `language_id`, `name`, `description`, `tag`, `meta_title`, `meta_description`, `meta_keyword`) VALUES
 (42, 2, 'Apple Cinema 30&quot;', '&lt;p&gt;\r\n	&lt;font face=&quot;helvetica,geneva,arial&quot; size=&quot;2&quot;&gt;&lt;font face=&quot;Helvetica&quot; size=&quot;2&quot;&gt;The 30-inch Apple Cinema HD Display delivers an amazing 2560 x 1600 pixel resolution. Designed specifically for the creative professional, this display provides more space for easier access to all the tools and palettes needed to edit, format and composite your work. Combine this display with a Mac Pro, MacBook Pro, or PowerMac G5 and there''s no limit to what you can achieve. &lt;br&gt;\r\n	&lt;br&gt;\r\n	&lt;/font&gt;&lt;font face=&quot;Helvetica&quot; size=&quot;2&quot;&gt;The Cinema HD features an active-matrix liquid crystal display that produces flicker-free images that deliver twice the brightness, twice the sharpness and twice the contrast ratio of a typical CRT display. Unlike other flat panels, it''s designed with a pure digital interface to deliver distortion-free images that never need adjusting. With over 4 million digital pixels, the display is uniquely suited for scientific and technical applications such as visualizing molecular structures or analyzing geological data. &lt;br&gt;\r\n	&lt;br&gt;\r\n	&lt;/font&gt;&lt;font face=&quot;Helvetica&quot; size=&quot;2&quot;&gt;Offering accurate, brilliant color performance, the Cinema HD delivers up to 16.7 million colors across a wide gamut allowing you to see subtle nuances between colors from soft pastels to rich jewel tones. A wide viewing angle ensures uniform color from edge to edge. Apple''s ColorSync technology allows you to create custom profiles to maintain consistent color onscreen and in print. The result: You can confidently use this display in all your color-critical applications. &lt;br&gt;\r\n	&lt;br&gt;\r\n	&lt;/font&gt;&lt;font face=&quot;Helvetica&quot; size=&quot;2&quot;&gt;Housed in a new aluminum design, the display has a very thin bezel that enhances visual accuracy. Each display features two FireWire 400 ports and two USB 2.0 ports, making attachment of desktop peripherals, such as iSight, iPod, digital and still cameras, hard drives, printers and scanners, even more accessible and convenient. Taking advantage of the much thinner and lighter footprint of an LCD, the new displays support the VESA (Video Electronics Standards Association) mounting interface standard. Customers with the optional Cinema Display VESA Mount Adapter kit gain the flexibility to mount their display in locations most appropriate for their work environment. &lt;br&gt;\r\n	&lt;br&gt;\r\n	&lt;/font&gt;&lt;font face=&quot;Helvetica&quot; size=&quot;2&quot;&gt;The Cinema HD features a single cable design with elegant breakout for the USB 2.0, FireWire 400 and a pure digital connection using the industry standard Digital Video Interface (DVI) interface. The DVI connection allows for a direct pure-digital connection.&lt;br&gt;\r\n	&lt;/font&gt;&lt;/font&gt;&lt;/p&gt;\r\n&lt;h3&gt;\r\n	Features:&lt;/h3&gt;\r\n&lt;p&gt;\r\n	Unrivaled display performance&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		30-inch (viewable) active-matrix liquid crystal display provides breathtaking image quality and vivid, richly saturated color.&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Support for 2560-by-1600 pixel resolution for display of high definition still and video imagery.&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Wide-format design for simultaneous display of two full pages of text and graphics.&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Industry standard DVI connector for direct attachment to Mac- and Windows-based desktops and notebooks&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Incredibly wide (170 degree) horizontal and vertical viewing angle for maximum visibility and color performance.&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Lightning-fast pixel response for full-motion digital video playback.&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Support for 16.7 million saturated colors, for use in all graphics-intensive applications.&lt;/li&gt;\r\n&lt;/ul&gt;\r\n&lt;p&gt;\r\n	Simple setup and operation&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		Single cable with elegant breakout for connection to DVI, USB and FireWire ports&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Built-in two-port USB 2.0 hub for easy connection of desktop peripheral devices.&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Two FireWire 400 ports to support iSight and other desktop peripherals&lt;/li&gt;\r\n&lt;/ul&gt;\r\n&lt;p&gt;\r\n	Sleek, elegant design&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		Huge virtual workspace, very small footprint.&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Narrow Bezel design to minimize visual impact of using dual displays&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Unique hinge design for effortless adjustment&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Support for VESA mounting solutions (Apple Cinema Display VESA Mount Adapter sold separately)&lt;/li&gt;\r\n&lt;/ul&gt;\r\n&lt;h3&gt;\r\n	Technical specifications&lt;/h3&gt;\r\n&lt;p&gt;\r\n	&lt;b&gt;Screen size (diagonal viewable image size)&lt;/b&gt;&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		Apple Cinema HD Display: 30 inches (29.7-inch viewable)&lt;/li&gt;\r\n&lt;/ul&gt;\r\n&lt;p&gt;\r\n	&lt;b&gt;Screen type&lt;/b&gt;&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		Thin film transistor (TFT) active-matrix liquid crystal display (AMLCD)&lt;/li&gt;\r\n&lt;/ul&gt;\r\n&lt;p&gt;\r\n	&lt;b&gt;Resolutions&lt;/b&gt;&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		2560 x 1600 pixels (optimum resolution)&lt;/li&gt;\r\n	&lt;li&gt;\r\n		2048 x 1280&lt;/li&gt;\r\n	&lt;li&gt;\r\n		1920 x 1200&lt;/li&gt;\r\n	&lt;li&gt;\r\n		1280 x 800&lt;/li&gt;\r\n	&lt;li&gt;\r\n		1024 x 640&lt;/li&gt;\r\n&lt;/ul&gt;\r\n&lt;p&gt;\r\n	&lt;b&gt;Display colors (maximum)&lt;/b&gt;&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		16.7 million&lt;/li&gt;\r\n&lt;/ul&gt;\r\n&lt;p&gt;\r\n	&lt;b&gt;Viewing angle (typical)&lt;/b&gt;&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		170° horizontal; 170° vertical&lt;/li&gt;\r\n&lt;/ul&gt;\r\n&lt;p&gt;\r\n	&lt;b&gt;Brightness (typical)&lt;/b&gt;&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		30-inch Cinema HD Display: 400 cd/m2&lt;/li&gt;\r\n&lt;/ul&gt;\r\n&lt;p&gt;\r\n	&lt;b&gt;Contrast ratio (typical)&lt;/b&gt;&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		700:1&lt;/li&gt;\r\n&lt;/ul&gt;\r\n&lt;p&gt;\r\n	&lt;b&gt;Response time (typical)&lt;/b&gt;&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		16 ms&lt;/li&gt;\r\n&lt;/ul&gt;\r\n&lt;p&gt;\r\n	&lt;b&gt;Pixel pitch&lt;/b&gt;&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		30-inch Cinema HD Display: 0.250 mm&lt;/li&gt;\r\n&lt;/ul&gt;\r\n&lt;p&gt;\r\n	&lt;b&gt;Screen treatment&lt;/b&gt;&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		Antiglare hardcoat&lt;/li&gt;\r\n&lt;/ul&gt;\r\n&lt;p&gt;\r\n	&lt;b&gt;User controls (hardware and software)&lt;/b&gt;&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		Display Power,&lt;/li&gt;\r\n	&lt;li&gt;\r\n		System sleep, wake&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Brightness&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Monitor tilt&lt;/li&gt;\r\n&lt;/ul&gt;\r\n&lt;p&gt;\r\n	&lt;b&gt;Connectors and cables&lt;/b&gt;&lt;br&gt;\r\n	Cable&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		DVI (Digital Visual Interface)&lt;/li&gt;\r\n	&lt;li&gt;\r\n		FireWire 400&lt;/li&gt;\r\n	&lt;li&gt;\r\n		USB 2.0&lt;/li&gt;\r\n	&lt;li&gt;\r\n		DC power (24 V)&lt;/li&gt;\r\n&lt;/ul&gt;\r\n&lt;p&gt;\r\n	Connectors&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		Two-port, self-powered USB 2.0 hub&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Two FireWire 400 ports&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Kensington security port&lt;/li&gt;\r\n&lt;/ul&gt;\r\n&lt;p&gt;\r\n	&lt;b&gt;VESA mount adapter&lt;/b&gt;&lt;br&gt;\r\n	Requires optional Cinema Display VESA Mount Adapter (M9649G/A)&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		Compatible with VESA FDMI (MIS-D, 100, C) compliant mounting solutions&lt;/li&gt;\r\n&lt;/ul&gt;\r\n&lt;p&gt;\r\n	&lt;b&gt;Electrical requirements&lt;/b&gt;&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		Input voltage: 100-240 VAC 50-60Hz&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Maximum power when operating: 150W&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Energy saver mode: 3W or less&lt;/li&gt;\r\n&lt;/ul&gt;\r\n&lt;p&gt;\r\n	&lt;b&gt;Environmental requirements&lt;/b&gt;&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		Operating temperature: 50° to 95° F (10° to 35° C)&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Storage temperature: -40° to 116° F (-40° to 47° C)&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Operating humidity: 20% to 80% noncondensing&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Maximum operating altitude: 10,000 feet&lt;/li&gt;\r\n&lt;/ul&gt;\r\n&lt;p&gt;\r\n	&lt;b&gt;Agency approvals&lt;/b&gt;&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		FCC Part 15 Class B&lt;/li&gt;\r\n	&lt;li&gt;\r\n		EN55022 Class B&lt;/li&gt;\r\n	&lt;li&gt;\r\n		EN55024&lt;/li&gt;\r\n	&lt;li&gt;\r\n		VCCI Class B&lt;/li&gt;\r\n	&lt;li&gt;\r\n		AS/NZS 3548 Class B&lt;/li&gt;\r\n	&lt;li&gt;\r\n		CNS 13438 Class B&lt;/li&gt;\r\n	&lt;li&gt;\r\n		ICES-003 Class B&lt;/li&gt;\r\n	&lt;li&gt;\r\n		ISO 13406 part 2&lt;/li&gt;\r\n	&lt;li&gt;\r\n		MPR II&lt;/li&gt;\r\n	&lt;li&gt;\r\n		IEC 60950&lt;/li&gt;\r\n	&lt;li&gt;\r\n		UL 60950&lt;/li&gt;\r\n	&lt;li&gt;\r\n		CSA 60950&lt;/li&gt;\r\n	&lt;li&gt;\r\n		EN60950&lt;/li&gt;\r\n	&lt;li&gt;\r\n		ENERGY STAR&lt;/li&gt;\r\n	&lt;li&gt;\r\n		TCO ''03&lt;/li&gt;\r\n&lt;/ul&gt;\r\n&lt;p&gt;\r\n	&lt;b&gt;Size and weight&lt;/b&gt;&lt;br&gt;\r\n	30-inch Apple Cinema HD Display&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		Height: 21.3 inches (54.3 cm)&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Width: 27.2 inches (68.8 cm)&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Depth: 8.46 inches (21.5 cm)&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Weight: 27.5 pounds (12.5 kg)&lt;/li&gt;\r\n&lt;/ul&gt;\r\n&lt;p&gt;\r\n	&lt;b&gt;System Requirements&lt;/b&gt;&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		Mac Pro, all graphic options&lt;/li&gt;\r\n	&lt;li&gt;\r\n		MacBook Pro&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Power Mac G5 (PCI-X) with ATI Radeon 9650 or better or NVIDIA GeForce 6800 GT DDL or better&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Power Mac G5 (PCI Express), all graphics options&lt;/li&gt;\r\n	&lt;li&gt;\r\n		PowerBook G4 with dual-link DVI support&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Windows PC and graphics card that supports DVI ports with dual-link digital bandwidth and VESA DDC standard for plug-and-play setup&lt;/li&gt;\r\n&lt;/ul&gt;\r\n', '', 'Apple Cinema 30', '', ''),
-(30, 2, 'Canon EOS 5D', '&lt;p&gt;\r\n	Canon''s press material for the EOS 5D states that it ''defines (a) new D-SLR category'', while we''re not typically too concerned with marketing talk this particular statement is clearly pretty accurate. The EOS 5D is unlike any previous digital SLR in that it combines a full-frame (35 mm sized) high resolution sensor (12.8 megapixels) with a relatively compact body (slightly larger than the EOS 20D, although in your hand it feels noticeably ''chunkier''). The EOS 5D is aimed to slot in between the EOS 20D and the EOS-1D professional digital SLR''s, an important difference when compared to the latter is that the EOS 5D doesn''t have any environmental seals. While Canon don''t specifically refer to the EOS 5D as a ''professional'' digital SLR it will have obvious appeal to professionals who want a high quality digital SLR in a body lighter than the EOS-1D. It will also no doubt appeal to current EOS 20D owners (although lets hope they''ve not bought too many EF-S lenses...) äë&lt;/p&gt;\r\n', '', 'sdf', '', '');
+(30, 2, 'Canon EOS 5D', '&lt;p&gt;\r\n	Canon''s press material for the EOS 5D states that it ''defines (a) new D-SLR category'', while we''re not typically too concerned with marketing talk this particular statement is clearly pretty accurate. The EOS 5D is unlike any previous digital SLR in that it combines a full-frame (35 mm sized) high resolution sensor (12.8 megapixels) with a relatively compact body (slightly larger than the EOS 20D, although in your hand it feels noticeably ''chunkier''). The EOS 5D is aimed to slot in between the EOS 20D and the EOS-1D professional digital SLR''s, an important difference when compared to the latter is that the EOS 5D doesn''t have any environmental seals. While Canon don''t specifically refer to the EOS 5D as a ''professional'' digital SLR it will have obvious appeal to professionals who want a high quality digital SLR in a body lighter than the EOS-1D. It will also no doubt appeal to current EOS 20D owners (although lets hope they''ve not bought too many EF-S lenses...) äë&lt;/p&gt;\r\n', '', 'sdf', '', ''),
+(50, 1, 'Chair MS05', '&lt;p&gt;Chair&amp;nbsp;MS05&lt;/p&gt;', '', 'Chair MS05', '', ''),
+(51, 2, 'Bàn ghế MS06', '&lt;p&gt;Bàn ghế MS06&lt;br&gt;&lt;/p&gt;', '', 'Bàn ghế MS06', '', ''),
+(51, 1, 'Chair MS06', '&lt;p&gt;Chair&amp;nbsp; MS06&lt;br&gt;&lt;/p&gt;', '', 'Chair  MS06', '', ''),
+(50, 2, 'Bàn ghế MS05', '&lt;p&gt;Bàn ghế MS05&lt;/p&gt;', '', 'Bàn ghế MS05', '', ''),
+(52, 1, 'Bình hoa giả MS012', '&lt;p&gt;Bình hoa giả MS012&lt;br&gt;&lt;/p&gt;', '', 'Bình hoa giả MS012', '', ''),
+(52, 2, 'Bình hoa giả MS012', '&lt;p&gt;Bình hoa giả MS012&lt;br&gt;&lt;/p&gt;', '', 'Bình hoa giả MS012', '', ''),
+(53, 1, 'CANHO_01', '&lt;p&gt;CANHO_01&lt;br&gt;&lt;/p&gt;', '', 'CANHO_01', '', ''),
+(53, 2, 'CANHO_01', '&lt;p&gt;CANHO_01&lt;br&gt;&lt;/p&gt;', '', 'CANHO_01', '', '');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `noithat_product_discount`
+-- Structure de la table `noithat_product_discount`
 --
 
-CREATE TABLE IF NOT EXISTS `noithat_product_discount` (
-  `product_discount_id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `noithat_product_discount` (
+  `product_discount_id` int(11) NOT NULL,
   `product_id` int(11) NOT NULL,
   `customer_group_id` int(11) NOT NULL,
   `quantity` int(4) NOT NULL DEFAULT '0',
   `priority` int(5) NOT NULL DEFAULT '1',
   `price` decimal(15,4) NOT NULL DEFAULT '0.0000',
   `date_start` date NOT NULL DEFAULT '0000-00-00',
-  `date_end` date NOT NULL DEFAULT '0000-00-00',
-  PRIMARY KEY (`product_discount_id`),
-  KEY `product_id` (`product_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=441 ;
+  `date_end` date NOT NULL DEFAULT '0000-00-00'
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `noithat_product_discount`
+-- Contenu de la table `noithat_product_discount`
 --
 
 INSERT INTO `noithat_product_discount` (`product_discount_id`, `product_id`, `customer_group_id`, `quantity`, `priority`, `price`, `date_start`, `date_end`) VALUES
-(440, 42, 1, 30, 1, 66.0000, '0000-00-00', '0000-00-00'),
-(439, 42, 1, 20, 1, 77.0000, '0000-00-00', '0000-00-00'),
-(438, 42, 1, 10, 1, 88.0000, '0000-00-00', '0000-00-00');
+(440, 42, 1, 30, 1, '66.0000', '0000-00-00', '0000-00-00'),
+(439, 42, 1, 20, 1, '77.0000', '0000-00-00', '0000-00-00'),
+(438, 42, 1, 10, 1, '88.0000', '0000-00-00', '0000-00-00');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `noithat_product_filter`
+-- Structure de la table `noithat_product_filter`
 --
 
-CREATE TABLE IF NOT EXISTS `noithat_product_filter` (
+CREATE TABLE `noithat_product_filter` (
   `product_id` int(11) NOT NULL,
-  `filter_id` int(11) NOT NULL,
-  PRIMARY KEY (`product_id`,`filter_id`)
+  `filter_id` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `noithat_product_image`
+-- Structure de la table `noithat_product_image`
 --
 
-CREATE TABLE IF NOT EXISTS `noithat_product_image` (
-  `product_image_id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `noithat_product_image` (
+  `product_image_id` int(11) NOT NULL,
   `product_id` int(11) NOT NULL,
   `image` varchar(255) DEFAULT NULL,
-  `sort_order` int(3) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`product_image_id`),
-  KEY `product_id` (`product_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2352 ;
+  `sort_order` int(3) NOT NULL DEFAULT '0'
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `noithat_product_image`
+-- Contenu de la table `noithat_product_image`
 --
 
 INSERT INTO `noithat_product_image` (`product_image_id`, `product_id`, `image`, `sort_order`) VALUES
@@ -2717,25 +2789,28 @@ INSERT INTO `noithat_product_image` (`product_image_id`, `product_id`, `image`, 
 (2316, 42, 'catalog/demo/hp_1.jpg', 0),
 (2315, 42, 'catalog/demo/compaq_presario.jpg', 0),
 (2314, 42, 'catalog/demo/canon_eos_5d_1.jpg', 0),
-(2313, 42, 'catalog/demo/canon_eos_5d_2.jpg', 0);
+(2313, 42, 'catalog/demo/canon_eos_5d_2.jpg', 0),
+(2352, 53, 'catalog/demo/product/THIETKECANHO/2.jpg', 1),
+(2353, 53, 'catalog/demo/product/THIETKECANHO/3.jpg', 2),
+(2354, 53, 'catalog/demo/product/THIETKECANHO/1.jpg', 3),
+(2355, 53, 'catalog/demo/product/THIETKECANHO/4.jpg', 4);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `noithat_product_option`
+-- Structure de la table `noithat_product_option`
 --
 
-CREATE TABLE IF NOT EXISTS `noithat_product_option` (
-  `product_option_id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `noithat_product_option` (
+  `product_option_id` int(11) NOT NULL,
   `product_id` int(11) NOT NULL,
   `option_id` int(11) NOT NULL,
   `value` text NOT NULL,
-  `required` tinyint(1) NOT NULL,
-  PRIMARY KEY (`product_option_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=227 ;
+  `required` tinyint(1) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `noithat_product_option`
+-- Contenu de la table `noithat_product_option`
 --
 
 INSERT INTO `noithat_product_option` (`product_option_id`, `product_id`, `option_id`, `value`, `required`) VALUES
@@ -2755,11 +2830,11 @@ INSERT INTO `noithat_product_option` (`product_option_id`, `product_id`, `option
 -- --------------------------------------------------------
 
 --
--- Table structure for table `noithat_product_option_value`
+-- Structure de la table `noithat_product_option_value`
 --
 
-CREATE TABLE IF NOT EXISTS `noithat_product_option_value` (
-  `product_option_value_id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `noithat_product_option_value` (
+  `product_option_value_id` int(11) NOT NULL,
   `product_option_id` int(11) NOT NULL,
   `product_id` int(11) NOT NULL,
   `option_id` int(11) NOT NULL,
@@ -2771,59 +2846,56 @@ CREATE TABLE IF NOT EXISTS `noithat_product_option_value` (
   `points` int(8) NOT NULL,
   `points_prefix` varchar(1) NOT NULL,
   `weight` decimal(15,8) NOT NULL,
-  `weight_prefix` varchar(1) NOT NULL,
-  PRIMARY KEY (`product_option_value_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=17 ;
+  `weight_prefix` varchar(1) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `noithat_product_option_value`
+-- Contenu de la table `noithat_product_option_value`
 --
 
 INSERT INTO `noithat_product_option_value` (`product_option_value_id`, `product_option_id`, `product_id`, `option_id`, `option_value_id`, `quantity`, `subtract`, `price`, `price_prefix`, `points`, `points_prefix`, `weight`, `weight_prefix`) VALUES
-(1, 217, 42, 5, 41, 100, 0, 1.0000, '+', 0, '+', 1.00000000, '+'),
-(6, 218, 42, 1, 31, 146, 1, 20.0000, '+', 2, '-', 20.00000000, '+'),
-(7, 218, 42, 1, 43, 300, 1, 30.0000, '+', 3, '+', 30.00000000, '+'),
-(5, 218, 42, 1, 32, 96, 1, 10.0000, '+', 1, '+', 10.00000000, '+'),
-(4, 217, 42, 5, 39, 92, 1, 4.0000, '+', 0, '+', 4.00000000, '+'),
-(2, 217, 42, 5, 42, 200, 1, 2.0000, '+', 0, '+', 2.00000000, '+'),
-(3, 217, 42, 5, 40, 300, 0, 3.0000, '+', 0, '+', 3.00000000, '+'),
-(8, 223, 42, 2, 23, 48, 1, 10.0000, '+', 0, '+', 10.00000000, '+'),
-(10, 223, 42, 2, 44, 2696, 1, 30.0000, '+', 0, '+', 30.00000000, '+'),
-(9, 223, 42, 2, 24, 194, 1, 20.0000, '+', 0, '+', 20.00000000, '+'),
-(11, 223, 42, 2, 45, 3998, 1, 40.0000, '+', 0, '+', 40.00000000, '+'),
-(12, 224, 35, 11, 46, 0, 1, 5.0000, '+', 0, '+', 0.00000000, '+'),
-(13, 224, 35, 11, 47, 10, 1, 10.0000, '+', 0, '+', 0.00000000, '+'),
-(14, 224, 35, 11, 48, 15, 1, 15.0000, '+', 0, '+', 0.00000000, '+'),
-(16, 226, 30, 5, 40, 5, 1, 0.0000, '+', 0, '+', 0.00000000, '+'),
-(15, 226, 30, 5, 39, 2, 1, 0.0000, '+', 0, '+', 0.00000000, '+');
+(1, 217, 42, 5, 41, 100, 0, '1.0000', '+', 0, '+', '1.00000000', '+'),
+(6, 218, 42, 1, 31, 146, 1, '20.0000', '+', 2, '-', '20.00000000', '+'),
+(7, 218, 42, 1, 43, 300, 1, '30.0000', '+', 3, '+', '30.00000000', '+'),
+(5, 218, 42, 1, 32, 96, 1, '10.0000', '+', 1, '+', '10.00000000', '+'),
+(4, 217, 42, 5, 39, 92, 1, '4.0000', '+', 0, '+', '4.00000000', '+'),
+(2, 217, 42, 5, 42, 200, 1, '2.0000', '+', 0, '+', '2.00000000', '+'),
+(3, 217, 42, 5, 40, 300, 0, '3.0000', '+', 0, '+', '3.00000000', '+'),
+(8, 223, 42, 2, 23, 48, 1, '10.0000', '+', 0, '+', '10.00000000', '+'),
+(10, 223, 42, 2, 44, 2696, 1, '30.0000', '+', 0, '+', '30.00000000', '+'),
+(9, 223, 42, 2, 24, 194, 1, '20.0000', '+', 0, '+', '20.00000000', '+'),
+(11, 223, 42, 2, 45, 3998, 1, '40.0000', '+', 0, '+', '40.00000000', '+'),
+(12, 224, 35, 11, 46, 0, 1, '5.0000', '+', 0, '+', '0.00000000', '+'),
+(13, 224, 35, 11, 47, 10, 1, '10.0000', '+', 0, '+', '0.00000000', '+'),
+(14, 224, 35, 11, 48, 15, 1, '15.0000', '+', 0, '+', '0.00000000', '+'),
+(16, 226, 30, 5, 40, 5, 1, '0.0000', '+', 0, '+', '0.00000000', '+'),
+(15, 226, 30, 5, 39, 2, 1, '0.0000', '+', 0, '+', '0.00000000', '+');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `noithat_product_recurring`
+-- Structure de la table `noithat_product_recurring`
 --
 
-CREATE TABLE IF NOT EXISTS `noithat_product_recurring` (
+CREATE TABLE `noithat_product_recurring` (
   `product_id` int(11) NOT NULL,
   `recurring_id` int(11) NOT NULL,
-  `customer_group_id` int(11) NOT NULL,
-  PRIMARY KEY (`product_id`,`recurring_id`,`customer_group_id`)
+  `customer_group_id` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `noithat_product_related`
+-- Structure de la table `noithat_product_related`
 --
 
-CREATE TABLE IF NOT EXISTS `noithat_product_related` (
+CREATE TABLE `noithat_product_related` (
   `product_id` int(11) NOT NULL,
-  `related_id` int(11) NOT NULL,
-  PRIMARY KEY (`product_id`,`related_id`)
+  `related_id` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `noithat_product_related`
+-- Contenu de la table `noithat_product_related`
 --
 
 INSERT INTO `noithat_product_related` (`product_id`, `related_id`) VALUES
@@ -2835,19 +2907,18 @@ INSERT INTO `noithat_product_related` (`product_id`, `related_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `noithat_product_reward`
+-- Structure de la table `noithat_product_reward`
 --
 
-CREATE TABLE IF NOT EXISTS `noithat_product_reward` (
-  `product_reward_id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `noithat_product_reward` (
+  `product_reward_id` int(11) NOT NULL,
   `product_id` int(11) NOT NULL DEFAULT '0',
   `customer_group_id` int(11) NOT NULL DEFAULT '0',
-  `points` int(8) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`product_reward_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=546 ;
+  `points` int(8) NOT NULL DEFAULT '0'
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `noithat_product_reward`
+-- Contenu de la table `noithat_product_reward`
 --
 
 INSERT INTO `noithat_product_reward` (`product_reward_id`, `product_id`, `customer_group_id`, `points`) VALUES
@@ -2874,45 +2945,41 @@ INSERT INTO `noithat_product_reward` (`product_reward_id`, `product_id`, `custom
 -- --------------------------------------------------------
 
 --
--- Table structure for table `noithat_product_special`
+-- Structure de la table `noithat_product_special`
 --
 
-CREATE TABLE IF NOT EXISTS `noithat_product_special` (
-  `product_special_id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `noithat_product_special` (
+  `product_special_id` int(11) NOT NULL,
   `product_id` int(11) NOT NULL,
   `customer_group_id` int(11) NOT NULL,
   `priority` int(5) NOT NULL DEFAULT '1',
   `price` decimal(15,4) NOT NULL DEFAULT '0.0000',
   `date_start` date NOT NULL DEFAULT '0000-00-00',
-  `date_end` date NOT NULL DEFAULT '0000-00-00',
-  PRIMARY KEY (`product_special_id`),
-  KEY `product_id` (`product_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=440 ;
+  `date_end` date NOT NULL DEFAULT '0000-00-00'
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `noithat_product_special`
+-- Contenu de la table `noithat_product_special`
 --
 
 INSERT INTO `noithat_product_special` (`product_special_id`, `product_id`, `customer_group_id`, `priority`, `price`, `date_start`, `date_end`) VALUES
-(419, 42, 1, 1, 90.0000, '0000-00-00', '0000-00-00'),
-(439, 30, 1, 2, 90.0000, '0000-00-00', '0000-00-00'),
-(438, 30, 1, 1, 80.0000, '0000-00-00', '0000-00-00');
+(419, 42, 1, 1, '90.0000', '0000-00-00', '0000-00-00'),
+(439, 30, 1, 2, '90.0000', '0000-00-00', '0000-00-00'),
+(438, 30, 1, 1, '80.0000', '0000-00-00', '0000-00-00');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `noithat_product_to_category`
+-- Structure de la table `noithat_product_to_category`
 --
 
-CREATE TABLE IF NOT EXISTS `noithat_product_to_category` (
+CREATE TABLE `noithat_product_to_category` (
   `product_id` int(11) NOT NULL,
-  `category_id` int(11) NOT NULL,
-  PRIMARY KEY (`product_id`,`category_id`),
-  KEY `category_id` (`category_id`)
+  `category_id` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `noithat_product_to_category`
+-- Contenu de la table `noithat_product_to_category`
 --
 
 INSERT INTO `noithat_product_to_category` (`product_id`, `category_id`) VALUES
@@ -2945,47 +3012,58 @@ INSERT INTO `noithat_product_to_category` (`product_id`, `category_id`) VALUES
 (47, 20),
 (48, 20),
 (48, 34),
-(49, 57);
+(49, 57),
+(50, 66),
+(51, 66),
+(52, 70),
+(53, 77);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `noithat_product_to_download`
+-- Structure de la table `noithat_product_to_download`
 --
 
-CREATE TABLE IF NOT EXISTS `noithat_product_to_download` (
+CREATE TABLE `noithat_product_to_download` (
   `product_id` int(11) NOT NULL,
-  `download_id` int(11) NOT NULL,
-  PRIMARY KEY (`product_id`,`download_id`)
+  `download_id` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `noithat_product_to_layout`
+-- Structure de la table `noithat_product_to_layout`
 --
 
-CREATE TABLE IF NOT EXISTS `noithat_product_to_layout` (
+CREATE TABLE `noithat_product_to_layout` (
   `product_id` int(11) NOT NULL,
   `store_id` int(11) NOT NULL,
-  `layout_id` int(11) NOT NULL,
-  PRIMARY KEY (`product_id`,`store_id`)
+  `layout_id` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Contenu de la table `noithat_product_to_layout`
+--
+
+INSERT INTO `noithat_product_to_layout` (`product_id`, `store_id`, `layout_id`) VALUES
+(50, 0, 0),
+(51, 0, 0),
+(52, 0, 0),
+(53, 0, 0);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `noithat_product_to_store`
+-- Structure de la table `noithat_product_to_store`
 --
 
-CREATE TABLE IF NOT EXISTS `noithat_product_to_store` (
+CREATE TABLE `noithat_product_to_store` (
   `product_id` int(11) NOT NULL,
-  `store_id` int(11) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`product_id`,`store_id`)
+  `store_id` int(11) NOT NULL DEFAULT '0'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `noithat_product_to_store`
+-- Contenu de la table `noithat_product_to_store`
 --
 
 INSERT INTO `noithat_product_to_store` (`product_id`, `store_id`) VALUES
@@ -3007,51 +3085,53 @@ INSERT INTO `noithat_product_to_store` (`product_id`, `store_id`) VALUES
 (46, 0),
 (47, 0),
 (48, 0),
-(49, 0);
+(49, 0),
+(50, 0),
+(51, 0),
+(52, 0),
+(53, 0);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `noithat_recurring`
+-- Structure de la table `noithat_recurring`
 --
 
-CREATE TABLE IF NOT EXISTS `noithat_recurring` (
-  `recurring_id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `noithat_recurring` (
+  `recurring_id` int(11) NOT NULL,
   `price` decimal(10,4) NOT NULL,
   `frequency` enum('day','week','semi_month','month','year') NOT NULL,
-  `duration` int(10) unsigned NOT NULL,
-  `cycle` int(10) unsigned NOT NULL,
+  `duration` int(10) UNSIGNED NOT NULL,
+  `cycle` int(10) UNSIGNED NOT NULL,
   `trial_status` tinyint(4) NOT NULL,
   `trial_price` decimal(10,4) NOT NULL,
   `trial_frequency` enum('day','week','semi_month','month','year') NOT NULL,
-  `trial_duration` int(10) unsigned NOT NULL,
-  `trial_cycle` int(10) unsigned NOT NULL,
+  `trial_duration` int(10) UNSIGNED NOT NULL,
+  `trial_cycle` int(10) UNSIGNED NOT NULL,
   `status` tinyint(4) NOT NULL,
-  `sort_order` int(11) NOT NULL,
-  PRIMARY KEY (`recurring_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `noithat_recurring_description`
---
-
-CREATE TABLE IF NOT EXISTS `noithat_recurring_description` (
-  `recurring_id` int(11) NOT NULL,
-  `language_id` int(11) NOT NULL,
-  `name` varchar(255) NOT NULL,
-  PRIMARY KEY (`recurring_id`,`language_id`)
+  `sort_order` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `noithat_return`
+-- Structure de la table `noithat_recurring_description`
 --
 
-CREATE TABLE IF NOT EXISTS `noithat_return` (
-  `return_id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `noithat_recurring_description` (
+  `recurring_id` int(11) NOT NULL,
+  `language_id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `noithat_return`
+--
+
+CREATE TABLE `noithat_return` (
+  `return_id` int(11) NOT NULL,
   `order_id` int(11) NOT NULL,
   `product_id` int(11) NOT NULL,
   `customer_id` int(11) NOT NULL,
@@ -3069,25 +3149,23 @@ CREATE TABLE IF NOT EXISTS `noithat_return` (
   `comment` text,
   `date_ordered` date NOT NULL DEFAULT '0000-00-00',
   `date_added` datetime NOT NULL,
-  `date_modified` datetime NOT NULL,
-  PRIMARY KEY (`return_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+  `date_modified` datetime NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `noithat_return_action`
+-- Structure de la table `noithat_return_action`
 --
 
-CREATE TABLE IF NOT EXISTS `noithat_return_action` (
-  `return_action_id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `noithat_return_action` (
+  `return_action_id` int(11) NOT NULL,
   `language_id` int(11) NOT NULL DEFAULT '0',
-  `name` varchar(64) NOT NULL,
-  PRIMARY KEY (`return_action_id`,`language_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+  `name` varchar(64) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `noithat_return_action`
+-- Contenu de la table `noithat_return_action`
 --
 
 INSERT INTO `noithat_return_action` (`return_action_id`, `language_id`, `name`) VALUES
@@ -3101,34 +3179,32 @@ INSERT INTO `noithat_return_action` (`return_action_id`, `language_id`, `name`) 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `noithat_return_history`
+-- Structure de la table `noithat_return_history`
 --
 
-CREATE TABLE IF NOT EXISTS `noithat_return_history` (
-  `return_history_id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `noithat_return_history` (
+  `return_history_id` int(11) NOT NULL,
   `return_id` int(11) NOT NULL,
   `return_status_id` int(11) NOT NULL,
   `notify` tinyint(1) NOT NULL,
   `comment` text NOT NULL,
-  `date_added` datetime NOT NULL,
-  PRIMARY KEY (`return_history_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+  `date_added` datetime NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `noithat_return_reason`
+-- Structure de la table `noithat_return_reason`
 --
 
-CREATE TABLE IF NOT EXISTS `noithat_return_reason` (
-  `return_reason_id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `noithat_return_reason` (
+  `return_reason_id` int(11) NOT NULL,
   `language_id` int(11) NOT NULL DEFAULT '0',
-  `name` varchar(128) NOT NULL,
-  PRIMARY KEY (`return_reason_id`,`language_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
+  `name` varchar(128) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `noithat_return_reason`
+-- Contenu de la table `noithat_return_reason`
 --
 
 INSERT INTO `noithat_return_reason` (`return_reason_id`, `language_id`, `name`) VALUES
@@ -3146,18 +3222,17 @@ INSERT INTO `noithat_return_reason` (`return_reason_id`, `language_id`, `name`) 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `noithat_return_status`
+-- Structure de la table `noithat_return_status`
 --
 
-CREATE TABLE IF NOT EXISTS `noithat_return_status` (
-  `return_status_id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `noithat_return_status` (
+  `return_status_id` int(11) NOT NULL,
   `language_id` int(11) NOT NULL DEFAULT '0',
-  `name` varchar(32) NOT NULL,
-  PRIMARY KEY (`return_status_id`,`language_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+  `name` varchar(32) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `noithat_return_status`
+-- Contenu de la table `noithat_return_status`
 --
 
 INSERT INTO `noithat_return_status` (`return_status_id`, `language_id`, `name`) VALUES
@@ -3171,11 +3246,11 @@ INSERT INTO `noithat_return_status` (`return_status_id`, `language_id`, `name`) 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `noithat_review`
+-- Structure de la table `noithat_review`
 --
 
-CREATE TABLE IF NOT EXISTS `noithat_review` (
-  `review_id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `noithat_review` (
+  `review_id` int(11) NOT NULL,
   `product_id` int(11) NOT NULL,
   `customer_id` int(11) NOT NULL,
   `author` varchar(64) NOT NULL,
@@ -3183,29 +3258,26 @@ CREATE TABLE IF NOT EXISTS `noithat_review` (
   `rating` int(1) NOT NULL,
   `status` tinyint(1) NOT NULL DEFAULT '0',
   `date_added` datetime NOT NULL,
-  `date_modified` datetime NOT NULL,
-  PRIMARY KEY (`review_id`),
-  KEY `product_id` (`product_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+  `date_modified` datetime NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `noithat_setting`
+-- Structure de la table `noithat_setting`
 --
 
-CREATE TABLE IF NOT EXISTS `noithat_setting` (
-  `setting_id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `noithat_setting` (
+  `setting_id` int(11) NOT NULL,
   `store_id` int(11) NOT NULL DEFAULT '0',
   `code` varchar(32) NOT NULL,
   `key` varchar(64) NOT NULL,
   `value` text NOT NULL,
-  `serialized` tinyint(1) NOT NULL,
-  PRIMARY KEY (`setting_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=268 ;
+  `serialized` tinyint(1) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `noithat_setting`
+-- Contenu de la table `noithat_setting`
 --
 
 INSERT INTO `noithat_setting` (`setting_id`, `store_id`, `code`, `key`, `value`, `serialized`) VALUES
@@ -3385,18 +3457,17 @@ INSERT INTO `noithat_setting` (`setting_id`, `store_id`, `code`, `key`, `value`,
 -- --------------------------------------------------------
 
 --
--- Table structure for table `noithat_stock_status`
+-- Structure de la table `noithat_stock_status`
 --
 
-CREATE TABLE IF NOT EXISTS `noithat_stock_status` (
-  `stock_status_id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `noithat_stock_status` (
+  `stock_status_id` int(11) NOT NULL,
   `language_id` int(11) NOT NULL,
-  `name` varchar(32) NOT NULL,
-  PRIMARY KEY (`stock_status_id`,`language_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=9 ;
+  `name` varchar(32) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `noithat_stock_status`
+-- Contenu de la table `noithat_stock_status`
 --
 
 INSERT INTO `noithat_stock_status` (`stock_status_id`, `language_id`, `name`) VALUES
@@ -3412,34 +3483,32 @@ INSERT INTO `noithat_stock_status` (`stock_status_id`, `language_id`, `name`) VA
 -- --------------------------------------------------------
 
 --
--- Table structure for table `noithat_store`
+-- Structure de la table `noithat_store`
 --
 
-CREATE TABLE IF NOT EXISTS `noithat_store` (
-  `store_id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `noithat_store` (
+  `store_id` int(11) NOT NULL,
   `name` varchar(64) NOT NULL,
   `url` varchar(255) NOT NULL,
-  `ssl` varchar(255) NOT NULL,
-  PRIMARY KEY (`store_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+  `ssl` varchar(255) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `noithat_tax_class`
+-- Structure de la table `noithat_tax_class`
 --
 
-CREATE TABLE IF NOT EXISTS `noithat_tax_class` (
-  `tax_class_id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `noithat_tax_class` (
+  `tax_class_id` int(11) NOT NULL,
   `title` varchar(32) NOT NULL,
   `description` varchar(255) NOT NULL,
   `date_added` datetime NOT NULL,
-  `date_modified` datetime NOT NULL,
-  PRIMARY KEY (`tax_class_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=11 ;
+  `date_modified` datetime NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `noithat_tax_class`
+-- Contenu de la table `noithat_tax_class`
 --
 
 INSERT INTO `noithat_tax_class` (`tax_class_id`, `title`, `description`, `date_added`, `date_modified`) VALUES
@@ -3449,42 +3518,40 @@ INSERT INTO `noithat_tax_class` (`tax_class_id`, `title`, `description`, `date_a
 -- --------------------------------------------------------
 
 --
--- Table structure for table `noithat_tax_rate`
+-- Structure de la table `noithat_tax_rate`
 --
 
-CREATE TABLE IF NOT EXISTS `noithat_tax_rate` (
-  `tax_rate_id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `noithat_tax_rate` (
+  `tax_rate_id` int(11) NOT NULL,
   `geo_zone_id` int(11) NOT NULL DEFAULT '0',
   `name` varchar(32) NOT NULL,
   `rate` decimal(15,4) NOT NULL DEFAULT '0.0000',
   `type` char(1) NOT NULL,
   `date_added` datetime NOT NULL,
-  `date_modified` datetime NOT NULL,
-  PRIMARY KEY (`tax_rate_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=88 ;
+  `date_modified` datetime NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `noithat_tax_rate`
+-- Contenu de la table `noithat_tax_rate`
 --
 
 INSERT INTO `noithat_tax_rate` (`tax_rate_id`, `geo_zone_id`, `name`, `rate`, `type`, `date_added`, `date_modified`) VALUES
-(86, 3, 'VAT (20%)', 20.0000, 'P', '2011-03-09 21:17:10', '2011-09-22 22:24:29'),
-(87, 3, 'Eco Tax (-2.00)', 2.0000, 'F', '2011-09-21 21:49:23', '2011-09-23 00:40:19');
+(86, 3, 'VAT (20%)', '20.0000', 'P', '2011-03-09 21:17:10', '2011-09-22 22:24:29'),
+(87, 3, 'Eco Tax (-2.00)', '2.0000', 'F', '2011-09-21 21:49:23', '2011-09-23 00:40:19');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `noithat_tax_rate_to_customer_group`
+-- Structure de la table `noithat_tax_rate_to_customer_group`
 --
 
-CREATE TABLE IF NOT EXISTS `noithat_tax_rate_to_customer_group` (
+CREATE TABLE `noithat_tax_rate_to_customer_group` (
   `tax_rate_id` int(11) NOT NULL,
-  `customer_group_id` int(11) NOT NULL,
-  PRIMARY KEY (`tax_rate_id`,`customer_group_id`)
+  `customer_group_id` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `noithat_tax_rate_to_customer_group`
+-- Contenu de la table `noithat_tax_rate_to_customer_group`
 --
 
 INSERT INTO `noithat_tax_rate_to_customer_group` (`tax_rate_id`, `customer_group_id`) VALUES
@@ -3494,20 +3561,19 @@ INSERT INTO `noithat_tax_rate_to_customer_group` (`tax_rate_id`, `customer_group
 -- --------------------------------------------------------
 
 --
--- Table structure for table `noithat_tax_rule`
+-- Structure de la table `noithat_tax_rule`
 --
 
-CREATE TABLE IF NOT EXISTS `noithat_tax_rule` (
-  `tax_rule_id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `noithat_tax_rule` (
+  `tax_rule_id` int(11) NOT NULL,
   `tax_class_id` int(11) NOT NULL,
   `tax_rate_id` int(11) NOT NULL,
   `based` varchar(10) NOT NULL,
-  `priority` int(5) NOT NULL DEFAULT '1',
-  PRIMARY KEY (`tax_rule_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=129 ;
+  `priority` int(5) NOT NULL DEFAULT '1'
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `noithat_tax_rule`
+-- Contenu de la table `noithat_tax_rule`
 --
 
 INSERT INTO `noithat_tax_rule` (`tax_rule_id`, `tax_class_id`, `tax_rate_id`, `based`, `priority`) VALUES
@@ -3519,92 +3585,86 @@ INSERT INTO `noithat_tax_rule` (`tax_rule_id`, `tax_class_id`, `tax_rate_id`, `b
 -- --------------------------------------------------------
 
 --
--- Table structure for table `noithat_theme`
+-- Structure de la table `noithat_theme`
 --
 
-CREATE TABLE IF NOT EXISTS `noithat_theme` (
-  `theme_id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `noithat_theme` (
+  `theme_id` int(11) NOT NULL,
   `store_id` int(11) NOT NULL,
   `theme` varchar(64) NOT NULL,
   `route` varchar(64) NOT NULL,
-  `code` text NOT NULL,
-  PRIMARY KEY (`theme_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+  `code` text NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `noithat_translation`
+-- Structure de la table `noithat_translation`
 --
 
-CREATE TABLE IF NOT EXISTS `noithat_translation` (
-  `translation_id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `noithat_translation` (
+  `translation_id` int(11) NOT NULL,
   `store_id` int(11) NOT NULL,
   `language_id` int(11) NOT NULL,
   `route` varchar(64) NOT NULL,
   `key` varchar(64) NOT NULL,
-  `value` text NOT NULL,
-  PRIMARY KEY (`translation_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+  `value` text NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `noithat_upload`
+-- Structure de la table `noithat_upload`
 --
 
-CREATE TABLE IF NOT EXISTS `noithat_upload` (
-  `upload_id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `noithat_upload` (
+  `upload_id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
   `filename` varchar(255) NOT NULL,
   `code` varchar(255) NOT NULL,
-  `date_added` datetime NOT NULL,
-  PRIMARY KEY (`upload_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+  `date_added` datetime NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `noithat_url_alias`
+-- Structure de la table `noithat_url_alias`
 --
 
-CREATE TABLE IF NOT EXISTS `noithat_url_alias` (
-  `url_alias_id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `noithat_url_alias` (
+  `url_alias_id` int(11) NOT NULL,
   `query` varchar(255) NOT NULL,
-  `keyword` varchar(255) NOT NULL,
-  PRIMARY KEY (`url_alias_id`),
-  KEY `query` (`query`),
-  KEY `keyword` (`keyword`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=844 ;
+  `keyword` varchar(255) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `noithat_url_alias`
+-- Contenu de la table `noithat_url_alias`
 --
 
 INSERT INTO `noithat_url_alias` (`url_alias_id`, `query`, `keyword`) VALUES
 (824, 'product_id=48', 'ipod-classic'),
-(836, 'category_id=20', 'desktops'),
+(850, 'category_id=20', 'desktops'),
 (834, 'category_id=26', 'pc'),
 (835, 'category_id=27', 'mac'),
 (730, 'manufacturer_id=8', 'apple'),
 (772, 'information_id=4', 'about_us'),
 (768, 'product_id=42', 'test'),
-(789, 'category_id=34', 'mp3-players'),
+(846, 'category_id=34', 'mp3-players'),
 (781, 'category_id=36', 'test2'),
-(774, 'category_id=18', 'laptop-notebook'),
+(851, 'category_id=18', 'laptop-notebook'),
 (775, 'category_id=46', 'macs'),
 (776, 'category_id=45', 'windows'),
-(777, 'category_id=25', 'component'),
+(845, 'category_id=25', 'component'),
 (778, 'category_id=29', 'mouse'),
 (779, 'category_id=28', 'monitor'),
 (780, 'category_id=35', 'test1'),
 (782, 'category_id=30', 'printer'),
 (783, 'category_id=31', 'scanner'),
 (784, 'category_id=32', 'web-camera'),
-(785, 'category_id=57', 'tablet'),
-(786, 'category_id=17', 'software'),
-(787, 'category_id=24', 'smartphone'),
-(788, 'category_id=33', 'camera'),
+(849, 'category_id=57', 'tablet'),
+(848, 'category_id=17', 'software'),
+(847, 'category_id=24', 'smartphone'),
+(844, 'category_id=33', 'camera'),
 (790, 'category_id=43', 'test11'),
 (791, 'category_id=44', 'test12'),
 (792, 'category_id=47', 'test15'),
@@ -3648,16 +3708,30 @@ INSERT INTO `noithat_url_alias` (`url_alias_id`, `query`, `keyword`) VALUES
 (832, 'manufacturer_id=10', 'sony'),
 (841, 'information_id=6', 'delivery'),
 (842, 'information_id=3', 'privacy'),
-(843, 'information_id=5', 'terms');
+(843, 'information_id=5', 'terms'),
+(859, 'category_id=66', ''),
+(862, 'category_id=69', ''),
+(863, 'category_id=70', ''),
+(864, 'category_id=71', ''),
+(869, 'category_id=76', ''),
+(867, 'category_id=74', ''),
+(868, 'category_id=75', ''),
+(870, 'category_id=77', ''),
+(871, 'category_id=78', ''),
+(872, 'category_id=79', ''),
+(873, 'category_id=80', ''),
+(874, 'category_id=81', ''),
+(875, 'category_id=82', ''),
+(876, 'category_id=83', '');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `noithat_user`
+-- Structure de la table `noithat_user`
 --
 
-CREATE TABLE IF NOT EXISTS `noithat_user` (
-  `user_id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `noithat_user` (
+  `user_id` int(11) NOT NULL,
   `user_group_id` int(11) NOT NULL,
   `username` varchar(20) NOT NULL,
   `password` varchar(40) NOT NULL,
@@ -3669,32 +3743,30 @@ CREATE TABLE IF NOT EXISTS `noithat_user` (
   `code` varchar(40) NOT NULL,
   `ip` varchar(40) NOT NULL,
   `status` tinyint(1) NOT NULL,
-  `date_added` datetime NOT NULL,
-  PRIMARY KEY (`user_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+  `date_added` datetime NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `noithat_user`
+-- Contenu de la table `noithat_user`
 --
 
 INSERT INTO `noithat_user` (`user_id`, `user_group_id`, `username`, `password`, `salt`, `firstname`, `lastname`, `email`, `image`, `code`, `ip`, `status`, `date_added`) VALUES
-(1, 1, 'superadmin', '809da6590290ba20e6a65fd3b978740385e467bd', '6EhBj8ANY', 'John', 'Doe', 'hathithao0603@gmail.com', '', '', '127.0.0.1', 1, '2016-10-29 12:23:55');
+(1, 1, 'superadmin', '809da6590290ba20e6a65fd3b978740385e467bd', '6EhBj8ANY', 'John', 'Doe', 'hathithao0603@gmail.com', '', '', '::1', 1, '2016-10-29 12:23:55');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `noithat_user_group`
+-- Structure de la table `noithat_user_group`
 --
 
-CREATE TABLE IF NOT EXISTS `noithat_user_group` (
-  `user_group_id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `noithat_user_group` (
+  `user_group_id` int(11) NOT NULL,
   `name` varchar(64) NOT NULL,
-  `permission` text NOT NULL,
-  PRIMARY KEY (`user_group_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=11 ;
+  `permission` text NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `noithat_user_group`
+-- Contenu de la table `noithat_user_group`
 --
 
 INSERT INTO `noithat_user_group` (`user_group_id`, `name`, `permission`) VALUES
@@ -3704,11 +3776,11 @@ INSERT INTO `noithat_user_group` (`user_group_id`, `name`, `permission`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `noithat_voucher`
+-- Structure de la table `noithat_voucher`
 --
 
-CREATE TABLE IF NOT EXISTS `noithat_voucher` (
-  `voucher_id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `noithat_voucher` (
+  `voucher_id` int(11) NOT NULL,
   `order_id` int(11) NOT NULL,
   `code` varchar(10) NOT NULL,
   `from_name` varchar(64) NOT NULL,
@@ -3719,39 +3791,36 @@ CREATE TABLE IF NOT EXISTS `noithat_voucher` (
   `message` text NOT NULL,
   `amount` decimal(15,4) NOT NULL,
   `status` tinyint(1) NOT NULL,
-  `date_added` datetime NOT NULL,
-  PRIMARY KEY (`voucher_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+  `date_added` datetime NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `noithat_voucher_history`
+-- Structure de la table `noithat_voucher_history`
 --
 
-CREATE TABLE IF NOT EXISTS `noithat_voucher_history` (
-  `voucher_history_id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `noithat_voucher_history` (
+  `voucher_history_id` int(11) NOT NULL,
   `voucher_id` int(11) NOT NULL,
   `order_id` int(11) NOT NULL,
   `amount` decimal(15,4) NOT NULL,
-  `date_added` datetime NOT NULL,
-  PRIMARY KEY (`voucher_history_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+  `date_added` datetime NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `noithat_voucher_theme`
+-- Structure de la table `noithat_voucher_theme`
 --
 
-CREATE TABLE IF NOT EXISTS `noithat_voucher_theme` (
-  `voucher_theme_id` int(11) NOT NULL AUTO_INCREMENT,
-  `image` varchar(255) NOT NULL,
-  PRIMARY KEY (`voucher_theme_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=9 ;
+CREATE TABLE `noithat_voucher_theme` (
+  `voucher_theme_id` int(11) NOT NULL,
+  `image` varchar(255) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `noithat_voucher_theme`
+-- Contenu de la table `noithat_voucher_theme`
 --
 
 INSERT INTO `noithat_voucher_theme` (`voucher_theme_id`, `image`) VALUES
@@ -3762,18 +3831,17 @@ INSERT INTO `noithat_voucher_theme` (`voucher_theme_id`, `image`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `noithat_voucher_theme_description`
+-- Structure de la table `noithat_voucher_theme_description`
 --
 
-CREATE TABLE IF NOT EXISTS `noithat_voucher_theme_description` (
+CREATE TABLE `noithat_voucher_theme_description` (
   `voucher_theme_id` int(11) NOT NULL,
   `language_id` int(11) NOT NULL,
-  `name` varchar(32) NOT NULL,
-  PRIMARY KEY (`voucher_theme_id`,`language_id`)
+  `name` varchar(32) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `noithat_voucher_theme_description`
+-- Contenu de la table `noithat_voucher_theme_description`
 --
 
 INSERT INTO `noithat_voucher_theme_description` (`voucher_theme_id`, `language_id`, `name`) VALUES
@@ -3787,41 +3855,39 @@ INSERT INTO `noithat_voucher_theme_description` (`voucher_theme_id`, `language_i
 -- --------------------------------------------------------
 
 --
--- Table structure for table `noithat_weight_class`
+-- Structure de la table `noithat_weight_class`
 --
 
-CREATE TABLE IF NOT EXISTS `noithat_weight_class` (
-  `weight_class_id` int(11) NOT NULL AUTO_INCREMENT,
-  `value` decimal(15,8) NOT NULL DEFAULT '0.00000000',
-  PRIMARY KEY (`weight_class_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
+CREATE TABLE `noithat_weight_class` (
+  `weight_class_id` int(11) NOT NULL,
+  `value` decimal(15,8) NOT NULL DEFAULT '0.00000000'
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `noithat_weight_class`
+-- Contenu de la table `noithat_weight_class`
 --
 
 INSERT INTO `noithat_weight_class` (`weight_class_id`, `value`) VALUES
-(1, 1.00000000),
-(2, 1000.00000000),
-(5, 2.20460000),
-(6, 35.27400000);
+(1, '1.00000000'),
+(2, '1000.00000000'),
+(5, '2.20460000'),
+(6, '35.27400000');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `noithat_weight_class_description`
+-- Structure de la table `noithat_weight_class_description`
 --
 
-CREATE TABLE IF NOT EXISTS `noithat_weight_class_description` (
+CREATE TABLE `noithat_weight_class_description` (
   `weight_class_id` int(11) NOT NULL,
   `language_id` int(11) NOT NULL,
   `title` varchar(32) NOT NULL,
-  `unit` varchar(4) NOT NULL,
-  PRIMARY KEY (`weight_class_id`,`language_id`)
+  `unit` varchar(4) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `noithat_weight_class_description`
+-- Contenu de la table `noithat_weight_class_description`
 --
 
 INSERT INTO `noithat_weight_class_description` (`weight_class_id`, `language_id`, `title`, `unit`) VALUES
@@ -3837,20 +3903,19 @@ INSERT INTO `noithat_weight_class_description` (`weight_class_id`, `language_id`
 -- --------------------------------------------------------
 
 --
--- Table structure for table `noithat_zone`
+-- Structure de la table `noithat_zone`
 --
 
-CREATE TABLE IF NOT EXISTS `noithat_zone` (
-  `zone_id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `noithat_zone` (
+  `zone_id` int(11) NOT NULL,
   `country_id` int(11) NOT NULL,
   `name` varchar(128) NOT NULL,
   `code` varchar(32) NOT NULL,
-  `status` tinyint(1) NOT NULL DEFAULT '1',
-  PRIMARY KEY (`zone_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4236 ;
+  `status` tinyint(1) NOT NULL DEFAULT '1'
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `noithat_zone`
+-- Contenu de la table `noithat_zone`
 --
 
 INSERT INTO `noithat_zone` (`zone_id`, `country_id`, `name`, `code`, `status`) VALUES
@@ -5386,10 +5451,10 @@ INSERT INTO `noithat_zone` (`zone_id`, `country_id`, `name`, `code`, `status`) V
 (1592, 103, 'Galway', 'GA', 1),
 (1593, 103, 'Kerry', 'KE', 1),
 (1594, 103, 'Kildare', 'KI', 1),
-(1595, 103, 'Kilkenny', 'KL', 1);
-INSERT INTO `noithat_zone` (`zone_id`, `country_id`, `name`, `code`, `status`) VALUES
+(1595, 103, 'Kilkenny', 'KL', 1),
 (1596, 103, 'Laois', 'LA', 1),
-(1597, 103, 'Leitrim', 'LE', 1),
+(1597, 103, 'Leitrim', 'LE', 1);
+INSERT INTO `noithat_zone` (`zone_id`, `country_id`, `name`, `code`, `status`) VALUES
 (1598, 103, 'Limerick', 'LI', 1),
 (1599, 103, 'Longford', 'LO', 1),
 (1600, 103, 'Louth', 'LU', 1),
@@ -6889,11 +6954,11 @@ INSERT INTO `noithat_zone` (`zone_id`, `country_id`, `name`, `code`, `status`) V
 (3130, 205, 'Hamah', 'HM', 1),
 (3131, 205, 'Hims', 'HI', 1),
 (3132, 205, 'Idlib', 'ID', 1),
-(3133, 205, 'Rif Dimashq', 'RD', 1);
-INSERT INTO `noithat_zone` (`zone_id`, `country_id`, `name`, `code`, `status`) VALUES
+(3133, 205, 'Rif Dimashq', 'RD', 1),
 (3134, 205, 'Tartus', 'TA', 1),
 (3135, 206, 'Chang-hua', 'CH', 1),
-(3136, 206, 'Chia-i', 'CI', 1),
+(3136, 206, 'Chia-i', 'CI', 1);
+INSERT INTO `noithat_zone` (`zone_id`, `country_id`, `name`, `code`, `status`) VALUES
 (3137, 206, 'Hsin-chu', 'HS', 1),
 (3138, 206, 'Hua-lien', 'HL', 1),
 (3139, 206, 'I-lan', 'IL', 1),
@@ -7969,21 +8034,20 @@ INSERT INTO `noithat_zone` (`zone_id`, `country_id`, `name`, `code`, `status`) V
 -- --------------------------------------------------------
 
 --
--- Table structure for table `noithat_zone_to_geo_zone`
+-- Structure de la table `noithat_zone_to_geo_zone`
 --
 
-CREATE TABLE IF NOT EXISTS `noithat_zone_to_geo_zone` (
-  `zone_to_geo_zone_id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `noithat_zone_to_geo_zone` (
+  `zone_to_geo_zone_id` int(11) NOT NULL,
   `country_id` int(11) NOT NULL,
   `zone_id` int(11) NOT NULL DEFAULT '0',
   `geo_zone_id` int(11) NOT NULL,
   `date_added` datetime NOT NULL,
-  `date_modified` datetime NOT NULL,
-  PRIMARY KEY (`zone_to_geo_zone_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=110 ;
+  `date_modified` datetime NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `noithat_zone_to_geo_zone`
+-- Contenu de la table `noithat_zone_to_geo_zone`
 --
 
 INSERT INTO `noithat_zone_to_geo_zone` (`zone_to_geo_zone_id`, `country_id`, `zone_id`, `geo_zone_id`, `date_added`, `date_modified`) VALUES
@@ -8097,6 +8161,1281 @@ INSERT INTO `noithat_zone_to_geo_zone` (`zone_to_geo_zone_id`, `country_id`, `zo
 (108, 222, 3955, 3, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
 (109, 222, 3972, 3, '0000-00-00 00:00:00', '0000-00-00 00:00:00');
 
+--
+-- Index pour les tables exportées
+--
+
+--
+-- Index pour la table `noithat_address`
+--
+ALTER TABLE `noithat_address`
+  ADD PRIMARY KEY (`address_id`),
+  ADD KEY `customer_id` (`customer_id`);
+
+--
+-- Index pour la table `noithat_affiliate`
+--
+ALTER TABLE `noithat_affiliate`
+  ADD PRIMARY KEY (`affiliate_id`);
+
+--
+-- Index pour la table `noithat_affiliate_activity`
+--
+ALTER TABLE `noithat_affiliate_activity`
+  ADD PRIMARY KEY (`affiliate_activity_id`);
+
+--
+-- Index pour la table `noithat_affiliate_login`
+--
+ALTER TABLE `noithat_affiliate_login`
+  ADD PRIMARY KEY (`affiliate_login_id`),
+  ADD KEY `email` (`email`),
+  ADD KEY `ip` (`ip`);
+
+--
+-- Index pour la table `noithat_affiliate_transaction`
+--
+ALTER TABLE `noithat_affiliate_transaction`
+  ADD PRIMARY KEY (`affiliate_transaction_id`);
+
+--
+-- Index pour la table `noithat_api`
+--
+ALTER TABLE `noithat_api`
+  ADD PRIMARY KEY (`api_id`);
+
+--
+-- Index pour la table `noithat_api_ip`
+--
+ALTER TABLE `noithat_api_ip`
+  ADD PRIMARY KEY (`api_ip_id`);
+
+--
+-- Index pour la table `noithat_api_session`
+--
+ALTER TABLE `noithat_api_session`
+  ADD PRIMARY KEY (`api_session_id`);
+
+--
+-- Index pour la table `noithat_attribute`
+--
+ALTER TABLE `noithat_attribute`
+  ADD PRIMARY KEY (`attribute_id`);
+
+--
+-- Index pour la table `noithat_attribute_description`
+--
+ALTER TABLE `noithat_attribute_description`
+  ADD PRIMARY KEY (`attribute_id`,`language_id`);
+
+--
+-- Index pour la table `noithat_attribute_group`
+--
+ALTER TABLE `noithat_attribute_group`
+  ADD PRIMARY KEY (`attribute_group_id`);
+
+--
+-- Index pour la table `noithat_attribute_group_description`
+--
+ALTER TABLE `noithat_attribute_group_description`
+  ADD PRIMARY KEY (`attribute_group_id`,`language_id`);
+
+--
+-- Index pour la table `noithat_banner`
+--
+ALTER TABLE `noithat_banner`
+  ADD PRIMARY KEY (`banner_id`);
+
+--
+-- Index pour la table `noithat_banner_image`
+--
+ALTER TABLE `noithat_banner_image`
+  ADD PRIMARY KEY (`banner_image_id`);
+
+--
+-- Index pour la table `noithat_cart`
+--
+ALTER TABLE `noithat_cart`
+  ADD PRIMARY KEY (`cart_id`),
+  ADD KEY `cart_id` (`api_id`,`customer_id`,`session_id`,`product_id`,`recurring_id`);
+
+--
+-- Index pour la table `noithat_category`
+--
+ALTER TABLE `noithat_category`
+  ADD PRIMARY KEY (`category_id`),
+  ADD KEY `parent_id` (`parent_id`);
+
+--
+-- Index pour la table `noithat_category_description`
+--
+ALTER TABLE `noithat_category_description`
+  ADD PRIMARY KEY (`category_id`,`language_id`),
+  ADD KEY `name` (`name`);
+
+--
+-- Index pour la table `noithat_category_filter`
+--
+ALTER TABLE `noithat_category_filter`
+  ADD PRIMARY KEY (`category_id`,`filter_id`);
+
+--
+-- Index pour la table `noithat_category_path`
+--
+ALTER TABLE `noithat_category_path`
+  ADD PRIMARY KEY (`category_id`,`path_id`);
+
+--
+-- Index pour la table `noithat_category_to_layout`
+--
+ALTER TABLE `noithat_category_to_layout`
+  ADD PRIMARY KEY (`category_id`,`store_id`);
+
+--
+-- Index pour la table `noithat_category_to_store`
+--
+ALTER TABLE `noithat_category_to_store`
+  ADD PRIMARY KEY (`category_id`,`store_id`);
+
+--
+-- Index pour la table `noithat_country`
+--
+ALTER TABLE `noithat_country`
+  ADD PRIMARY KEY (`country_id`);
+
+--
+-- Index pour la table `noithat_coupon`
+--
+ALTER TABLE `noithat_coupon`
+  ADD PRIMARY KEY (`coupon_id`);
+
+--
+-- Index pour la table `noithat_coupon_category`
+--
+ALTER TABLE `noithat_coupon_category`
+  ADD PRIMARY KEY (`coupon_id`,`category_id`);
+
+--
+-- Index pour la table `noithat_coupon_history`
+--
+ALTER TABLE `noithat_coupon_history`
+  ADD PRIMARY KEY (`coupon_history_id`);
+
+--
+-- Index pour la table `noithat_coupon_product`
+--
+ALTER TABLE `noithat_coupon_product`
+  ADD PRIMARY KEY (`coupon_product_id`);
+
+--
+-- Index pour la table `noithat_currency`
+--
+ALTER TABLE `noithat_currency`
+  ADD PRIMARY KEY (`currency_id`);
+
+--
+-- Index pour la table `noithat_customer`
+--
+ALTER TABLE `noithat_customer`
+  ADD PRIMARY KEY (`customer_id`);
+
+--
+-- Index pour la table `noithat_customer_activity`
+--
+ALTER TABLE `noithat_customer_activity`
+  ADD PRIMARY KEY (`customer_activity_id`);
+
+--
+-- Index pour la table `noithat_customer_group`
+--
+ALTER TABLE `noithat_customer_group`
+  ADD PRIMARY KEY (`customer_group_id`);
+
+--
+-- Index pour la table `noithat_customer_group_description`
+--
+ALTER TABLE `noithat_customer_group_description`
+  ADD PRIMARY KEY (`customer_group_id`,`language_id`);
+
+--
+-- Index pour la table `noithat_customer_history`
+--
+ALTER TABLE `noithat_customer_history`
+  ADD PRIMARY KEY (`customer_history_id`);
+
+--
+-- Index pour la table `noithat_customer_ip`
+--
+ALTER TABLE `noithat_customer_ip`
+  ADD PRIMARY KEY (`customer_ip_id`),
+  ADD KEY `ip` (`ip`);
+
+--
+-- Index pour la table `noithat_customer_login`
+--
+ALTER TABLE `noithat_customer_login`
+  ADD PRIMARY KEY (`customer_login_id`),
+  ADD KEY `email` (`email`),
+  ADD KEY `ip` (`ip`);
+
+--
+-- Index pour la table `noithat_customer_online`
+--
+ALTER TABLE `noithat_customer_online`
+  ADD PRIMARY KEY (`ip`);
+
+--
+-- Index pour la table `noithat_customer_reward`
+--
+ALTER TABLE `noithat_customer_reward`
+  ADD PRIMARY KEY (`customer_reward_id`);
+
+--
+-- Index pour la table `noithat_customer_search`
+--
+ALTER TABLE `noithat_customer_search`
+  ADD PRIMARY KEY (`customer_search_id`);
+
+--
+-- Index pour la table `noithat_customer_transaction`
+--
+ALTER TABLE `noithat_customer_transaction`
+  ADD PRIMARY KEY (`customer_transaction_id`);
+
+--
+-- Index pour la table `noithat_customer_wishlist`
+--
+ALTER TABLE `noithat_customer_wishlist`
+  ADD PRIMARY KEY (`customer_id`,`product_id`);
+
+--
+-- Index pour la table `noithat_custom_field`
+--
+ALTER TABLE `noithat_custom_field`
+  ADD PRIMARY KEY (`custom_field_id`);
+
+--
+-- Index pour la table `noithat_custom_field_customer_group`
+--
+ALTER TABLE `noithat_custom_field_customer_group`
+  ADD PRIMARY KEY (`custom_field_id`,`customer_group_id`);
+
+--
+-- Index pour la table `noithat_custom_field_description`
+--
+ALTER TABLE `noithat_custom_field_description`
+  ADD PRIMARY KEY (`custom_field_id`,`language_id`);
+
+--
+-- Index pour la table `noithat_custom_field_value`
+--
+ALTER TABLE `noithat_custom_field_value`
+  ADD PRIMARY KEY (`custom_field_value_id`);
+
+--
+-- Index pour la table `noithat_custom_field_value_description`
+--
+ALTER TABLE `noithat_custom_field_value_description`
+  ADD PRIMARY KEY (`custom_field_value_id`,`language_id`);
+
+--
+-- Index pour la table `noithat_download`
+--
+ALTER TABLE `noithat_download`
+  ADD PRIMARY KEY (`download_id`);
+
+--
+-- Index pour la table `noithat_download_description`
+--
+ALTER TABLE `noithat_download_description`
+  ADD PRIMARY KEY (`download_id`,`language_id`);
+
+--
+-- Index pour la table `noithat_event`
+--
+ALTER TABLE `noithat_event`
+  ADD PRIMARY KEY (`event_id`);
+
+--
+-- Index pour la table `noithat_extension`
+--
+ALTER TABLE `noithat_extension`
+  ADD PRIMARY KEY (`extension_id`);
+
+--
+-- Index pour la table `noithat_filter`
+--
+ALTER TABLE `noithat_filter`
+  ADD PRIMARY KEY (`filter_id`);
+
+--
+-- Index pour la table `noithat_filter_description`
+--
+ALTER TABLE `noithat_filter_description`
+  ADD PRIMARY KEY (`filter_id`,`language_id`);
+
+--
+-- Index pour la table `noithat_filter_group`
+--
+ALTER TABLE `noithat_filter_group`
+  ADD PRIMARY KEY (`filter_group_id`);
+
+--
+-- Index pour la table `noithat_filter_group_description`
+--
+ALTER TABLE `noithat_filter_group_description`
+  ADD PRIMARY KEY (`filter_group_id`,`language_id`);
+
+--
+-- Index pour la table `noithat_geo_zone`
+--
+ALTER TABLE `noithat_geo_zone`
+  ADD PRIMARY KEY (`geo_zone_id`);
+
+--
+-- Index pour la table `noithat_information`
+--
+ALTER TABLE `noithat_information`
+  ADD PRIMARY KEY (`information_id`);
+
+--
+-- Index pour la table `noithat_information_description`
+--
+ALTER TABLE `noithat_information_description`
+  ADD PRIMARY KEY (`information_id`,`language_id`);
+
+--
+-- Index pour la table `noithat_information_to_layout`
+--
+ALTER TABLE `noithat_information_to_layout`
+  ADD PRIMARY KEY (`information_id`,`store_id`);
+
+--
+-- Index pour la table `noithat_information_to_store`
+--
+ALTER TABLE `noithat_information_to_store`
+  ADD PRIMARY KEY (`information_id`,`store_id`);
+
+--
+-- Index pour la table `noithat_language`
+--
+ALTER TABLE `noithat_language`
+  ADD PRIMARY KEY (`language_id`),
+  ADD KEY `name` (`name`);
+
+--
+-- Index pour la table `noithat_layout`
+--
+ALTER TABLE `noithat_layout`
+  ADD PRIMARY KEY (`layout_id`);
+
+--
+-- Index pour la table `noithat_layout_module`
+--
+ALTER TABLE `noithat_layout_module`
+  ADD PRIMARY KEY (`layout_module_id`);
+
+--
+-- Index pour la table `noithat_layout_route`
+--
+ALTER TABLE `noithat_layout_route`
+  ADD PRIMARY KEY (`layout_route_id`);
+
+--
+-- Index pour la table `noithat_length_class`
+--
+ALTER TABLE `noithat_length_class`
+  ADD PRIMARY KEY (`length_class_id`);
+
+--
+-- Index pour la table `noithat_length_class_description`
+--
+ALTER TABLE `noithat_length_class_description`
+  ADD PRIMARY KEY (`length_class_id`,`language_id`);
+
+--
+-- Index pour la table `noithat_location`
+--
+ALTER TABLE `noithat_location`
+  ADD PRIMARY KEY (`location_id`),
+  ADD KEY `name` (`name`);
+
+--
+-- Index pour la table `noithat_manufacturer`
+--
+ALTER TABLE `noithat_manufacturer`
+  ADD PRIMARY KEY (`manufacturer_id`);
+
+--
+-- Index pour la table `noithat_manufacturer_to_store`
+--
+ALTER TABLE `noithat_manufacturer_to_store`
+  ADD PRIMARY KEY (`manufacturer_id`,`store_id`);
+
+--
+-- Index pour la table `noithat_marketing`
+--
+ALTER TABLE `noithat_marketing`
+  ADD PRIMARY KEY (`marketing_id`);
+
+--
+-- Index pour la table `noithat_menu`
+--
+ALTER TABLE `noithat_menu`
+  ADD PRIMARY KEY (`menu_id`);
+
+--
+-- Index pour la table `noithat_menu_description`
+--
+ALTER TABLE `noithat_menu_description`
+  ADD PRIMARY KEY (`menu_id`,`language_id`);
+
+--
+-- Index pour la table `noithat_menu_module`
+--
+ALTER TABLE `noithat_menu_module`
+  ADD PRIMARY KEY (`menu_module_id`),
+  ADD KEY `menu_id` (`menu_id`);
+
+--
+-- Index pour la table `noithat_modification`
+--
+ALTER TABLE `noithat_modification`
+  ADD PRIMARY KEY (`modification_id`);
+
+--
+-- Index pour la table `noithat_module`
+--
+ALTER TABLE `noithat_module`
+  ADD PRIMARY KEY (`module_id`);
+
+--
+-- Index pour la table `noithat_option`
+--
+ALTER TABLE `noithat_option`
+  ADD PRIMARY KEY (`option_id`);
+
+--
+-- Index pour la table `noithat_option_description`
+--
+ALTER TABLE `noithat_option_description`
+  ADD PRIMARY KEY (`option_id`,`language_id`);
+
+--
+-- Index pour la table `noithat_option_value`
+--
+ALTER TABLE `noithat_option_value`
+  ADD PRIMARY KEY (`option_value_id`);
+
+--
+-- Index pour la table `noithat_option_value_description`
+--
+ALTER TABLE `noithat_option_value_description`
+  ADD PRIMARY KEY (`option_value_id`,`language_id`);
+
+--
+-- Index pour la table `noithat_order`
+--
+ALTER TABLE `noithat_order`
+  ADD PRIMARY KEY (`order_id`);
+
+--
+-- Index pour la table `noithat_order_custom_field`
+--
+ALTER TABLE `noithat_order_custom_field`
+  ADD PRIMARY KEY (`order_custom_field_id`);
+
+--
+-- Index pour la table `noithat_order_history`
+--
+ALTER TABLE `noithat_order_history`
+  ADD PRIMARY KEY (`order_history_id`);
+
+--
+-- Index pour la table `noithat_order_option`
+--
+ALTER TABLE `noithat_order_option`
+  ADD PRIMARY KEY (`order_option_id`);
+
+--
+-- Index pour la table `noithat_order_product`
+--
+ALTER TABLE `noithat_order_product`
+  ADD PRIMARY KEY (`order_product_id`);
+
+--
+-- Index pour la table `noithat_order_recurring`
+--
+ALTER TABLE `noithat_order_recurring`
+  ADD PRIMARY KEY (`order_recurring_id`);
+
+--
+-- Index pour la table `noithat_order_recurring_transaction`
+--
+ALTER TABLE `noithat_order_recurring_transaction`
+  ADD PRIMARY KEY (`order_recurring_transaction_id`);
+
+--
+-- Index pour la table `noithat_order_status`
+--
+ALTER TABLE `noithat_order_status`
+  ADD PRIMARY KEY (`order_status_id`,`language_id`);
+
+--
+-- Index pour la table `noithat_order_total`
+--
+ALTER TABLE `noithat_order_total`
+  ADD PRIMARY KEY (`order_total_id`),
+  ADD KEY `order_id` (`order_id`);
+
+--
+-- Index pour la table `noithat_order_voucher`
+--
+ALTER TABLE `noithat_order_voucher`
+  ADD PRIMARY KEY (`order_voucher_id`);
+
+--
+-- Index pour la table `noithat_product`
+--
+ALTER TABLE `noithat_product`
+  ADD PRIMARY KEY (`product_id`);
+
+--
+-- Index pour la table `noithat_product_attribute`
+--
+ALTER TABLE `noithat_product_attribute`
+  ADD PRIMARY KEY (`product_id`,`attribute_id`,`language_id`);
+
+--
+-- Index pour la table `noithat_product_description`
+--
+ALTER TABLE `noithat_product_description`
+  ADD PRIMARY KEY (`product_id`,`language_id`),
+  ADD KEY `name` (`name`);
+
+--
+-- Index pour la table `noithat_product_discount`
+--
+ALTER TABLE `noithat_product_discount`
+  ADD PRIMARY KEY (`product_discount_id`),
+  ADD KEY `product_id` (`product_id`);
+
+--
+-- Index pour la table `noithat_product_filter`
+--
+ALTER TABLE `noithat_product_filter`
+  ADD PRIMARY KEY (`product_id`,`filter_id`);
+
+--
+-- Index pour la table `noithat_product_image`
+--
+ALTER TABLE `noithat_product_image`
+  ADD PRIMARY KEY (`product_image_id`),
+  ADD KEY `product_id` (`product_id`);
+
+--
+-- Index pour la table `noithat_product_option`
+--
+ALTER TABLE `noithat_product_option`
+  ADD PRIMARY KEY (`product_option_id`);
+
+--
+-- Index pour la table `noithat_product_option_value`
+--
+ALTER TABLE `noithat_product_option_value`
+  ADD PRIMARY KEY (`product_option_value_id`);
+
+--
+-- Index pour la table `noithat_product_recurring`
+--
+ALTER TABLE `noithat_product_recurring`
+  ADD PRIMARY KEY (`product_id`,`recurring_id`,`customer_group_id`);
+
+--
+-- Index pour la table `noithat_product_related`
+--
+ALTER TABLE `noithat_product_related`
+  ADD PRIMARY KEY (`product_id`,`related_id`);
+
+--
+-- Index pour la table `noithat_product_reward`
+--
+ALTER TABLE `noithat_product_reward`
+  ADD PRIMARY KEY (`product_reward_id`);
+
+--
+-- Index pour la table `noithat_product_special`
+--
+ALTER TABLE `noithat_product_special`
+  ADD PRIMARY KEY (`product_special_id`),
+  ADD KEY `product_id` (`product_id`);
+
+--
+-- Index pour la table `noithat_product_to_category`
+--
+ALTER TABLE `noithat_product_to_category`
+  ADD PRIMARY KEY (`product_id`,`category_id`),
+  ADD KEY `category_id` (`category_id`);
+
+--
+-- Index pour la table `noithat_product_to_download`
+--
+ALTER TABLE `noithat_product_to_download`
+  ADD PRIMARY KEY (`product_id`,`download_id`);
+
+--
+-- Index pour la table `noithat_product_to_layout`
+--
+ALTER TABLE `noithat_product_to_layout`
+  ADD PRIMARY KEY (`product_id`,`store_id`);
+
+--
+-- Index pour la table `noithat_product_to_store`
+--
+ALTER TABLE `noithat_product_to_store`
+  ADD PRIMARY KEY (`product_id`,`store_id`);
+
+--
+-- Index pour la table `noithat_recurring`
+--
+ALTER TABLE `noithat_recurring`
+  ADD PRIMARY KEY (`recurring_id`);
+
+--
+-- Index pour la table `noithat_recurring_description`
+--
+ALTER TABLE `noithat_recurring_description`
+  ADD PRIMARY KEY (`recurring_id`,`language_id`);
+
+--
+-- Index pour la table `noithat_return`
+--
+ALTER TABLE `noithat_return`
+  ADD PRIMARY KEY (`return_id`);
+
+--
+-- Index pour la table `noithat_return_action`
+--
+ALTER TABLE `noithat_return_action`
+  ADD PRIMARY KEY (`return_action_id`,`language_id`);
+
+--
+-- Index pour la table `noithat_return_history`
+--
+ALTER TABLE `noithat_return_history`
+  ADD PRIMARY KEY (`return_history_id`);
+
+--
+-- Index pour la table `noithat_return_reason`
+--
+ALTER TABLE `noithat_return_reason`
+  ADD PRIMARY KEY (`return_reason_id`,`language_id`);
+
+--
+-- Index pour la table `noithat_return_status`
+--
+ALTER TABLE `noithat_return_status`
+  ADD PRIMARY KEY (`return_status_id`,`language_id`);
+
+--
+-- Index pour la table `noithat_review`
+--
+ALTER TABLE `noithat_review`
+  ADD PRIMARY KEY (`review_id`),
+  ADD KEY `product_id` (`product_id`);
+
+--
+-- Index pour la table `noithat_setting`
+--
+ALTER TABLE `noithat_setting`
+  ADD PRIMARY KEY (`setting_id`);
+
+--
+-- Index pour la table `noithat_stock_status`
+--
+ALTER TABLE `noithat_stock_status`
+  ADD PRIMARY KEY (`stock_status_id`,`language_id`);
+
+--
+-- Index pour la table `noithat_store`
+--
+ALTER TABLE `noithat_store`
+  ADD PRIMARY KEY (`store_id`);
+
+--
+-- Index pour la table `noithat_tax_class`
+--
+ALTER TABLE `noithat_tax_class`
+  ADD PRIMARY KEY (`tax_class_id`);
+
+--
+-- Index pour la table `noithat_tax_rate`
+--
+ALTER TABLE `noithat_tax_rate`
+  ADD PRIMARY KEY (`tax_rate_id`);
+
+--
+-- Index pour la table `noithat_tax_rate_to_customer_group`
+--
+ALTER TABLE `noithat_tax_rate_to_customer_group`
+  ADD PRIMARY KEY (`tax_rate_id`,`customer_group_id`);
+
+--
+-- Index pour la table `noithat_tax_rule`
+--
+ALTER TABLE `noithat_tax_rule`
+  ADD PRIMARY KEY (`tax_rule_id`);
+
+--
+-- Index pour la table `noithat_theme`
+--
+ALTER TABLE `noithat_theme`
+  ADD PRIMARY KEY (`theme_id`);
+
+--
+-- Index pour la table `noithat_translation`
+--
+ALTER TABLE `noithat_translation`
+  ADD PRIMARY KEY (`translation_id`);
+
+--
+-- Index pour la table `noithat_upload`
+--
+ALTER TABLE `noithat_upload`
+  ADD PRIMARY KEY (`upload_id`);
+
+--
+-- Index pour la table `noithat_url_alias`
+--
+ALTER TABLE `noithat_url_alias`
+  ADD PRIMARY KEY (`url_alias_id`),
+  ADD KEY `query` (`query`),
+  ADD KEY `keyword` (`keyword`);
+
+--
+-- Index pour la table `noithat_user`
+--
+ALTER TABLE `noithat_user`
+  ADD PRIMARY KEY (`user_id`);
+
+--
+-- Index pour la table `noithat_user_group`
+--
+ALTER TABLE `noithat_user_group`
+  ADD PRIMARY KEY (`user_group_id`);
+
+--
+-- Index pour la table `noithat_voucher`
+--
+ALTER TABLE `noithat_voucher`
+  ADD PRIMARY KEY (`voucher_id`);
+
+--
+-- Index pour la table `noithat_voucher_history`
+--
+ALTER TABLE `noithat_voucher_history`
+  ADD PRIMARY KEY (`voucher_history_id`);
+
+--
+-- Index pour la table `noithat_voucher_theme`
+--
+ALTER TABLE `noithat_voucher_theme`
+  ADD PRIMARY KEY (`voucher_theme_id`);
+
+--
+-- Index pour la table `noithat_voucher_theme_description`
+--
+ALTER TABLE `noithat_voucher_theme_description`
+  ADD PRIMARY KEY (`voucher_theme_id`,`language_id`);
+
+--
+-- Index pour la table `noithat_weight_class`
+--
+ALTER TABLE `noithat_weight_class`
+  ADD PRIMARY KEY (`weight_class_id`);
+
+--
+-- Index pour la table `noithat_weight_class_description`
+--
+ALTER TABLE `noithat_weight_class_description`
+  ADD PRIMARY KEY (`weight_class_id`,`language_id`);
+
+--
+-- Index pour la table `noithat_zone`
+--
+ALTER TABLE `noithat_zone`
+  ADD PRIMARY KEY (`zone_id`);
+
+--
+-- Index pour la table `noithat_zone_to_geo_zone`
+--
+ALTER TABLE `noithat_zone_to_geo_zone`
+  ADD PRIMARY KEY (`zone_to_geo_zone_id`);
+
+--
+-- AUTO_INCREMENT pour les tables exportées
+--
+
+--
+-- AUTO_INCREMENT pour la table `noithat_address`
+--
+ALTER TABLE `noithat_address`
+  MODIFY `address_id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT pour la table `noithat_affiliate`
+--
+ALTER TABLE `noithat_affiliate`
+  MODIFY `affiliate_id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT pour la table `noithat_affiliate_activity`
+--
+ALTER TABLE `noithat_affiliate_activity`
+  MODIFY `affiliate_activity_id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT pour la table `noithat_affiliate_login`
+--
+ALTER TABLE `noithat_affiliate_login`
+  MODIFY `affiliate_login_id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT pour la table `noithat_affiliate_transaction`
+--
+ALTER TABLE `noithat_affiliate_transaction`
+  MODIFY `affiliate_transaction_id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT pour la table `noithat_api`
+--
+ALTER TABLE `noithat_api`
+  MODIFY `api_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT pour la table `noithat_api_ip`
+--
+ALTER TABLE `noithat_api_ip`
+  MODIFY `api_ip_id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT pour la table `noithat_api_session`
+--
+ALTER TABLE `noithat_api_session`
+  MODIFY `api_session_id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT pour la table `noithat_attribute`
+--
+ALTER TABLE `noithat_attribute`
+  MODIFY `attribute_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+--
+-- AUTO_INCREMENT pour la table `noithat_attribute_group`
+--
+ALTER TABLE `noithat_attribute_group`
+  MODIFY `attribute_group_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+--
+-- AUTO_INCREMENT pour la table `noithat_banner`
+--
+ALTER TABLE `noithat_banner`
+  MODIFY `banner_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+--
+-- AUTO_INCREMENT pour la table `noithat_banner_image`
+--
+ALTER TABLE `noithat_banner_image`
+  MODIFY `banner_image_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=113;
+--
+-- AUTO_INCREMENT pour la table `noithat_cart`
+--
+ALTER TABLE `noithat_cart`
+  MODIFY `cart_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT pour la table `noithat_category`
+--
+ALTER TABLE `noithat_category`
+  MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=84;
+--
+-- AUTO_INCREMENT pour la table `noithat_country`
+--
+ALTER TABLE `noithat_country`
+  MODIFY `country_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=258;
+--
+-- AUTO_INCREMENT pour la table `noithat_coupon`
+--
+ALTER TABLE `noithat_coupon`
+  MODIFY `coupon_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+--
+-- AUTO_INCREMENT pour la table `noithat_coupon_history`
+--
+ALTER TABLE `noithat_coupon_history`
+  MODIFY `coupon_history_id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT pour la table `noithat_coupon_product`
+--
+ALTER TABLE `noithat_coupon_product`
+  MODIFY `coupon_product_id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT pour la table `noithat_currency`
+--
+ALTER TABLE `noithat_currency`
+  MODIFY `currency_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+--
+-- AUTO_INCREMENT pour la table `noithat_customer`
+--
+ALTER TABLE `noithat_customer`
+  MODIFY `customer_id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT pour la table `noithat_customer_activity`
+--
+ALTER TABLE `noithat_customer_activity`
+  MODIFY `customer_activity_id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT pour la table `noithat_customer_group`
+--
+ALTER TABLE `noithat_customer_group`
+  MODIFY `customer_group_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT pour la table `noithat_customer_history`
+--
+ALTER TABLE `noithat_customer_history`
+  MODIFY `customer_history_id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT pour la table `noithat_customer_ip`
+--
+ALTER TABLE `noithat_customer_ip`
+  MODIFY `customer_ip_id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT pour la table `noithat_customer_login`
+--
+ALTER TABLE `noithat_customer_login`
+  MODIFY `customer_login_id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT pour la table `noithat_customer_reward`
+--
+ALTER TABLE `noithat_customer_reward`
+  MODIFY `customer_reward_id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT pour la table `noithat_customer_search`
+--
+ALTER TABLE `noithat_customer_search`
+  MODIFY `customer_search_id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT pour la table `noithat_customer_transaction`
+--
+ALTER TABLE `noithat_customer_transaction`
+  MODIFY `customer_transaction_id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT pour la table `noithat_custom_field`
+--
+ALTER TABLE `noithat_custom_field`
+  MODIFY `custom_field_id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT pour la table `noithat_custom_field_value`
+--
+ALTER TABLE `noithat_custom_field_value`
+  MODIFY `custom_field_value_id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT pour la table `noithat_download`
+--
+ALTER TABLE `noithat_download`
+  MODIFY `download_id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT pour la table `noithat_event`
+--
+ALTER TABLE `noithat_event`
+  MODIFY `event_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT pour la table `noithat_extension`
+--
+ALTER TABLE `noithat_extension`
+  MODIFY `extension_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+--
+-- AUTO_INCREMENT pour la table `noithat_filter`
+--
+ALTER TABLE `noithat_filter`
+  MODIFY `filter_id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT pour la table `noithat_filter_group`
+--
+ALTER TABLE `noithat_filter_group`
+  MODIFY `filter_group_id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT pour la table `noithat_geo_zone`
+--
+ALTER TABLE `noithat_geo_zone`
+  MODIFY `geo_zone_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+--
+-- AUTO_INCREMENT pour la table `noithat_information`
+--
+ALTER TABLE `noithat_information`
+  MODIFY `information_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+--
+-- AUTO_INCREMENT pour la table `noithat_language`
+--
+ALTER TABLE `noithat_language`
+  MODIFY `language_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT pour la table `noithat_layout`
+--
+ALTER TABLE `noithat_layout`
+  MODIFY `layout_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+--
+-- AUTO_INCREMENT pour la table `noithat_layout_module`
+--
+ALTER TABLE `noithat_layout_module`
+  MODIFY `layout_module_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=74;
+--
+-- AUTO_INCREMENT pour la table `noithat_layout_route`
+--
+ALTER TABLE `noithat_layout_route`
+  MODIFY `layout_route_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
+--
+-- AUTO_INCREMENT pour la table `noithat_length_class`
+--
+ALTER TABLE `noithat_length_class`
+  MODIFY `length_class_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+--
+-- AUTO_INCREMENT pour la table `noithat_location`
+--
+ALTER TABLE `noithat_location`
+  MODIFY `location_id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT pour la table `noithat_manufacturer`
+--
+ALTER TABLE `noithat_manufacturer`
+  MODIFY `manufacturer_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+--
+-- AUTO_INCREMENT pour la table `noithat_marketing`
+--
+ALTER TABLE `noithat_marketing`
+  MODIFY `marketing_id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT pour la table `noithat_menu`
+--
+ALTER TABLE `noithat_menu`
+  MODIFY `menu_id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT pour la table `noithat_modification`
+--
+ALTER TABLE `noithat_modification`
+  MODIFY `modification_id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT pour la table `noithat_module`
+--
+ALTER TABLE `noithat_module`
+  MODIFY `module_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+--
+-- AUTO_INCREMENT pour la table `noithat_option`
+--
+ALTER TABLE `noithat_option`
+  MODIFY `option_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+--
+-- AUTO_INCREMENT pour la table `noithat_option_value`
+--
+ALTER TABLE `noithat_option_value`
+  MODIFY `option_value_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
+--
+-- AUTO_INCREMENT pour la table `noithat_order`
+--
+ALTER TABLE `noithat_order`
+  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT pour la table `noithat_order_custom_field`
+--
+ALTER TABLE `noithat_order_custom_field`
+  MODIFY `order_custom_field_id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT pour la table `noithat_order_history`
+--
+ALTER TABLE `noithat_order_history`
+  MODIFY `order_history_id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT pour la table `noithat_order_option`
+--
+ALTER TABLE `noithat_order_option`
+  MODIFY `order_option_id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT pour la table `noithat_order_product`
+--
+ALTER TABLE `noithat_order_product`
+  MODIFY `order_product_id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT pour la table `noithat_order_recurring`
+--
+ALTER TABLE `noithat_order_recurring`
+  MODIFY `order_recurring_id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT pour la table `noithat_order_recurring_transaction`
+--
+ALTER TABLE `noithat_order_recurring_transaction`
+  MODIFY `order_recurring_transaction_id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT pour la table `noithat_order_status`
+--
+ALTER TABLE `noithat_order_status`
+  MODIFY `order_status_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+--
+-- AUTO_INCREMENT pour la table `noithat_order_total`
+--
+ALTER TABLE `noithat_order_total`
+  MODIFY `order_total_id` int(10) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT pour la table `noithat_order_voucher`
+--
+ALTER TABLE `noithat_order_voucher`
+  MODIFY `order_voucher_id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT pour la table `noithat_product`
+--
+ALTER TABLE `noithat_product`
+  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
+--
+-- AUTO_INCREMENT pour la table `noithat_product_discount`
+--
+ALTER TABLE `noithat_product_discount`
+  MODIFY `product_discount_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=441;
+--
+-- AUTO_INCREMENT pour la table `noithat_product_image`
+--
+ALTER TABLE `noithat_product_image`
+  MODIFY `product_image_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2356;
+--
+-- AUTO_INCREMENT pour la table `noithat_product_option`
+--
+ALTER TABLE `noithat_product_option`
+  MODIFY `product_option_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=227;
+--
+-- AUTO_INCREMENT pour la table `noithat_product_option_value`
+--
+ALTER TABLE `noithat_product_option_value`
+  MODIFY `product_option_value_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+--
+-- AUTO_INCREMENT pour la table `noithat_product_reward`
+--
+ALTER TABLE `noithat_product_reward`
+  MODIFY `product_reward_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=546;
+--
+-- AUTO_INCREMENT pour la table `noithat_product_special`
+--
+ALTER TABLE `noithat_product_special`
+  MODIFY `product_special_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=440;
+--
+-- AUTO_INCREMENT pour la table `noithat_recurring`
+--
+ALTER TABLE `noithat_recurring`
+  MODIFY `recurring_id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT pour la table `noithat_return`
+--
+ALTER TABLE `noithat_return`
+  MODIFY `return_id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT pour la table `noithat_return_action`
+--
+ALTER TABLE `noithat_return_action`
+  MODIFY `return_action_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+--
+-- AUTO_INCREMENT pour la table `noithat_return_history`
+--
+ALTER TABLE `noithat_return_history`
+  MODIFY `return_history_id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT pour la table `noithat_return_reason`
+--
+ALTER TABLE `noithat_return_reason`
+  MODIFY `return_reason_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+--
+-- AUTO_INCREMENT pour la table `noithat_return_status`
+--
+ALTER TABLE `noithat_return_status`
+  MODIFY `return_status_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+--
+-- AUTO_INCREMENT pour la table `noithat_review`
+--
+ALTER TABLE `noithat_review`
+  MODIFY `review_id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT pour la table `noithat_setting`
+--
+ALTER TABLE `noithat_setting`
+  MODIFY `setting_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=268;
+--
+-- AUTO_INCREMENT pour la table `noithat_stock_status`
+--
+ALTER TABLE `noithat_stock_status`
+  MODIFY `stock_status_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+--
+-- AUTO_INCREMENT pour la table `noithat_store`
+--
+ALTER TABLE `noithat_store`
+  MODIFY `store_id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT pour la table `noithat_tax_class`
+--
+ALTER TABLE `noithat_tax_class`
+  MODIFY `tax_class_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+--
+-- AUTO_INCREMENT pour la table `noithat_tax_rate`
+--
+ALTER TABLE `noithat_tax_rate`
+  MODIFY `tax_rate_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=88;
+--
+-- AUTO_INCREMENT pour la table `noithat_tax_rule`
+--
+ALTER TABLE `noithat_tax_rule`
+  MODIFY `tax_rule_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=129;
+--
+-- AUTO_INCREMENT pour la table `noithat_theme`
+--
+ALTER TABLE `noithat_theme`
+  MODIFY `theme_id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT pour la table `noithat_translation`
+--
+ALTER TABLE `noithat_translation`
+  MODIFY `translation_id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT pour la table `noithat_upload`
+--
+ALTER TABLE `noithat_upload`
+  MODIFY `upload_id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT pour la table `noithat_url_alias`
+--
+ALTER TABLE `noithat_url_alias`
+  MODIFY `url_alias_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=877;
+--
+-- AUTO_INCREMENT pour la table `noithat_user`
+--
+ALTER TABLE `noithat_user`
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT pour la table `noithat_user_group`
+--
+ALTER TABLE `noithat_user_group`
+  MODIFY `user_group_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+--
+-- AUTO_INCREMENT pour la table `noithat_voucher`
+--
+ALTER TABLE `noithat_voucher`
+  MODIFY `voucher_id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT pour la table `noithat_voucher_history`
+--
+ALTER TABLE `noithat_voucher_history`
+  MODIFY `voucher_history_id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT pour la table `noithat_voucher_theme`
+--
+ALTER TABLE `noithat_voucher_theme`
+  MODIFY `voucher_theme_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+--
+-- AUTO_INCREMENT pour la table `noithat_weight_class`
+--
+ALTER TABLE `noithat_weight_class`
+  MODIFY `weight_class_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+--
+-- AUTO_INCREMENT pour la table `noithat_zone`
+--
+ALTER TABLE `noithat_zone`
+  MODIFY `zone_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4236;
+--
+-- AUTO_INCREMENT pour la table `noithat_zone_to_geo_zone`
+--
+ALTER TABLE `noithat_zone_to_geo_zone`
+  MODIFY `zone_to_geo_zone_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=110;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
