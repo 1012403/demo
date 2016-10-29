@@ -25,3 +25,4 @@ $('#carousel<?php echo $module; ?>').owlCarousel({
 	navigationText: ['<i class="prev-button2"><span></span></i>', '<i class="next-button2"><span></span></i>']
 });
 --></script>
+
